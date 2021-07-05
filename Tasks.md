@@ -23,7 +23,7 @@ Things to do/look at:
    https://git-scm.com/book/en/v2
    Possibly up to the end of chapter 3 - don't worry if you do not get it all in one go. I am still learning and I have been using this for years.
 5. Familiarise yourselves with the basics of [markdown](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md) (GitHub flavour).
-   * Also have a look at [R markdown](https://bookdown.org/yihui/rmarkdown/)
+   * Also have a look at [R markdown](https://bookdown.org/yihui/rmarkdown/).
 
 ## Project tasks
 
@@ -38,4 +38,4 @@ These are possible longer term tasks to undertake:
 * Re-write in in C/C++ and embed the code in R. Potential issues with paaralellisationin C/C++ are:
    1. problems with 'core count' software grabs. I'm sure there is a proper way of saying this (autodetect vs determine cores to to be used). 
    2. setting random seed in a comparable way to R to make results comparable in the analysis (nothing to do with making R and C the same)
-* Extra: visualisation, try to visualise pathways. Maybe of interest for student interested in biology.
+* Extra: visualisation, try to visualise pathways. Maybe of interest for student interested in Biology.
