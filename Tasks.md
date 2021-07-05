@@ -33,6 +33,6 @@ These are possible longer term tasks to undertake:
 * Parallelisation and optimisation of SNP and Gene permutations (maybe https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html is useful). Benchmarking
 
 * Re-write in in C/C++ and embed the code in R. Potential issues with paaralellisationin C/C++ are:
-   (a) problems with 'core count' software grabs. I'm sure there is a proper way of saying this (autodetect vs determine cores to to be used). 
-   (b) setting random seed in a comparable way to R to make results comparable in the analysis (nothing to do with making R and C the same)
+    a. problems with 'core count' software grabs. I'm sure there is a proper way of saying this (autodetect vs determine cores to to be used). 
+    b. setting random seed in a comparable way to R to make results comparable in the analysis (nothing to do with making R and C the same)
 * Extra: visualisation, try to visualise pathways. Maybe of interest for student interested in biology.
