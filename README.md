@@ -1,4 +1,4 @@
-# Summer of Hpc - 2021
+# Summer of HPC - 2021
 
 This repo deals with a [PRACE Summer of HPC 2021 project](https://summerofhpc.prace-ri.eu/re-engineering-and-optimizing-software-for-the-discovery-of-gene-sets-related-to-disease/) to improve the genomicper R package.
 
