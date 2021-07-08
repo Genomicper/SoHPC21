@@ -35,6 +35,14 @@ gs_locs <- genome_results$gs_locs
 
 ## Introduction
 
+## Methodology
+
+Have taken a copy of the R sources of [genomicper](https://github.com/Genomicper/genomicper). 
+The routine names (and file names) will have to be renamed but changes/improvements can be made
+to be compared  with the original data. The `source` command can be used to load the alternative
+source files but each function in the file has to be renamed in order not to produce a name
+clash. The renaming will take place as/when subrutines are modified.
+
 ## Baseline performance
 
 ## Pofile
