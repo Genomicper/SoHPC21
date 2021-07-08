@@ -1,0 +1,27 @@
+---
+title: "Genomicper Notebook"
+output: 
+  md_document:
+      variant: markdown_github
+      toc: true
+---
+
+## Setup
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. 
+
+```{r setup}
+library(genomicper)        # Package to be analysed
+library(microbenchmark)    # Microbenchmark routines
+library(profvis)           # Profile routines
+```
+
+## Introduction
+
+## Baseline performance
+
+## Pofile
+
+## Possible ToDo Items
+
+## References
