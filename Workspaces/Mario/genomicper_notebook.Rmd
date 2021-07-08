@@ -8,12 +8,29 @@ output:
 
 ## Setup
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. 
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook which allows 
+code and text to be mixed. 
 
 ```{r setup}
 library(genomicper)        # Package to be analysed
 library(microbenchmark)    # Microbenchmark routines
 library(profvis)           # Profile routines
+
+# Sample workflow
+
+# Load files for analysis
+data(demo,SNPsAnnotation)
+
+# Read & format GWAS pvalues
+all_data <- read_pvals(data_name=demo,snps_ann=SNPsAnnotation)
+
+# Order data according to the genome
+genome_results <-genome_order(all_data=all_data)
+
+# Results from genome_order
+ordered_alldata <- genome_results$ordered_alldata
+gs_locs <- genome_results$gs_locs
+	
 ```
 
 ## Introduction
@@ -22,6 +39,9 @@ library(profvis)           # Profile routines
 
 ## Pofile
 
-## Possible ToDo Items
+## Possible improvements
+
+- [ ] Add [`roxygen2` documentation](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) to the routines.
+- [ ] Change `print` to `cat` or `message`, see this [stackoverflow article](https://stackoverflow.com/questions/36699272/why-is-message-a-better-choice-than-print-in-r-for-writing-a-package/36700294).
 
 ## References
