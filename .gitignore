@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+# Do not add report files to the repository.
+*.html
