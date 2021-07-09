@@ -11,12 +11,20 @@ output:
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook which allows 
 code and text to be mixed. 
 
+Have taken a copy of the R sources of [genomicper](https://github.com/Genomicper/genomicper). 
+The routine names (and file names) will have to be renamed but changes/improvements can be made
+to be compared with the original data. The `source` command can be used to load the alternative
+source files but each function in the file has to be renamed in order not to produce a name
+clash. The renaming will take place as/when subroutines are modified. New files should pass
+through `lintr` that makes files comply with the [tidyverse style guide](https://style.tidyverse.org/).
+
 ```{r setup}
 library(genomicper)        # Package to be analysed
 library(microbenchmark)    # Microbenchmark routines
 library(profvis)           # Profile routines
+library(lintr)             # Static R analyser
 
-# Sample workflow
+# Sample workflow from the documentation
 
 # Load files for analysis
 data(demo,SNPsAnnotation)
@@ -24,24 +32,28 @@ data(demo,SNPsAnnotation)
 # Read & format GWAS pvalues
 all_data <- read_pvals(data_name=demo,snps_ann=SNPsAnnotation)
 
+# Load new version
+# v2 changes: 
+#            print -> cat
+#            Style changes to comply with lintr
+lint("Src/read_pvals_v2.R")
+source("Src/read_pvals_v2.R")
+all_data <- read_pvals_v2(data_name=demo,snps_ann=SNPsAnnotation)
+
 # Order data according to the genome
 genome_results <-genome_order(all_data=all_data)
 
 # Results from genome_order
 ordered_alldata <- genome_results$ordered_alldata
 gs_locs <- genome_results$gs_locs
+
+# Load more data
+# data(RHSA164843,RHSA446343,RHSA8876384,RHSA8964572,RHSA109582,RHSA1474244,envir=gper.env)
+
 	
 ```
 
 ## Introduction
-
-## Methodology
-
-Have taken a copy of the R sources of [genomicper](https://github.com/Genomicper/genomicper). 
-The routine names (and file names) will have to be renamed but changes/improvements can be made
-to be compared  with the original data. The `source` command can be used to load the alternative
-source files but each function in the file has to be renamed in order not to produce a name
-clash. The renaming will take place as/when subrutines are modified.
 
 ## Baseline performance
 
