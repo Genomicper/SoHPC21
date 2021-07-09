@@ -8,13 +8,14 @@ function(data_name = "", snps_ann = "", from = "workspace") {
 
     if (from != "workspace") {
        if (from != "directory") {
-          stop("Argument \"from\" must be set to \"workspace\" or \"directory\"")
+          stop("Argument \"from\" must be set to \"workspace\"
+               or \"directory\"")
        }
     }
     if (missing(data_name) == TRUE) {
         stop("Argument data_name (GWAS p-values) missing")
     }
-    if (missing(snps_ann) == TRUE ) {
+    if (missing(snps_ann) == TRUE) {
         stop("Argument snps_ann (SNPs location) missing")
     }
     if (from == "workspace") {
