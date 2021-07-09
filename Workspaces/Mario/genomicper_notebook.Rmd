@@ -18,11 +18,17 @@ source files but each function in the file has to be renamed in order not to pro
 clash. The renaming will take place as/when subroutines are modified. New files should pass
 through `lintr` that makes files comply with the [tidyverse style guide](https://style.tidyverse.org/).
 
-```{r setup}
+```{r setup, echo=FALSE}
+
 library(genomicper)        # Package to be analysed
 library(microbenchmark)    # Microbenchmark routines
 library(profvis)           # Profile routines
 library(lintr)             # Static R analyser
+library(diffr)             # Source file comparison
+library(here)              # Determine the root of where the files live
+
+# Make sure the working directory is set to where this file lives.
+setwd(paste0(here(),"/Workspaces/Mario"))
 
 # Sample workflow from the documentation
 
@@ -36,9 +42,13 @@ all_data <- read_pvals(data_name=demo,snps_ann=SNPsAnnotation)
 # v2 changes: 
 #            print -> cat
 #            Style changes to comply with lintr
-lint("Src/read_pvals_v2.R")
-source("Src/read_pvals_v2.R")
+
+lint("Src/read_pvals_v2.R")     # Check the file complies with tidyverse style
+source("Src/read_pvals_v2.R")   # Read in routine
 all_data <- read_pvals_v2(data_name=demo,snps_ann=SNPsAnnotation)
+
+# See what changes have been made to the sources
+diffr("Src/read_pvals.R","Src/read_pvals_v2.R")
 
 # Order data according to the genome
 genome_results <-genome_order(all_data=all_data)
