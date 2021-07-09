@@ -6,11 +6,8 @@ function(data_name = "", snps_ann = "", from = "workspace") {
     cat("\t", substitute(snps_ann), ",\n", sep = "")
     cat("From ", from, ".", sep = "")
 
-    if (from != "workspace") {
-       if (from != "directory") {
-          stop("Argument \"from\" must be set to \"workspace\"
-               or \"directory\"")
-       }
+    if (from != "workspace" & from != "directory") {
+       stop("Argument \"from\" must be set to \"workspace\" or \"directory\"")
     }
     if (missing(data_name) == TRUE) {
         stop("Argument data_name (GWAS p-values) missing")
