@@ -64,7 +64,7 @@ gs_locs <- genome_results$gs_locs
 
 ## Questions
 
-* Why use R environments?
+* What is the architectural reason to use R environments?
 
 ## Possible improvements
 
@@ -76,7 +76,7 @@ gs_locs <- genome_results$gs_locs
 
 ### read_pvals.R
 
-Check that the file complies with the tidyverse style:
+Check that the file complies with the tidyverse style (no output is good):
 
 ```{r read_pvals_lint}
 # Check file complies with the tidyverse style using lintr
@@ -101,5 +101,39 @@ Changes to the original file:
 ```{r read_pval_source_changes}
 # See what changes have been made to the sources
 diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%")
+
+```
+
+### genome_order.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r genome_order_lint}
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/genome_order_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+See the output from the modified version of the code:
+
+```{r run_genome_order_v2}
+# Load a modified version
+# v2 changes: 
+#            print -> cat
+
+source("Src/genome_order_v2.R")   # Read in routine
+
+# Order data according to the genome
+genome_results <-genome_order_v2(all_data=all_data)
+
+```
+
+Changes to the original file:
+
+```{r genome_order_changes}
+
+# See what changes have been made to the sources
+diffr("Src/genome_order.R","Src/genome_order_v2.R", width = "100%")
 
 ```
