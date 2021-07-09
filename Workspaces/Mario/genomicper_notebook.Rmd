@@ -71,8 +71,6 @@ gs_locs <- genome_results$gs_locs
 - [ ] Add [`roxygen2` documentation](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) to the routines.
 - [x] Change `print` to `cat` or `message`, see this [stackoverflow article](https://stackoverflow.com/questions/36699272/why-is-message-a-better-choice-than-print-in-r-for-writing-a-package/36700294).
 
-## References
-
 
 ## Appendix 1: changes to code
 
