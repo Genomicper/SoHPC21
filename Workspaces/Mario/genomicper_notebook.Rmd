@@ -20,7 +20,7 @@ source files but each function in the file has to be renamed in order not to pro
 clash. The renaming will take place as/when subroutines are modified. New files should pass
 through `lintr` that makes files comply with the [tidyverse style guide](https://style.tidyverse.org/).
 
-```{r setup, echo=FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 
 library(genomicper)        # Package to be analysed
 library(microbenchmark)    # Microbenchmark routines
@@ -31,8 +31,11 @@ library(here)              # Determine the root of where the files live
 
 # Make sure the working directory is set to where this file lives.
 setwd(paste0(here(),"/Workspaces/Mario"))
+```
 
-# Sample workflow from the documentation
+```{r workflow}
+
+# Sample workflow from the genomicper documentation
 
 # Load files for analysis
 data(demo,SNPsAnnotation)
@@ -71,17 +74,30 @@ gs_locs <- genome_results$gs_locs
 
 ### read_pvals.R
 
-```{r}
-# Load new version
-# v2 changes: 
-#            print -> cat
-#            Style changes to comply with lintr
+Check that the file complies with the tidyverse style:
+
+```{r read_pvals_lint}
+# Check file complies with the tidyverse style using lintr
 
 lint("Src/read_pvals_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+See the output from the modified version of the code:
+
+```{r run_read_pvals_v2}
+# Load a modified version
+# v2 changes: 
+#            print -> cat
+
 source("Src/read_pvals_v2.R")   # Read in routine
 all_data <- read_pvals_v2(data_name=demo,snps_ann=SNPsAnnotation)
+```
 
+Changes to the original file:
+
+```{r read_pval_source_changes}
 # See what changes have been made to the sources
-diffr("Src/read_pvals.R","Src/read_pvals_v2.R")
+diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%")
 
 ```
