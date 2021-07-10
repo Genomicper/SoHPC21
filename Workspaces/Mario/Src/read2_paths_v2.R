@@ -12,15 +12,12 @@ function (ordered_alldata = "", gs_locs = "", sets_from = "workspace",
     if (missing(level) == TRUE) {
         stop("Argument \"level\" must be defined. Permutations performed at \"gene\" or \"snp\" level")
     }
-    if (level != "snp"){
-       if(level != "gene") {
+    if (level != "snp" & level != "gene"){
         stop("Argument \"level\" must be \"snp\" or \"gene\"")
-       }
     }
-    if (sets_from != "workspace"){
-      if(sets_from != "directory") {
+    if (sets_from != "workspace" & sets_from != "directory"){
+
         stop("Argument \"from\" must be \"workspace\" or \"directory\"")
-      }
     }
     if (sets_from == "workspace") {
         ps <- ls(pattern = sets_prefix, envir = envir)
