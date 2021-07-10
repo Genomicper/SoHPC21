@@ -1,7 +1,7 @@
 read2_paths_v2 <-
-function (ordered_alldata = "", gs_locs = "", sets_from = "workspace",
-    sets_prefix = "RHSA", level = "snp",envir= "")
-{
+function(ordered_alldata = "", gs_locs = "", sets_from = "workspace",
+         sets_prefix = "RHSA", level = "snp", envir= "") {
+
     cat("Arguments set:\n")
     cat("\t", "Ordered dataset: ", substitute(ordered_alldata), "\n", sep = "")
     cat("\t", "Gene Annotations: ", substitute(gs_locs), "\n", sep = "")
@@ -10,25 +10,30 @@ function (ordered_alldata = "", gs_locs = "", sets_from = "workspace",
     cat("\t", "Annotation level: ", level, "\n", sep = "")
 
     if (missing(level) == TRUE) {
-        stop("Argument \"level\" must be defined. Permutations performed at \"gene\" or \"snp\" level")
+        stop("Argument \"level\" must be defined. Permutations performed at
+             \"gene\" or \"snp\" level")
     }
-    if (level != "snp" & level != "gene"){
+    if (level != "snp" & level != "gene") {
         stop("Argument \"level\" must be \"snp\" or \"gene\"")
     }
-    if (sets_from != "workspace" & sets_from != "directory"){
+    if (sets_from != "workspace" & sets_from != "directory") {
 
         stop("Argument \"from\" must be \"workspace\" or \"directory\"")
     }
     if (sets_from == "workspace") {
         ps <- ls(pattern = sets_prefix, envir = envir)
         if (length(ps) == 0) {
-            stop("No pathways/gene-sets found in workspace, if data saved at working directory modify the argument \"sets_from\" to \"directory\"")
+            stop("No pathways/gene-sets found in workspace, if data saved at
+                 working directory modify the argument \"sets_from\" to
+                 \"directory\"")
         }
     }
     if (sets_from == "directory") {
         ps <- list.files(pattern = sets_prefix)
         if (length(ps) == 0) {
-            stop("No pathways/gene-sets found in directory, if data saved at workspace modify the argument \"sets_from\" to \"workspace\"")
+            stop("No pathways/gene-sets found in directory, if data saved
+                 at workspace modify the argument \"sets_from\" to
+                 \"workspace\"")
         }
     }
     ttl_paths <- length(ps)
@@ -41,7 +46,7 @@ function (ordered_alldata = "", gs_locs = "", sets_from = "workspace",
     for (i in 1:ttl_paths) {
         if (sets_from == "workspace") {
             moe <- ps[i]
-            genes <- get(ps[i],envir=envir)
+            genes <- get(ps[i], envir = envir)
         }
         if (sets_from == "directory") {
             moe <- strsplit(ps[i], split = "[/.]")[[1]][1]
@@ -56,7 +61,7 @@ function (ordered_alldata = "", gs_locs = "", sets_from = "workspace",
         ids <- NULL
         ids2 <- NULL
         pathways[i, 2] <- length(genes)
-        for (j in 1:length(genes)) {
+        for (j in seq_len(length(genes))) {
             x <- which(as.numeric(gs_locs[, 4]) == as.numeric(genes[j]))
             if (length(x) != 0) {
                 ids <- c(ids, x)
