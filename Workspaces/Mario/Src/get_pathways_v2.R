@@ -1,13 +1,14 @@
 get_pathways_v2 <-
-function(source="reactome",all_paths=TRUE,envir = ""){
-if(missing(source)==FALSE){
-if(source != "reactome"){
-stop("Argument source must be set to:\"reactome\" (\"KEGG\" is no longer supported, custom pathways can be provided by user")
-}
-}
-print("Arguments set:")
-    print(paste("Source:" ,substitute(source),sep=""))
-    print(paste("Annotate all pathways: ",substitute(all_paths),sep=""))
+function(source="reactome", all_paths=TRUE, envir = ""){
+
+  if(missing(source)==FALSE & source != "reactome"){
+     stop("Argument source must be set to:\"reactome\" (\"KEGG\" is no longer supported, custom pathways can be provided by user")
+  }
+
+  cat("Arguments set:\n")
+  cat("\tSource:" , substitute(source), "\n", sep="")
+  cat("\tAnnotate all pathways: " ,substitute(all_paths), "\n", sep="")
+
 if(source=="reactome"){
 pathways_description <- dbGetQuery(reactome.db::reactome_dbconn(), "SELECT * FROM pathway2name")
 x<-unique(sub(":.*","",pathways_description[,2]))
@@ -15,7 +16,7 @@ print(x) #"select species"
 sp <- readline(prompt="Select dataset(e.g. \"Homo sapiens\"):\n")
 sp <- gsub("\"","",sp)
 x<- grep(sp, pathways_description[,2],ignore.case=TRUE)
-pathways_description <- pathways_description[x,] 
+pathways_description <- pathways_description[x,]
 pathways_description[,2]<- sub(".*: ","",pathways_description[,2])
 paths <- AnnotationDbi::as.list(reactome.db::reactomePATHID2EXTID)
 pathways_description <- pathways_description[which(pathways_description[,1]%in% names(paths) == TRUE),]
