@@ -192,3 +192,24 @@ Changes to the original file:
 diffr("Src/read2_paths.R","Src/read2_paths_v2.R", width = "100%", height="100%")
 
 ```
+
+## get_pathways.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r get_pathways_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/get_pathways_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r get_pathways_changes}
+
+# See what changes have been made to the sources
+diffr("Src/get_pathways.R","Src/get_pathways_v2.R", width = "100%", height="100%")
+
+```
