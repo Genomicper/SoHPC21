@@ -255,3 +255,24 @@ Changes to the original file:
 diffr("Src/get_results.R","Src/get_results_v2.R", width = "100%", height="100%")
 
 ```
+
+### genes_permutation.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r genes_permutation_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/genes_permutation_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r genes_permutation_changes}
+
+# See what changes have been made to the sources
+diffr("Src/genes_permutation.R","Src/genes_permutation_v2.R", width = "100%", height="100%")
+
+```
