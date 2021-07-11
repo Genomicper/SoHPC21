@@ -158,7 +158,7 @@ diffr("Src/genome_order.R","Src/genome_order_v2.R", width = "100%", height="100%
 
 ```
 
-## read2_paths.R
+### read2_paths.R
 
 Check that the file complies with the tidyverse style (no output is good):
 
@@ -193,7 +193,7 @@ diffr("Src/read2_paths.R","Src/read2_paths_v2.R", width = "100%", height="100%")
 
 ```
 
-## get_pathways.R
+### get_pathways.R
 
 Check that the file complies with the tidyverse style (no output is good):
 
@@ -214,7 +214,7 @@ diffr("Src/get_pathways.R","Src/get_pathways_v2.R", width = "100%", height="100%
 
 ```
 
-## hyprbg.R
+### hyprbg.R
 
 Check that the file complies with the tidyverse style (no output is good):
 
@@ -223,5 +223,14 @@ Check that the file complies with the tidyverse style (no output is good):
 # Check file complies with the tidyverse style using lintr
 
 lint("Src/hyprbg_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r hyprbg_changes}
+
+# See what changes have been made to the sources
+diffr("Src/hyprbg.R","Src/hyprbg_v2.R", width = "100%", height="100%")
 
 ```
