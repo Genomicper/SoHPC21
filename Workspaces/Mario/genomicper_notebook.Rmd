@@ -290,3 +290,46 @@ Changes to the original file:
 diffr("Src/genes_permutation.R","Src/genes_permutation_v2.R", width = "100%", height="100%")
 
 ```
+
+### plot_results.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r plot_results_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/plot_results_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r plot_results_changes}
+
+# See what changes have been made to the sources
+diffr("Src/plot_results.R","Src/plot_results_v2.R", width = "100%", height="100%")
+
+```
+
+### snps_permutation.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r snps_permutation_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/snps_permutation_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r snps_permutationn_changes}
+
+# See what changes have been made to the sources
+diffr("Src/snps_permutation.R","Src/snps_permutation_v2.R", width = "100%", height="100%")
+
+```
+
