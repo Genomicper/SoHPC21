@@ -31,25 +31,25 @@ library(diffr)             # Source file comparison
 library(here)              # Determine the root of where the files live
 
 # Make sure the working directory is set to where this file lives.
-setwd(paste0(here(),"/Workspaces/Mario"))
+setwd(paste0(here(), "/Workspaces/Mario"))
 
 ```
 
 ```{r workflow}
 
 # Remove all objects in the current environment
-rm(list=ls())
+rm(list = ls())
 
 # Sample workflow from the genomicper documentation
 
 # Load files for analysis
-data(demo,SNPsAnnotation)
+data(demo, SNPsAnnotation)
 
 # Read & format GWAS pvalues
-all_data <- read_pvals(data_name=demo,snps_ann=SNPsAnnotation)
+all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
 
 # Order data according to the genome
-genome_results <-genome_order(all_data=all_data)
+genome_results <-genome_order(all_data = all_data)
 
 # Results from genome_order
 ordered_alldata <- genome_results$ordered_alldata
@@ -59,20 +59,24 @@ gs_locs <- genome_results$gs_locs
 gper.env <- new.env()
 
 # Load more data
-data(RHSA164843,RHSA446343,RHSA8876384,RHSA8964572,RHSA109582,RHSA1474244,envir=gper.env)
+data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572, RHSA109582, RHSA1474244,
+     envir = gper.env)
 
 # Do we need to use environments?
-data(RHSA164843,RHSA446343,RHSA8876384,RHSA8964572,RHSA109582,RHSA1474244)
+data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572, RHSA109582, RHSA1474244)
 
 
 # Map SNPs to pathways 
-paths_res <- read2_paths(ordered_alldata=ordered_alldata,
-                         gs_locs=gs_locs,sets_from="workspace",sets_prefix="RHSA",
-                         level="snp",envir=gper.env)
+paths_res <- read2_paths(ordered_alldata = ordered_alldata,
+                         gs_locs = gs_locs,
+                         sets_from = "workspace",
+                         sets_prefix = "RHSA",
+                         level = "snp",
+                         envir = gper.env)
 
 # Results from read2_paths:		
 pers_ids <- paths_res$per_ors
-pathways<- paths_res$pathways
+pathways <- paths_res$pathways
 
 ```
 
@@ -127,14 +131,15 @@ See the output from the modified version of the code:
 #            print -> cat
 
 source("Src/read_pvals_v2.R")   # Read in routine
-all_data <- read_pvals_v2(data_name=demo,snps_ann=SNPsAnnotation)
+all_data <- read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation)
+
 ```
 
 Changes to the original file:
 
 ```{r read_pval_source_changes}
 # See what changes have been made to the sources
-diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%", height="100%")
+diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%", height = "100%")
 
 ```
 
@@ -159,7 +164,7 @@ See the output from the modified version of the code:
 source("Src/genome_order_v2.R")   # Read in routine
 
 # Order data according to the genome
-genome_results <-genome_order_v2(all_data=all_data)
+genome_results <-genome_order_v2(all_data = all_data)
 
 ```
 
@@ -168,7 +173,8 @@ Changes to the original file:
 ```{r genome_order_changes}
 
 # See what changes have been made to the sources
-diffr("Src/genome_order.R","Src/genome_order_v2.R", width = "100%", height="100%")
+diffr("Src/genome_order.R","Src/genome_order_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -192,9 +198,11 @@ Example code:
 source("Src/read2_paths_v2.R")   # Read in routine
 
 # Map SNPs to pathways 
-paths_res <- read2_paths_v2(ordered_alldata=ordered_alldata,
-                            gs_locs=gs_locs,sets_from="workspace",sets_prefix="RHSA",
-                            level="snp",envir=gper.env)
+paths_res <- read2_paths_v2(ordered_alldata = ordered_alldata,
+                            gs_locs = gs_locs,sets_from="workspace",
+                            sets_prefix = "RHSA",
+                            level = "snp",
+                            envir = gper.env)
 
 ```
 
@@ -203,7 +211,8 @@ Changes to the original file:
 ```{r read2_paths_changes}
 
 # See what changes have been made to the sources
-diffr("Src/read2_paths.R","Src/read2_paths_v2.R", width = "100%", height="100%")
+diffr("Src/read2_paths.R", "Src/read2_paths_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -224,7 +233,8 @@ Changes to the original file:
 ```{r get_pathways_changes}
 
 # See what changes have been made to the sources
-diffr("Src/get_pathways.R","Src/get_pathways_v2.R", width = "100%", height="100%")
+diffr("Src/get_pathways.R", "Src/get_pathways_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -245,7 +255,7 @@ Changes to the original file:
 ```{r hyprbg_changes}
 
 # See what changes have been made to the sources
-diffr("Src/hyprbg.R","Src/hyprbg_v2.R", width = "100%", height="100%")
+diffr("Src/hyprbg.R", "Src/hyprbg_v2.R", width = "100%", height = "100%")
 
 ```
 
@@ -266,7 +276,8 @@ Changes to the original file:
 ```{r get_results_changes}
 
 # See what changes have been made to the sources
-diffr("Src/get_results.R","Src/get_results_v2.R", width = "100%", height="100%")
+diffr("Src/get_results.R", "Src/get_results_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -287,7 +298,8 @@ Changes to the original file:
 ```{r genes_permutation_changes}
 
 # See what changes have been made to the sources
-diffr("Src/genes_permutation.R","Src/genes_permutation_v2.R", width = "100%", height="100%")
+diffr("Src/genes_permutation.R", "Src/genes_permutation_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -308,7 +320,8 @@ Changes to the original file:
 ```{r plot_results_changes}
 
 # See what changes have been made to the sources
-diffr("Src/plot_results.R","Src/plot_results_v2.R", width = "100%", height="100%")
+diffr("Src/plot_results.R", "Src/plot_results_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -329,7 +342,8 @@ Changes to the original file:
 ```{r snps_permutationn_changes}
 
 # See what changes have been made to the sources
-diffr("Src/snps_permutation.R","Src/snps_permutation_v2.R", width = "100%", height="100%")
+diffr("Src/snps_permutation.R", "Src/snps_permutation_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
