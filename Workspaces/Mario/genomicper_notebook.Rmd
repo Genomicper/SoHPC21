@@ -76,7 +76,21 @@ pathways<- paths_res$pathways
 
 ```
 
-## Introduction
+## Methodology
+
+New versions of the original sources have been made and the file has been 
+renamed with a `_v2.R` as has the actual function name been appended with 
+a `_v2`. The idea would not be to create a `_v3`, `_v4`, etc. unless you
+want to explicitly compare the performance with an earlier version. I would
+say would be to assign the time consuming parts to different individuals 
+and then:
+
+* baseline the performance
+* come up with some simple tests to ensure changes do not break the code
+* profile the code
+* make changes
+* measure improvements
+* Go back to profiling
 
 ## Baseline performance
 
