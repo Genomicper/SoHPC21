@@ -101,6 +101,14 @@ and then:
 
 ## Baseline performance
 
+## Testing
+
+In modifying the code to improve the performance we need to ensure that our 
+improvements do not break the outputs. We can do this by ensuring that the 
+inputs and outputs produce the same results as the original code. If there is
+any randomness involved we need to ensure that the random seed is the same so
+that any sequence of random numbers is the same for both routines.
+
 ## Pofile
 
 Profile an example piece of code:
