@@ -89,12 +89,13 @@ want to explicitly compare the performance with an earlier version. I would
 say would be to assign the time consuming parts to different individuals 
 and then:
 
+* run a static analyzer (lintr) on the files
 * baseline the performance
 * come up with some simple tests to ensure changes do not break the code
 * profile the code
 * make changes
 * measure improvements
-* Go back to profiling
+* Go back to profiling and repeat the ensuing steps
 
 ## Baseline performance
 
