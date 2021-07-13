@@ -1,20 +1,21 @@
 snps_permutation_v2 <-
-function (ordered_alldata = "", pers_ids = "", ntraits = "", 
-    nper = 100, threshold = 0.05, seed=10, saveto = "workspace",gs_locs="",envir = "") 
-{
-    print("Arguments")
-    print(paste("Ordered dataset: ", substitute(ordered_alldata), 
-        sep = ""))
-    print(paste("Indexes of SNP Annotations: ", substitute(pers_ids)))
-    print(paste("Indexes of Traits to Analyse:", as.numeric(ntraits)))
-    print(paste("Traits:", colnames(ordered_alldata)[as.numeric(ntraits)]))
-    print(paste("Number of permutations: ", nper))
-    print(paste("Threshold: ", threshold))
-    print(paste("Permutation Results save to: ", substitute(saveto)))
-    if (saveto != "workspace"){
-if(saveto != "directory") {
-         stop("Define where are the results to be saved: \"saveto\"=\"workspace\" OR \"directory\"")
-}
+function(ordered_alldata = "", pers_ids = "", ntraits = "",
+         nper = 100, threshold = 0.05, seed = 10, saveto = "workspace",
+         gs_locs = "", envir = "") {
+
+    cat("Arguments: \n")
+    cat("\tOrdered dataset: ", substitute(ordered_alldata), "\n",
+        sep = "")
+    cat("\tIndexes of SNP Annotations: ", substitute(pers_ids), "\n")
+    cat("\tIndexes of Traits to Analyse:", as.numeric(ntraits), "\n")
+    cat("\tTraits:", colnames(ordered_alldata)[as.numeric(ntraits)], "\n")
+    cat("\tNumber of permutations: ", nper, "\n")
+    cat("\tThreshold: ", threshold, "\n")
+    cat("\tPermutation Results save to: ", substitute(saveto), "\n")
+
+    if (saveto != "workspace" & saveto != "directory") {
+         stop("Define where are the results to be saved:
+              \"saveto\"=\"workspace\" OR \"directory\"")
     }
     ntraits <- as.numeric(ntraits)
     nper <- as.numeric(nper)
@@ -39,34 +40,34 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
     date()
     all_ts <- NULL
     listf <- as.numeric(as.character(gs_locs[, 4]))
-    for (i in 1:length(paths_list)) {
-        per_mat <- matrix(data = NA, nrow = length(sd) + 3, ncol = length(temp) - 
-            6)
+    for (i in seq_len(length(paths_list))) {
+        per_mat <- matrix(data = NA, nrow = length(sd) + 3,
+                          ncol = length(temp) - 6)
         colnames(per_mat) <- colnames(temp)[7:length(temp)]
         path_name <- strsplit(paths_list[i], split = "[_]")[[1]][3]
-        print(path_name)
+        cat(path_name, "\n")
         indxs <- pers_ids[[i]]
         for (j in 7:length(temp)) {
             temp2 <- temp[, j]
             big_count <- 0
             sig_snps_real <- 0
-            for (k in 1:length(sd)) {
+            for (k in seq_len(length(sd))) {
                 if (k == 1) {
-                  per_mat[1, j - 6] <- sig_snps_real <- length(which(temp[indxs, 
+                  per_mat[1, j - 6] <- sig_snps_real <- length(which(temp[indxs,
                     j] <= threshold))
                 }
                 count <- 0
                 fkindxs <- sapply(indxs, sum, sd[k])
                 mayores <- which(fkindxs > mx_rs)
                 menores <- which(fkindxs <= mx_rs)
-                count <- length(which(temp2[fkindxs[menores]] <= 
+                count <- length(which(temp2[fkindxs[menores]] <=
                   threshold))
                 if (length(mayores) != 0) {
-                  for (m in 1:length(mayores)) {
-                    fkindxs[mayores[m]] <- fkindxs[mayores[m]] - 
+                  for (m in seq_len(length(mayores))) {
+                    fkindxs[mayores[m]] <- fkindxs[mayores[m]] -
                       mx_rs
                   }
-                  count <- count + length(which(temp2[fkindxs[mayores]] <= 
+                  count <- count + length(which(temp2[fkindxs[mayores]] <=
                     threshold))
                 }
                 per_mat[k + 1, j - 6] <- count
@@ -75,17 +76,17 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
                 }
             }
             per_mat[k + 2, j - 6] <- big_count
-            per_mat[k + 3, j - 6] <- big_count/length(sd)
+            per_mat[k + 3, j - 6] <- big_count / length(sd)
         }
-        rownames(per_mat) <- c("Real_Count", 1:length(sd), "All_Count", 
+        rownames(per_mat) <- c("Real_Count", seq_len(length(sd)), "All_Count",
             "Score")
         if (saveto == "directory") {
-            write.table(per_mat, file = paste("Permus_", path_name, 
-                ".txt", sep = ""), sep = "\t", row.names = T, 
+            write.table(per_mat, file = paste("Permus_", path_name,
+                ".txt", sep = ""), sep = "\t", row.names = T,
                 col.names = T, quote = F)
         }
         if (saveto == "workspace") {
-            assign(paste("Permus_", path_name, sep = ""), per_mat, 
+            assign(paste("Permus_", path_name, sep = ""), per_mat,
                 envir = envir)
         }
     }
