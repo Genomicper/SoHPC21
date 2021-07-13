@@ -1,5 +1,6 @@
 ---
 title: "Genomicper Notebook"
+author: " Aybuke Ozcelik, Irem Okur, Mario Antonioletti, Pau Navarro, Claudia Cabrera"
 output: 
   html_document:
     toc: true
@@ -21,7 +22,7 @@ source files but each function in the file has to be renamed in order not to pro
 clash. The renaming will take place as/when subroutines are modified. New files should pass
 through `lintr` that makes files comply with the [tidyverse style guide](https://style.tidyverse.org/).
 
-```{r setup, echo=FALSE, message=FALSE}
+```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
 
 library(genomicper)        # Package to be analysed
 library(microbenchmark)    # Microbenchmark routines
@@ -31,7 +32,7 @@ library(diffr)             # Source file comparison
 library(here)              # Determine the root of where the files live
 
 # Make sure the working directory is set to where this file lives.
-setwd(paste0(here(), "/Workspaces/Mario"))
+setwd(paste0(here(), "/Workspaces/"))
 
 ```
 
@@ -95,13 +96,14 @@ and then:
 * profile the code
 * make changes
 * measure improvements
+* test the code is still correct
 * Go back to profiling and repeat the ensuing steps
 
 ## Baseline performance
 
 ## Pofile
 
-Porfile an example piece of codde:
+Profile an example piece of code:
 
 ```{r profile1}
 
@@ -164,8 +166,8 @@ profvis({
     # set arguments save_plot=FALSE, plot_all = FALSE
     # IMPORTANT: to EXIT interactive plot, RIGHT CLICK on the
     # plot and STOP.
-    qq <- plot_results(results = results, by = "set", plot_all = FALSE,
-                       var = "RHSA109582", save_plot = FALSE) 
+    #qq <- plot_results(results = results, by = "set", plot_all = FALSE,
+    #                  var = "RHSA109582", save_plot = FALSE) 
 })
 
 ```
