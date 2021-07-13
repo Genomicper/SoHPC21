@@ -1,5 +1,6 @@
 plot_results_v2 <-
-function(results="",by="",plot_all=TRUE, var = "", save_plot=TRUE, plot_name="", bf= FALSE , save_qq = TRUE) 
+function(results="",by="",plot_all=TRUE, var = "", save_plot=TRUE, plot_name="",
+         bf= FALSE , save_qq = TRUE)
 {
     print("Arguments set:")
     print(paste("Data:",substitute(results),sep=" "))
@@ -15,10 +16,10 @@ paths <- as.character(unique(results[,1]))
 ntraits <- length(traits)
 npaths <- length(paths)
 onefile=TRUE
-if(by != "trait"){
-if(by != "set"){
+if(by != "trait" & by != "set"){
+
 stop("Argument \"by\" must be set to \"trait\" or \"set\"")
-}
+
 }
     if(by == "trait"){
 if(npaths < 5){
@@ -32,7 +33,7 @@ stop("Number of traits for qq plot must be more than 5")
     }
     if(plot_all == TRUE){
 if(save_plot == FALSE){
-stop("If plot_all is set to TRUE, the plots must be saved in working directory (\"save_plot=TRUE\")") 
+stop("If plot_all is set to TRUE, the plots must be saved in working directory (\"save_plot=TRUE\")")
 }
 }
     if(plot_all == FALSE){
@@ -78,7 +79,7 @@ temp <- cbind(temp,empL,expL)
 colnames(temp)[4] <- "Log10_Observed"
 colnames(temp)[5] <- "Log10_Expected"
 if(save_qq==TRUE){
-qq_data <-rbind(qq_data,temp) 
+qq_data <-rbind(qq_data,temp)
 }
 plot(expL,empL,xlim=c(0,mxx),ylim=c(0,mxy),main=traits[i],xlab="Expected(-log10)",ylab="Observed(-log10)",col="red")
 lines(expL,expL,type="l")
