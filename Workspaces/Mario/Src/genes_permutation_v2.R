@@ -1,4 +1,4 @@
-genes_permutation <-
+genes_permutation_v2 <-
 function(ordered_alldata = "", pers_ids = "", pathways = "",
          ntraits = "", nper = 100, threshold = 0.05, seed=10,
          saveto = "workspace", gs_locs = "", envir = "") {
