@@ -16,11 +16,14 @@ code and text to be mixed. If you click on the `Knit` button above RStudio
 will generate an html output directory.
 
 Have taken a copy of the R sources of [genomicper](https://github.com/Genomicper/genomicper). 
-The routine names (and file names) will have to be renamed but changes/improvements can be made
-to be compared with the original data. The `source` command can be used to load the alternative
-source files but each function in the file has to be renamed in order not to produce a name
-clash. The renaming will take place as/when subroutines are modified. New files should pass
-through `lintr` that makes files comply with the [tidyverse style guide](https://style.tidyverse.org/).
+The routine names (and file names) will have to be renamed but changes/improvements 
+can be made and compared with the original version The `source` command can be 
+used to load the alternative source files, e.g. `source("Src/get_results_v2.R")` 
+would load the `get_results_v2` function version of `get_results`, note that each 
+function in the file also has to be renamed in order not to produce a name
+clash with the version in the package. The renaming will take place as/when 
+subroutines are modified. New files should pass through `lintr` that makes files 
+comply with the [tidyverse style guide](https://style.tidyverse.org/).
 
 ```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
 
@@ -189,7 +192,10 @@ profvis({
 - [ ] Add [`roxygen2` documentation](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) to the routines.
 - [x] Change `print` to `cat` or `message`, see this [stackoverflow article](https://stackoverflow.com/questions/36699272/why-is-message-a-better-choice-than-print-in-r-for-writing-a-package/36700294).
 
+## References
 
+* Wickham, H. [tesththat: Get started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf), 2011.
+* Gillespie, C. and Lovelace, R. [Efficient R programming](https://csgillespie.github.io/efficientR/), 2021.
 ## Appendix 1: changes to the original code
 
 ### read_pvals.R
