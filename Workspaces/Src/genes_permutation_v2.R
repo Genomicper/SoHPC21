@@ -2,6 +2,7 @@ genes_permutation_v2 <-
 function(ordered_alldata = "", pers_ids = "", pathways = "",
          ntraits = "", nper = 100, threshold = 0.05, seed=10,
          saveto = "workspace", gs_locs = "", envir = "") {
+
     cat("Arguments set:\n")
     cat("\tOrdered dataset: ", substitute(ordered_alldata), "\n",
         sep = "")
@@ -18,6 +19,7 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
         stop("Define where are the results to be saved:
              \"saveto\"=\"workspace\" OR \"directory\".")
     }
+
     ntraits <- as.numeric(ntraits)
     nper <- as.numeric(nper)
     threshold <- as.numeric(threshold)
@@ -32,10 +34,7 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
     mx_rs <- dim(ordered_alldata)[1]
     sd <- round(runif(nper, 1, mx_rs))
     rowsf <- dim(gs_locs)[1]
-    tname <- NULL
-    lab <- NULL
     i <- NULL
-    ids <- NULL
     j <- NULL
     k <- NULL
     all_ts <- NULL
