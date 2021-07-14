@@ -120,9 +120,9 @@ Profile an example piece of code:
 
 profvis({
   
-     #### SNP-level  #############################################################
-     # SNPs annotation and Pathways provided by user
-     # all data stored at the WORKSPACE
+    #### SNP-level  #############################################################
+    # SNPs annotation and Pathways provided by user
+    # all data stored at the WORKSPACE
     
     ### Load files for analysis
     data(demo, SNPsAnnotation)
@@ -196,36 +196,28 @@ profvis({
 
 * Wickham, H. [tesththat: Get started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf), 2011.
 * Gillespie, C. and Lovelace, R. [Efficient R programming](https://csgillespie.github.io/efficientR/), 2021.
+
 ## Appendix 1: changes to the original code
 
-### read_pvals.R
+### genes_permutation.R
 
 Check that the file complies with the tidyverse style (no output is good):
 
-```{r read_pvals_lint}
+```{r genes_permutation_v2_lint}
+
 # Check file complies with the tidyverse style using lintr
 
-lint("Src/read_pvals_v2.R")     # Check the file complies with tidyverse style
-
-```
-
-See the output from the modified version of the code:
-
-```{r run_read_pvals_v2}
-# Load a modified version
-# v2 changes: 
-#            print -> cat
-
-source("Src/read_pvals_v2.R")   # Read in routine
-all_data <- read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation)
+lint("Src/genes_permutation_v2.R")     # Check the file complies with tidyverse style
 
 ```
 
 Changes to the original file:
 
-```{r read_pval_source_changes}
+```{r genes_permutation_changes}
+
 # See what changes have been made to the sources
-diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%", height = "100%")
+diffr("Src/genes_permutation.R", "Src/genes_permutation_v2.R", width = "100%", 
+      height = "100%")
 
 ```
 
@@ -263,6 +255,126 @@ diffr("Src/genome_order.R","Src/genome_order_v2.R", width = "100%",
       height = "100%")
 
 ```
+
+### get_pathways.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r get_pathways_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/get_pathways_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r get_pathways_changes}
+
+# See what changes have been made to the sources
+diffr("Src/get_pathways.R", "Src/get_pathways_v2.R", width = "100%", 
+      height = "100%")
+
+```
+
+### get_results.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r get_results_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/get_results_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r get_results_changes}
+
+# See what changes have been made to the sources
+diffr("Src/get_results.R", "Src/get_results_v2.R", width = "100%", 
+      height = "100%")
+
+```
+
+### hyprbg.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r hyprbg_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/hyprbg_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r hyprbg_changes}
+
+# See what changes have been made to the sources
+diffr("Src/hyprbg.R", "Src/hyprbg_v2.R", width = "100%", height = "100%")
+
+```
+
+### plot_results.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r plot_results_v2_lint}
+
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/plot_results_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+Changes to the original file:
+
+```{r plot_results_changes}
+
+# See what changes have been made to the sources
+diffr("Src/plot_results.R", "Src/plot_results_v2.R", width = "100%", 
+      height = "100%")
+
+```
+
+
+### read_pvals.R
+
+Check that the file complies with the tidyverse style (no output is good):
+
+```{r read_pvals_lint}
+# Check file complies with the tidyverse style using lintr
+
+lint("Src/read_pvals_v2.R")     # Check the file complies with tidyverse style
+
+```
+
+See the output from the modified version of the code:
+
+```{r run_read_pvals_v2}
+# Load a modified version
+# v2 changes: 
+#            print -> cat
+
+source("Src/read_pvals_v2.R")   # Read in routine
+all_data <- read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation)
+
+```
+
+Changes to the original file:
+
+```{r read_pval_source_changes}
+# See what changes have been made to the sources
+diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%", height = "100%")
+
+```
+
 
 ### read2_paths.R
 
@@ -302,114 +414,6 @@ diffr("Src/read2_paths.R", "Src/read2_paths_v2.R", width = "100%",
 
 ```
 
-### get_pathways.R
-
-Check that the file complies with the tidyverse style (no output is good):
-
-```{r get_pathways_v2_lint}
-
-# Check file complies with the tidyverse style using lintr
-
-lint("Src/get_pathways_v2.R")     # Check the file complies with tidyverse style
-
-```
-
-Changes to the original file:
-
-```{r get_pathways_changes}
-
-# See what changes have been made to the sources
-diffr("Src/get_pathways.R", "Src/get_pathways_v2.R", width = "100%", 
-      height = "100%")
-
-```
-
-### hyprbg.R
-
-Check that the file complies with the tidyverse style (no output is good):
-
-```{r hyprbg_v2_lint}
-
-# Check file complies with the tidyverse style using lintr
-
-lint("Src/hyprbg_v2.R")     # Check the file complies with tidyverse style
-
-```
-
-Changes to the original file:
-
-```{r hyprbg_changes}
-
-# See what changes have been made to the sources
-diffr("Src/hyprbg.R", "Src/hyprbg_v2.R", width = "100%", height = "100%")
-
-```
-
-### get_results.R
-
-Check that the file complies with the tidyverse style (no output is good):
-
-```{r get_results_v2_lint}
-
-# Check file complies with the tidyverse style using lintr
-
-lint("Src/get_results_v2.R")     # Check the file complies with tidyverse style
-
-```
-
-Changes to the original file:
-
-```{r get_results_changes}
-
-# See what changes have been made to the sources
-diffr("Src/get_results.R", "Src/get_results_v2.R", width = "100%", 
-      height = "100%")
-
-```
-
-### genes_permutation.R
-
-Check that the file complies with the tidyverse style (no output is good):
-
-```{r genes_permutation_v2_lint}
-
-# Check file complies with the tidyverse style using lintr
-
-lint("Src/genes_permutation_v2.R")     # Check the file complies with tidyverse style
-
-```
-
-Changes to the original file:
-
-```{r genes_permutation_changes}
-
-# See what changes have been made to the sources
-diffr("Src/genes_permutation.R", "Src/genes_permutation_v2.R", width = "100%", 
-      height = "100%")
-
-```
-
-### plot_results.R
-
-Check that the file complies with the tidyverse style (no output is good):
-
-```{r plot_results_v2_lint}
-
-# Check file complies with the tidyverse style using lintr
-
-lint("Src/plot_results_v2.R")     # Check the file complies with tidyverse style
-
-```
-
-Changes to the original file:
-
-```{r plot_results_changes}
-
-# See what changes have been made to the sources
-diffr("Src/plot_results.R", "Src/plot_results_v2.R", width = "100%", 
-      height = "100%")
-
-```
 
 ### snps_permutation.R
 
