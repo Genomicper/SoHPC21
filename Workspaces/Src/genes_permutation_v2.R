@@ -46,7 +46,7 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
     for (i in 7:length(temp)) {
         temp2 <- temp[, i]
         hyper_mat <- matrix(data = NA, nrow = length(sd) + 1,
-            ncol = length(paths_list))
+                            ncol = length(paths_list))
         trtsnm <- colnames(temp)[i]
         cat(trtsnm)
         all_ts <- c(all_ts, trtsnm)
@@ -54,7 +54,7 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
         for (j in seq_len(length(sd))) {
             sig_genes <- 0
             path_counts <- matrix(data = 0, nrow = length(paths_list),
-                ncol = 2)
+                                  ncol = 2)
             for (m in seq_len(length(paths_list))) {
                 path_counts[m, 1] <- paths_list[m]
             }
@@ -63,14 +63,13 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
                 strt <- as.numeric(gs_locs[k, 5])
                 ed <- strt + obs - 1
                 if (j == 1) {
-                  tscore <- pchisq(-2 * (sum(log(temp[c(strt:ed),
-                    i]))), df = 2 * (obs), lower.tail = F)
+                  tscore <- pchisq(-2 * (sum(log(temp[c(strt:ed), i]))),
+                                   df = 2 * (obs), lower.tail = F)
                   if (tscore <= threshold) {
                     sig_genes_real <- sig_genes_real + 1
                     for (m in seq_len(length(paths_list))) {
                       if (k %in% pers_ids[[m]]) {
-                        pathways[m, i - 2] <- as.numeric(pathways[m,
-                          i - 2]) + 1
+                        pathways[m, i - 2] <- as.numeric(pathways[m, i - 2]) + 1
                       }
                     }
                   }
@@ -80,13 +79,12 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
                 fkend <- fkstrt + obs - 1
                 if (fkend <= mx_rs) {
                   tscore <- pchisq(-2 * (sum(log(temp2[c(fkstrt:fkend)]))),
-                    df = 2 * (obs), lower.tail = F)
+                                   df = 2 * (obs), lower.tail = F)
                   if (tscore <= threshold) {
                     sig_genes <- sig_genes + 1
                     for (m in seq_len(length(paths_list))) {
                       if (k %in% pers_ids[[m]]) {
-                        path_counts[m, 2] <- as.numeric(path_counts[m,
-                          2]) + 1
+                         path_counts[m, 2] <- as.numeric(path_counts[m, 2]) + 1
                       }
                     }
                     next
@@ -111,11 +109,10 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
                         }
                         next
                       }
-                    }
-                    else {
+                    } else {
                       ps <- c(pls:nend)
                       tscore <- pchisq(-2 * (sum(log(temp2[ps]))),
-                        df = 2 * (obs), lower.tail = F)
+                                      df = 2 * (obs), lower.tail = F)
                       if (tscore <= threshold) {
                         sig_genes <- sig_genes + 1
                         for (m in seq_len(length(paths_list))) {
@@ -127,8 +124,7 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
                         next
                       }
                     }
-                  }
-                  else {
+                  } else {
                     rst <- fkend - mx_rs
                     ps <- c(fkstrt:mx_rs, 1:rst)
                     tscore <- pchisq(-2 * (sum(log(temp2[ps]))),
@@ -148,21 +144,20 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
             if (j == 1) {
                 for (m in seq_len(length(paths_list))) {
                   hypr_ps <- hyprbg(Sig_in_Paths =
-                                        as.numeric(pathways[m, i - 2]),
+                                     as.numeric(pathways[m, i - 2]),
                                      uniSig = sig_genes_real,
                                      gns_in_Paths = as.numeric(pathways[m, 3]),
                                      universe = rowsf)
                   hyper_mat[j, m] <- hypr_ps
                   hypr_ps <- hyprbg(Sig_in_Paths =
-                                        as.numeric(path_counts[m, 2]),
+                                    as.numeric(path_counts[m, 2]),
                                     uniSig = sig_genes,
                                     gns_in_Paths =
-                                        as.numeric(pathways[m, 3]),
+                                    as.numeric(pathways[m, 3]),
                                     universe = rowsf)
                   hyper_mat[j + 1, m] <- hypr_ps
                 }
-            }
-            else {
+            } else {
                 for (m in seq_len(length(paths_list))) {
                   hypr_ps <- hyprbg(Sig_in_Paths =
                                         as.numeric(path_counts[m, 2]),
@@ -177,15 +172,18 @@ function(ordered_alldata = "", pers_ids = "", pathways = "",
         rownames(hyper_mat) <- c("REAL_Pval", seq_len(length(sd)))
         colnames(hyper_mat) <- paths_list
         if (saveto == "directory") {
-            write.table(hyper_mat, file = paste("Permus_", trtsnm,
-                ".txt", sep = ""), sep = "\t", row.names = T,
-                col.names = T, quote = F)
+            write.table(hyper_mat,
+                        file = paste("Permus_", trtsnm, ".txt", sep = ""),
+                        sep = "\t",
+                        row.names = T,
+                        col.names = T,
+                        quote = F)
         }
         if (saveto == "workspace") {
             assign(paste("Permus_", trtsnm, sep = ""), hyper_mat,
-                envir = envir)
+                   envir = envir)
         }
     }
     colnames(pathways) <- c("ID", "GenesInPath", "GenesFound",
-        "SNPsInPath", all_ts)
+                            "SNPsInPath", all_ts)
 }
