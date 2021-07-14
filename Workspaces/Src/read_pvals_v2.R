@@ -1,11 +1,12 @@
 read_pvals_v2 <-
-function(data_name = "", snps_ann = "", from = "workspace") {
+function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
 
-    cat("Arguments set (read_pvals):\n")
-    cat("\t", substitute(data_name), ",\n", sep = "")
-    cat("\t", substitute(snps_ann), ",\n", sep = "")
-    cat("\tfrom ", from, ".", sep = "")
-
+    if (verbose) {
+       cat("Arguments set (read_pvals):\n")
+       cat("\t", substitute(data_name), ",\n", sep = "")
+       cat("\t", substitute(snps_ann), ",\n", sep = "")
+       cat("\tfrom ", from, ".", sep = "")
+    }
     if (from != "workspace" & from != "directory") {
        stop("Argument \"from\" must be set to \"workspace\" or \"directory\"")
     }
