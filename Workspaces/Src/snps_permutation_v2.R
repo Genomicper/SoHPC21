@@ -20,7 +20,7 @@ function(ordered_alldata = "", pers_ids = "", ntraits = "",
     ntraits <- as.numeric(ntraits)
     nper <- as.numeric(nper)
     threshold <- as.numeric(threshold)
-set.seed(as.numeric(seed), kind = "Mersenne-Twister")
+    set.seed(as.numeric(seed), kind = "Mersenne-Twister")
     temp <- ordered_alldata[, c(1:6, ntraits)]
     ns <- which(pers_ids != "NULL")
     if (length(ns) == 0) {
