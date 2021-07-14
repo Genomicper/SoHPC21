@@ -1,8 +1,8 @@
 get_results_v2 <-
 function(res_pattern = "Permus", level = "snp", from = "workspace",
         threshold = 0.05, envir = "") {
-    permus_list <- NULL
-    y <- "NULL"
+
+        permus_list <- NULL
     cat("Arguments:\n")
     cat("\tPermutations results pattern:", res_pattern, "\n")
     cat("\tPermutations results location:", from, "\n")
