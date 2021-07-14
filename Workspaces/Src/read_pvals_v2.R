@@ -1,10 +1,10 @@
 read_pvals_v2 <-
 function(data_name = "", snps_ann = "", from = "workspace") {
 
-    cat("Arguments set:\n")
+    cat("Arguments set (read_pvals):\n")
     cat("\t", substitute(data_name), ",\n", sep = "")
     cat("\t", substitute(snps_ann), ",\n", sep = "")
-    cat("From ", from, ".", sep = "")
+    cat("\tfrom ", from, ".", sep = "")
 
     if (from != "workspace" & from != "directory") {
        stop("Argument \"from\" must be set to \"workspace\" or \"directory\"")
