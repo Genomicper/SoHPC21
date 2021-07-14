@@ -1,4 +1,4 @@
-get_results <-
+get_results_v2 <-
 function(res_pattern = "Permus", level = "snp", from = "workspace",
         threshold = 0.05, envir = "") {
     permus_list <- NULL
