@@ -7,22 +7,27 @@ output:
   md_document:
       variant: markdown_github
       toc: true
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ## Setup
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook which allows 
-code and text to be mixed. If you click on the `Knit` button above RStudio
-will generate an html output directory.
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook which
+allows code and text to be mixed. If you click on the `Knit` button
+above RStudio will generate an html output directory.
 
-Have taken a copy of the R sources of [genomicper](https://github.com/Genomicper/genomicper). 
-The routine names (and file names) will have to be renamed but changes/improvements 
-can be made and compared with the original version The `source` command can be 
-used to load the alternative source files, e.g. `source("Src/get_results_v2.R")` 
-would load the `get_results_v2` function version of `get_results`, note that each 
-function in the file also has to be renamed in order not to produce a name
-clash with the version in the package. The renaming will take place as/when 
-subroutines are modified. New files should pass through `lintr` that makes files 
+Have taken a copy of the R sources of
+[genomicper](https://github.com/Genomicper/genomicper). The routine
+names (and file names) will have to be renamed but changes/improvements
+can be made and compared with the original version The `source` command
+can be used to load the alternative source files, e.g.
+`source("Src/get_results_v2.R")` would load the `get_results_v2`
+function version of `get_results`, note that each function in the file
+also has to be renamed in order not to produce a name clash with the
+version in the package. The renaming will take place as/when subroutines
+are modified. New files should pass through `lintr` that makes files
 comply with the [tidyverse style guide](https://style.tidyverse.org/).
 
 ```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
@@ -33,6 +38,7 @@ library(profvis)           # Profile routines
 library(lintr)             # Static R analyser
 library(diffr)             # Source file comparison
 library(here)              # Determine the root of where the files live
+library(compiler)          # Library to compiler byte compile R functions
 
 # Make sure the working directory is set to where this file lives.
 setwd(paste0(here(), "/Workspaces/"))
@@ -53,7 +59,7 @@ data(demo, SNPsAnnotation)
 all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
 
 # Order data according to the genome
-genome_results <-genome_order(all_data = all_data)
+genome_results <- genome_order(all_data = all_data)
 
 # Results from genome_order
 ordered_alldata <- genome_results$ordered_alldata
@@ -70,7 +76,7 @@ data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572, RHSA109582, RHSA1474244,
 data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572, RHSA109582, RHSA1474244)
 
 
-# Map SNPs to pathways 
+# Map SNPs to pathways
 paths_res <- read2_paths(ordered_alldata = ordered_alldata,
                          gs_locs = gs_locs,
                          sets_from = "workspace",
@@ -78,7 +84,7 @@ paths_res <- read2_paths(ordered_alldata = ordered_alldata,
                          level = "snp",
                          envir = gper.env)
 
-# Results from read2_paths:		
+# Results from read2_paths:
 pers_ids <- paths_res$per_ors
 pathways <- paths_res$pathways
 
@@ -86,31 +92,66 @@ pathways <- paths_res$pathways
 
 ## Methodology
 
-New versions of the original sources have been made and the file has been 
-renamed with a `_v2.R` as has the actual function name been appended with 
-a `_v2`. The idea would not be to create a `_v3`, `_v4`, etc. unless you
-want to explicitly compare the performance with an earlier version. I would
-say would be to assign the time consuming parts to different individuals 
-and then:
+New versions of the original sources have been made and the file has
+been renamed with a `_v2.R` as has the actual function name been
+appended with a `_v2`. The idea would not be to create a `_v3`, `_v4`,
+etc. unless you want to explicitly compare the performance with an
+earlier version. I would say would be to assign the time consuming parts
+to different individuals and then:
 
-* run a static analyzer (lintr) on the files
-* baseline the performance
-* come up with some simple tests to ensure changes do not break the code
-* profile the code
-* make changes
-* measure improvements
-* test the code is still correct
-* Go back to profiling and repeat the ensuing steps
+-   run a static analyzer (lintr) on the files
+-   baseline the performance
+-   come up with some simple tests to ensure changes do not break the
+    code
+-   profile the code
+-   make changes
+-   measure improvements
+-   test the code is still correct
+-   Go back to profiling and repeat the ensuing steps
 
 ## Baseline performance
 
+```{r}
+
+```
+
 ## Testing
 
-In modifying the code to improve the performance we need to ensure that our 
-improvements do not break the outputs. We can do this by ensuring that the 
-inputs and outputs produce the same results as the original code. If there is
-any randomness involved we need to ensure that the random seed is the same so
-that any sequence of random numbers is the same for both routines.
+In modifying the code to improve the performance we need to ensure that
+our improvements do not break the outputs. We can do this by ensuring
+that the inputs and outputs produce the same results as the original
+code. If there is any randomness involved we need to ensure that the
+random seed is the same so that any sequence of random numbers is the
+same for both routines.
+
+```{r testing}
+
+# Load all the alternative versions of the code
+new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
+for (file in new_files){
+  source(file = file)
+}
+
+expect_equal(
+  read_pvals(data_name = demo, snps_ann = SNPsAnnotation),
+  read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation, verbose = TRUE)
+)
+
+expect_equal(
+  read2_paths(ordered_alldata = ordered_alldata,
+                         gs_locs = gs_locs,
+                         sets_from = "workspace",
+                         sets_prefix = "RHSA",
+                         level = "snp",
+                         envir = gper.env),
+  read2_paths_v2(ordered_alldata = ordered_alldata,
+                         gs_locs = gs_locs,
+                         sets_from = "workspace",
+                         sets_prefix = "RHSA",
+                         level = "snp",
+                         envir = gper.env)
+)
+```
 
 ## Pofile
 
@@ -119,95 +160,102 @@ Profile an example piece of code:
 ```{r profile1}
 
 profvis({
-  
-    #### SNP-level  #############################################################
+
+    #### SNP-level  ##########################################################
     # SNPs annotation and Pathways provided by user
     # all data stored at the WORKSPACE
-    
+
     ### Load files for analysis
     data(demo, SNPsAnnotation)
-    
+
     # Read & format GWAS pvalues
     all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
-    
+
     # Order data according to the genome
-    genome_results <-genome_order(all_data = all_data)
-    
+    genome_results <- genome_order(all_data = all_data)
+
     # Results from genome_order
     ordered_alldata <- genome_results$ordered_alldata
     gs_locs <- genome_results$gs_locs
-    
+
     # Create new environment to save variables (e.g. pathways, permutations):
     gper.env <- new.env()
-    
-    # Pathways can be downloaded using the function get_pathways()  
-    # Load example pathways into the new environment. 
-    data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572, 
+
+    # Pathways can be downloaded using the function get_pathways()
+    # Load example pathways into the new environment.
+    data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572,
          RHSA109582, RHSA1474244, envir = gper.env)
-    
-    # Map SNPs to pathways 
+
+    # Map SNPs to pathways
     paths_res <- read2_paths(ordered_alldata = ordered_alldata,
                              gs_locs = gs_locs,
                              sets_from = "workspace",
                              sets_prefix = "RHSA",
                              level = "snp",
                              envir = gper.env)
-    
-    # Results from read2_paths:		
+
+    # Results from read2_paths:
     pers_ids <- paths_res$per_ors
-    pathways<- paths_res$pathways
-    
+    pathways <- paths_res$pathways
+
     # Perform permutations:
     snps_permutation(ordered_alldata = ordered_alldata,
-    pers_ids=pers_ids, ntraits = c(7:13), nper=10, saveto = "workspace",
-    threshold = 0.05, gs_locs = gs_locs, envir = gper.env)		  
-    
-    # Get results						
+    pers_ids = pers_ids, ntraits = c(7:13), nper = 10, saveto = "workspace",
+    threshold = 0.05, gs_locs = gs_locs, envir = gper.env)
+
+    # Get results
     results <- get_results(res_pattern = "Permus", level = "snp",
-                           from = "workspace", threshold = 0.05, envir = gper.env)
-    
+                           from = "workspace", threshold = 0.05,
+                           envir = gper.env)
+
     # Plot results
-    ## Not run: 
+    ## Not run:
     #saves plots to working directory
     qq <- plot_results(results = results, by = "set", plot_all = TRUE)
     qq <- plot_results(results = results, by = "trait",
                        plot_all = FALSE, var = "trait1")
-    
-    # Displays interactive plot. Select a trait/set to plot and 
+
+    # Displays interactive plot. Select a trait/set to plot and
     # set arguments save_plot=FALSE, plot_all = FALSE
     # IMPORTANT: to EXIT interactive plot, RIGHT CLICK on the
     # plot and STOP.
     #qq <- plot_results(results = results, by = "set", plot_all = FALSE,
-    #                  var = "RHSA109582", save_plot = FALSE) 
+    #                  var = "RHSA109582", save_plot = FALSE)
 })
 
 ```
 
 ## Questions
 
-* What is the architectural reason to use R environments?
+-   What is the architectural reason to use R environments?
 
 ## Possible improvements
 
-- [ ] Add [`roxygen2` documentation](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) to the routines.
-- [x] Change `print` to `cat` or `message`, see this [stackoverflow article](https://stackoverflow.com/questions/36699272/why-is-message-a-better-choice-than-print-in-r-for-writing-a-package/36700294).
+-   [ ] Add [`roxygen2`
+    documentation](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
+    to the routines.
+-   [x] Change `print` to `cat` or `message`, see this [stackoverflow
+    article](https://stackoverflow.com/questions/36699272/why-is-message-a-better-choice-than-print-in-r-for-writing-a-package/36700294).
 
 ## References
 
-* Wickham, H. [tesththat: Get started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf), 2011.
-* Gillespie, C. and Lovelace, R. [Efficient R programming](https://csgillespie.github.io/efficientR/), 2021.
+-   Wickham, H. [tesththat: Get started with
+    Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf), 2011.
+-   Gillespie, C. and Lovelace, R. [Efficient R
+    programming](https://csgillespie.github.io/efficientR/), 2021.
 
-## Appendix 1: changes to the original code
+## Appendix 1: changes made to the original code
 
 ### genes_permutation.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r genes_permutation_v2_lint}
 
 # Check file complies with the tidyverse style using lintr
 
-lint("Src/genes_permutation_v2.R")     # Check the file complies with tidyverse style
+lint("Src/genes_permutation_v2.R") # Check file complies with tidyverse style
 
 ```
 
@@ -216,14 +264,15 @@ Changes to the original file:
 ```{r genes_permutation_changes}
 
 # See what changes have been made to the sources
-diffr("Src/genes_permutation.R", "Src/genes_permutation_v2.R", width = "100%", 
+diffr("Src/genes_permutation.R", "Src/genes_permutation_v2.R", width = "100%",
       height = "100%")
 
 ```
 
 ### genome_order.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r genome_order_lint}
 # Check file complies with the tidyverse style using lintr
@@ -236,13 +285,11 @@ See the output from the modified version of the code:
 
 ```{r run_genome_order_v2}
 # Load a modified version
-# v2 changes: 
-#            print -> cat
 
 source("Src/genome_order_v2.R")   # Read in routine
 
 # Order data according to the genome
-genome_results <-genome_order_v2(all_data = all_data)
+genome_results <- genome_order_v2(all_data = all_data)
 
 ```
 
@@ -251,14 +298,15 @@ Changes to the original file:
 ```{r genome_order_changes}
 
 # See what changes have been made to the sources
-diffr("Src/genome_order.R","Src/genome_order_v2.R", width = "100%", 
+diffr("Src/genome_order.R", "Src/genome_order_v2.R", width = "100%",
       height = "100%")
 
 ```
 
 ### get_pathways.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r get_pathways_v2_lint}
 
@@ -273,14 +321,15 @@ Changes to the original file:
 ```{r get_pathways_changes}
 
 # See what changes have been made to the sources
-diffr("Src/get_pathways.R", "Src/get_pathways_v2.R", width = "100%", 
+diffr("Src/get_pathways.R", "Src/get_pathways_v2.R", width = "100%",
       height = "100%")
 
 ```
 
 ### get_results.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r get_results_v2_lint}
 
@@ -295,14 +344,15 @@ Changes to the original file:
 ```{r get_results_changes}
 
 # See what changes have been made to the sources
-diffr("Src/get_results.R", "Src/get_results_v2.R", width = "100%", 
+diffr("Src/get_results.R", "Src/get_results_v2.R", width = "100%",
       height = "100%")
 
 ```
 
 ### hyprbg.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r hyprbg_v2_lint}
 
@@ -323,7 +373,8 @@ diffr("Src/hyprbg.R", "Src/hyprbg_v2.R", width = "100%", height = "100%")
 
 ### plot_results.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r plot_results_v2_lint}
 
@@ -338,15 +389,15 @@ Changes to the original file:
 ```{r plot_results_changes}
 
 # See what changes have been made to the sources
-diffr("Src/plot_results.R", "Src/plot_results_v2.R", width = "100%", 
+diffr("Src/plot_results.R", "Src/plot_results_v2.R", width = "100%",
       height = "100%")
 
 ```
 
-
 ### read_pvals.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r read_pvals_lint}
 # Check file complies with the tidyverse style using lintr
@@ -359,8 +410,6 @@ See the output from the modified version of the code:
 
 ```{r run_read_pvals_v2}
 # Load a modified version
-# v2 changes: 
-#            print -> cat
 
 source("Src/read_pvals_v2.R")   # Read in routine
 all_data <- read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation)
@@ -371,14 +420,15 @@ Changes to the original file:
 
 ```{r read_pval_source_changes}
 # See what changes have been made to the sources
-diffr("Src/read_pvals.R","Src/read_pvals_v2.R", width = "100%", height = "100%")
+diffr("Src/read_pvals.R", "Src/read_pvals_v2.R", width = "100%",
+      height = "100%")
 
 ```
 
-
 ### read2_paths.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r read2_paths_v2_lint}
 
@@ -395,9 +445,9 @@ Example code:
 # Load new variant
 source("Src/read2_paths_v2.R")   # Read in routine
 
-# Map SNPs to pathways 
+# Map SNPs to pathways
 paths_res <- read2_paths_v2(ordered_alldata = ordered_alldata,
-                            gs_locs = gs_locs,sets_from="workspace",
+                            gs_locs = gs_locs, sets_from = "workspace",
                             sets_prefix = "RHSA",
                             level = "snp",
                             envir = gper.env)
@@ -409,21 +459,21 @@ Changes to the original file:
 ```{r read2_paths_changes}
 
 # See what changes have been made to the sources
-diffr("Src/read2_paths.R", "Src/read2_paths_v2.R", width = "100%", 
+diffr("Src/read2_paths.R", "Src/read2_paths_v2.R", width = "100%",
       height = "100%")
 
 ```
 
-
 ### snps_permutation.R
 
-Check that the file complies with the tidyverse style (no output is good):
+Check that the file complies with the tidyverse style (no output is
+good):
 
 ```{r snps_permutation_v2_lint}
 
 # Check file complies with the tidyverse style using lintr
 
-lint("Src/snps_permutation_v2.R")     # Check the file complies with tidyverse style
+lint("Src/snps_permutation_v2.R")   # Check file complies with tidyverse style
 
 ```
 
@@ -432,8 +482,7 @@ Changes to the original file:
 ```{r snps_permutationn_changes}
 
 # See what changes have been made to the sources
-diffr("Src/snps_permutation.R", "Src/snps_permutation_v2.R", width = "100%", 
+diffr("Src/snps_permutation.R", "Src/snps_permutation_v2.R", width = "100%",
       height = "100%")
 
 ```
-
