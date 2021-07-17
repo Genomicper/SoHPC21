@@ -40,6 +40,7 @@ library(diffr)             # Source file comparison
 library(here)              # Determine the root of where the files live
 library(compiler)          # Library to compiler byte compile R functions
 library(testthat)          # Testing routines.
+library(ggplot2)           # Add plots
 
 # Make sure the working directory is set to where this file lives.
 setwd(paste0(here(), "/Workspaces/"))
@@ -112,7 +113,25 @@ to different individuals and then:
 
 ## Baseline performance
 
-```{r}
+```{r baseline}
+
+# Load all the alternative versions of the code
+new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
+for (file in new_files){
+  source(file = file)
+}
+
+# Perform a benchmark - read pvals
+res <- microbenchmark(
+  read_pvals(data_name = demo, snps_ann = SNPsAnnotation),
+    read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation, verbose = TRUE),
+  read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation),
+  unit = "s",
+  times = 10
+)
+
+# Plot the results
+boxplot(res, xlab = "read_pvals functions", names = c("v1", "v2 (outputs)", "v2 (no outputs)"))
 
 ```
 
@@ -127,11 +146,6 @@ same for both routines.
 
 ```{r testing}
 
-# Load all the alternative versions of the code
-new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
-for (file in new_files){
-  source(file = file)
-}
 
 expect_equal(
   read_pvals(data_name = demo, snps_ann = SNPsAnnotation),
@@ -150,7 +164,7 @@ expect_equal(
                          sets_from = "workspace",
                          sets_prefix = "RHSA",
                          level = "snp",
-                         envir = gper.env)
+                         envir = gper.env, verbose = TRUE)
 )
 ```
 
