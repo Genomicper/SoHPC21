@@ -131,7 +131,12 @@ res <- microbenchmark(
 )
 
 # Plot the results
-boxplot(res, xlab = "read_pvals functions", names = c("v1", "v2 (outputs)", "v2 (no outputs)"))
+boxplot(res, xlab = "read_pvals functions", 
+        names = c("v1", "v2 (outputs)", "v2 (no outputs)"),
+        col = c("red", "yellow", "yellow"))
+
+# Another way of plotting
+ggplot2::autoplot(res)
 
 ```
 
