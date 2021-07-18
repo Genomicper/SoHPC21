@@ -22,7 +22,7 @@ function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
     }
     if (from == "directory") {
         data <- read.table(data_name, sep = "\t", header = T,
-            stringsAsFactors = FALSE)
+                           stringsAsFactors = FALSE)
         all_snps <- read.table(snps_ann, sep = "\t", header = T,
             stringsAsFactors = FALSE)
     }
