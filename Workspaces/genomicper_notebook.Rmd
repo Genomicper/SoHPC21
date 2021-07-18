@@ -140,14 +140,16 @@ boxplot(res, xlab = "read_pvals functions",
 ggplot2::autoplot(res)
 
 # Using ggplot explicitly (more control)
-# Assumption that the timer is working to nanosecond accuracy
+# Assumption: timer works to nanosecond accuracy
 res %>% select(time, expr)         %>% 
         mutate(time = time / 10^9) %>% # Convert to seconds
         ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
         geom_violin() +
-        theme(legend.position = "none") +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
         ylab("Time (s)") + xlab("Function version") +
-        scale_x_discrete(labels = c("v1", "v2 (output)", "v2 (no output)"))
+        ggtitle("Comparsion of read_pvals") +
+        scale_x_discrete(labels = c("v1", "v2 (output)", "v2 (no output)")) 
 
 ```
 
