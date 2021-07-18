@@ -41,6 +41,7 @@ library(here)              # Determine the root of where the files live
 library(compiler)          # Library to compiler byte compile R functions
 library(testthat)          # Testing routines.
 library(ggplot2)           # Add plots
+library(dplyr)             # Manipulate data frames
 
 # Make sure the working directory is set to where this file lives.
 setwd(paste0(here(), "/Workspaces/"))
@@ -127,7 +128,7 @@ res <- microbenchmark(
     read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation, verbose = TRUE),
   read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation),
   unit = "s",
-  times = 10
+  times = 100
 )
 
 # Plot the results
@@ -137,6 +138,16 @@ boxplot(res, xlab = "read_pvals functions",
 
 # Another way of plotting
 ggplot2::autoplot(res)
+
+# Using ggplot explicitly (more control)
+# Assumption that the timer is working to nanosecond accuracy
+res %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() +
+        theme(legend.position = "none") +
+        ylab("Time (s)") + xlab("Function version") +
+        scale_x_discrete(labels = c("v1", "v2 (output)", "v2 (no output)"))
 
 ```
 
