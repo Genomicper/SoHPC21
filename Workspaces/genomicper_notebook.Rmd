@@ -114,7 +114,14 @@ to different individuals and then:
 
 ## Baseline performance
 
-```{r baseline}
+### Load functions
+
+Find out how long routines are taking to run. To start we need to load up the
+new version of the files. If you change these you will have to load them up 
+again. You should probably focus on the routines that are taking the longest 
+time.
+
+```{r read_alternative files}
 
 # Load all the alternative versions of the code
 new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
@@ -122,24 +129,43 @@ for (file in new_files){
   source(file = file)
 }
 
+```
+
+### read2_paths
+
+Running a routine multiple times becomes a little bit annoying if output is 
+produced every time. Profiling the function does not take much time so 
+difficult to optimise. It appears that printing outputs does increase
+the cost of the function.
+
+```{r baseline_read2_paths, results = hide}
+
 # Perform a benchmark - read pvals
 res <- microbenchmark(
   read_pvals(data_name = demo, snps_ann = SNPsAnnotation),
     read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation, verbose = TRUE),
   read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation),
   unit = "s",
-  times = 100
+  times = 20
 )
 
-# Plot the results
+```
+Can view the results. The [boxplot](https://en.wikipedia.org/wiki/Box_plot) 
+gives you an idea about the extent of the data while a 
+[violin plot](https://en.wikipedia.org/wiki/Violin_plot) gives you an idea of 
+the distribution of the data.
+
+```{r view_read_pvals, message=FALSE}
+
+# Boxplot of the results
 boxplot(res, xlab = "read_pvals functions", 
         names = c("v1", "v2 (outputs)", "v2 (no outputs)"),
         col = c("red", "yellow", "yellow"))
 
 # Another way of plotting
-ggplot2::autoplot(res)
+# ggplot2::autoplot(res)
 
-# Using ggplot explicitly (more control)
+# Using ggplot explicitly (more flexibility and control)
 # Assumption: timer works to nanosecond accuracy
 res %>% select(time, expr)         %>% 
         mutate(time = time / 10^9) %>% # Convert to seconds
@@ -152,6 +178,70 @@ res %>% select(time, expr)         %>%
         scale_x_discrete(labels = c("v1", "v2 (output)", "v2 (no output)")) 
 
 ```
+### read2_paths
+
+```{r baseline_read2_paths, results = hide}
+
+# Benchmark the routine
+res2 <- microbenchmark(
+        read2_paths(ordered_alldata = ordered_alldata,
+                             gs_locs = gs_locs,
+                             sets_from = "workspace",
+                             sets_prefix = "RHSA",
+                             level = "snp",
+                             envir = gper.env),
+        read2_paths_v2(ordered_alldata = ordered_alldata,
+                             gs_locs = gs_locs,
+                             sets_from = "workspace",
+                             sets_prefix = "RHSA",
+                             level = "snp",
+                             envir = gper.env,
+                             verbose = TRUE),
+        read2_paths_v2(ordered_alldata = ordered_alldata,
+                             gs_locs = gs_locs,
+                             sets_from = "workspace",
+                             sets_prefix = "RHSA",
+                             level = "snp",
+                             envir = gper.env),
+        unit = "s",
+        times = 20        
+)
+
+
+```
+```{r view_read2_paths}
+# Boxplot of the results
+boxplot(res2, xlab = "read2_paths functions", 
+        names = c("v1", "v2 (outputs)", "v2 (no outputs)"),
+        col = c("red", "yellow", "yellow"))
+
+# Produce a violin plot of the output
+res2 %>% select(time, expr)         %>% 
+         mutate(time = time / 10^9) %>% # Convert to seconds
+         ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+         geom_violin() +
+         theme(legend.position = "none", 
+               plot.title = element_text(hjust = 0.5)) +
+         ylab("Time (s)") + xlab("Function version") +
+         ggtitle("Comparsion of read2_paths") +
+         scale_x_discrete(labels = c("v1", "v2 (output)", "v2 (no output)")) 
+```
+
+Find out where the expensive part of the routine are:
+
+```{r profile_read2_path}
+
+profvis({
+  read2_paths_v2(ordered_alldata = ordered_alldata,
+                             gs_locs = gs_locs,
+                             sets_from = "workspace",
+                             sets_prefix = "RHSA",
+                             level = "snp",
+                             envir = gper.env,
+                             verbose = TRUE)
+})
+```
+
 
 ## Testing
 
