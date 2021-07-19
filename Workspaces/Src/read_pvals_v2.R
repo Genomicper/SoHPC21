@@ -29,6 +29,6 @@ function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
     colnames(data)[1] <- "name"
     colnames(all_snps)[1] <- "name"
     all_data <- merge(all_snps, data, by = "name", all.x = FALSE,
-        all.y = TRUE, incomparables = "NA")
+                      all.y = TRUE, incomparables = "NA")
     return(all_data)
 }
