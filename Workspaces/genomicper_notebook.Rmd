@@ -140,6 +140,7 @@ the cost of the function.
 
 ```{r baseline_read2_paths}
 
+
 # Perform a benchmark - read pvals
 res <- microbenchmark(
   read_pvals(data_name = demo, snps_ann = SNPsAnnotation),
@@ -179,6 +180,7 @@ res %>% select(time, expr)         %>%
 
 ```
 ### read2_paths
+
 
 This is reading from the workspace.
 ```{r baseline_read2_paths_2}
