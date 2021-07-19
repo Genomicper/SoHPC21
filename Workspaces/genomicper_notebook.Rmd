@@ -138,7 +138,7 @@ produced every time. Profiling the function does not take much time so
 difficult to optimise. It appears that printing outputs does increase
 the cost of the function.
 
-```{r baseline_read2_paths, results = hide}
+```{r baseline_read2_paths, results='hide'}
 
 # Perform a benchmark - read pvals
 res <- microbenchmark(
@@ -180,7 +180,7 @@ res %>% select(time, expr)         %>%
 ```
 ### read2_paths
 
-```{r baseline_read2_paths, results = hide}
+```{r bl_read2_paths, results='hide'}
 
 # Benchmark the routine
 res2 <- microbenchmark(
