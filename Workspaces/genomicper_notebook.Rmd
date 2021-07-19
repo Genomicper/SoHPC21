@@ -121,7 +121,7 @@ new version of the files. If you change these you will have to load them up
 again. You should probably focus on the routines that are taking the longest 
 time.
 
-```{r read_alternative files}
+```{r read_alternative_files}
 
 # Load all the alternative versions of the code
 new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
@@ -138,7 +138,7 @@ produced every time. Profiling the function does not take much time so
 difficult to optimise. It appears that printing outputs does increase
 the cost of the function.
 
-```{r baseline_read2_paths, results = hide}
+```{r baseline_read2_paths}
 
 # Perform a benchmark - read pvals
 res <- microbenchmark(
@@ -180,7 +180,8 @@ res %>% select(time, expr)         %>%
 ```
 ### read2_paths
 
-```{r baseline_read2_paths, results = hide}
+This is reading from the workspace.
+```{r baseline_read2_paths_2}
 
 # Benchmark the routine
 res2 <- microbenchmark(
@@ -209,6 +210,9 @@ res2 <- microbenchmark(
 
 
 ```
+
+Plot the results:
+
 ```{r view_read2_paths}
 # Boxplot of the results
 boxplot(res2, xlab = "read2_paths functions", 
