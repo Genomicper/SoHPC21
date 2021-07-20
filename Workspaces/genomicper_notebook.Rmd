@@ -102,15 +102,21 @@ etc. unless you want to explicitly compare the performance with an
 earlier version. I would say would be to assign the time consuming parts
 to different individuals and then:
 
--   run a static analyzer (lintr) on the files
--   baseline the performance
--   come up with some simple tests to ensure changes do not break the
-    code
--   profile the code
--   make changes
--   measure improvements
--   test the code is still correct
--   Go back to profiling and repeat the ensuing steps
+0.   run a static analyzer (lintr) on the files
+1.  profile code (with small (10), big (30k), bigger (8M) data sets)
+2.  identify expensive routines
+3.  improve the code performance and compare with the original code
+    (microbenchmarks)
+4.  test the modified routine to check it gives the same results as
+    the original code
+5.  can the code performance be improved further, yes - go to step 1, no -
+    continue to step 6.
+6.  explore other ways of improving the performance:
+    - convert R code to C
+    - parallelise R code
+    - parallelise C code
+    - explore the use of memory to see if it can be improved
+    - others?
 
 ## Baseline performance
 
@@ -151,6 +157,7 @@ res <- microbenchmark(
 )
 
 ```
+
 Can view the results. The [boxplot](https://en.wikipedia.org/wiki/Box_plot) 
 gives you an idea about the extent of the data while a 
 [violin plot](https://en.wikipedia.org/wiki/Violin_plot) gives you an idea of 
@@ -179,10 +186,11 @@ res %>% select(time, expr)         %>%
         scale_x_discrete(labels = c("v1", "v2 (output)", "v2 (no output)")) 
 
 ```
+
 ### read2_paths
 
-
 This is reading from the workspace.
+
 ```{r baseline_read2_paths_2}
 
 # Benchmark the routine
