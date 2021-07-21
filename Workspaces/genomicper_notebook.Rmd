@@ -386,25 +386,16 @@ profvis({
     # all data stored at the WORKSPACE
 
     ### Load files for analysis
-    # data(demo, SNPsAnnotation)
     all_data <- read_pvals(data_name="Data/GWASblonde.assoc", 
-                           snps_ann="Data/SNP_Table_Annotation_30K.txt",
+                 snps_ann="Data/SNP_Table_Annotation_ALL.txt",
                            from="directory")
-    
-    # Read & format GWAS pvalues
-    #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
-    dataname <- read.table("Data/GWAS_30K.txt",
-                            sep = "\t", 
-                            header = T,
-                            stringsAsFactors = F)
-    ann <- read.table("Data/SNP_Table_Annotation_ALL.txt",
-                      header = T,
-                      stringsAsFactors = F)
-   # NOTE: gwas table contains more columns than needed
-   # We can select which columns we need (In this case 3,4):
-   all_data <- read_pvals(data_name = gwas[, c(3, 4)],
-                          snps_ann = ann,
-                          from = "workspace")
+      # Read & format GWAS pvalues
+      #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
+      gwas <- read.table("GWASblonde.assoc",header=T,stringsAsFactors=F)
+      ann<- read.table("SNP_Table_Annotation_ALL.txt",header=T, sep="\t", stringsAsFactors=F)
+    # NOTE: gwas table contains more columns than needed
+    # We can select which columns we need (In this case 3,4):
+    all_data <- read_pvals(data_name=gwas[,c(3,4)],snps_ann=ann,from="workspace")
     
     # Order data according to the genome
     genome_results <- genome_order(all_data = all_data)
