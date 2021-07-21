@@ -385,6 +385,8 @@ profvis({
     # SNPs annotation and Pathways provided by user
     # all data stored at the WORKSPACE
 
+    ### FROM HERE ###
+  
     ### Load files for analysis
     all_data <- read_pvals(data_name="Data/GWASblonde.assoc", 
                  snps_ann="Data/SNP_Table_Annotation_ALL.txt",
@@ -393,6 +395,27 @@ profvis({
       #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
       gwas <- read.table("GWASblonde.assoc",header=T,stringsAsFactors=F)
       ann<- read.table("SNP_Table_Annotation_ALL.txt",header=T, sep="\t", stringsAsFactors=F)
+    
+    ### TO HERE ###
+      
+    ###AFTER HERE###
+  
+    #dataname <- read.table("Data/GWASblonde.assoc",
+    #                        sep = "\t", 
+    #                        header = T,
+    #                        stringsAsFactors = F)
+    #I took a commend data name
+  
+    #gwas <- read.table("Data/GWASblonde.assoc",header=T,stringsAsFactors=F)
+    #I took line 404
+  
+    #ann <- read.table("Data/SNP_Table_Annotation_ALL.txt",
+    #                  header = T,
+    #                  stringsAsFactors = F)
+    #I pulled before pushing, I remember there was Data/ here
+    
+    ### TO HERE ###
+    
     # NOTE: gwas table contains more columns than needed
     # We can select which columns we need (In this case 3,4):
     all_data <- read_pvals(data_name=gwas[,c(3,4)],snps_ann=ann,from="workspace")
