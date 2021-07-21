@@ -129,8 +129,10 @@ time.
 
 ```{r read_alternative_files}
 
-# Load all the alternative versions of the code
+# Load all the alternative versions of the code (follow the *_v2.R pattern)
 new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
+
+# Loop round the files and source them to load them to the environment
 for (file in new_files){
   source(file = file)
 }
@@ -150,7 +152,7 @@ the cost of the function.
 # Perform a benchmark - read pvals
 res <- microbenchmark(
   read_pvals(data_name = demo, snps_ann = SNPsAnnotation),
-    read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation, verbose = TRUE),
+  read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation, verbose = TRUE),
   read_pvals_v2(data_name = demo, snps_ann = SNPsAnnotation),
   unit = "s",
   times = 20
@@ -303,11 +305,25 @@ profvis({
     # all data stored at the WORKSPACE
 
     ### Load files for analysis
-    data(demo, SNPsAnnotation)
-
+    # data(demo, SNPsAnnotation)
+    all_data <- read_pvals(data_name="Data/GWAS_30K.txt", 
+                           snps_ann="Data/SNP_Table_Annotation_30K.txt",
+                           from="directory")
+    
     # Read & format GWAS pvalues
-    all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
+    #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
+    dataname <- read.table("Data/GWAS_30K.txt",
+                            sep = "\t", 
+                            header = T,
+                            stringsAsFactors = F)
+    ann <- read.table("Data/SNP_Table_Annotation_30K.txt",
+                      header = T,
+                      stringsAsFactors = F)
 
+    all_data <- read_pvals(data_name = dataname, 
+                           snps_ann = ann,
+                           from = "workspace")
+    
     # Order data according to the genome
     genome_results <- genome_order(all_data = all_data)
 
