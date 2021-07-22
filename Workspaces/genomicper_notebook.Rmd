@@ -353,8 +353,13 @@ profvis({
 
     # Perform permutations:
     snps_permutation(ordered_alldata = ordered_alldata,
-    pers_ids = pers_ids, ntraits = c(7:13), nper = 10, saveto = "workspace",
-    threshold = 0.05, gs_locs = gs_locs, envir = gper.env)
+                     pers_ids = pers_ids, 
+                     ntraits = 7, 
+                     nper = 10, 
+                     saveto = "workspace",
+                     threshold = 0.05, 
+                     gs_locs = gs_locs, 
+                     envir = gper.env)
 
     # Get results
     results <- get_results(res_pattern = "Permus", level = "snp",
@@ -364,9 +369,9 @@ profvis({
     # Plot results
     ## Not run:
     #saves plots to working directory
-    qq <- plot_results(results = results, by = "set", plot_all = TRUE)
-    qq <- plot_results(results = results, by = "trait",
-                       plot_all = FALSE, var = "trait1")
+    #qq <- plot_results(results = results, by = "set", plot_all = TRUE)
+    #qq <- plot_results(results = results, by = "trait",
+    #                   plot_all = FALSE, var = "trait1")
 
     # Displays interactive plot. Select a trait/set to plot and
     # set arguments save_plot=FALSE, plot_all = FALSE
@@ -393,8 +398,8 @@ profvis({
                            from="directory")
       # Read & format GWAS pvalues
       #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
-      gwas <- read.table("GWASblonde.assoc",header=T,stringsAsFactors=F)
-      ann<- read.table("SNP_Table_Annotation_ALL.txt",header=T, sep="\t", stringsAsFactors=F)
+      gwas <- read.table("Data/GWASblonde.assoc",header=T,stringsAsFactors=F)
+      ann<- read.table("Data/SNP_Table_Annotation_ALL.txt",header=T, sep="\t", stringsAsFactors=F)
     
     ### TO HERE ###
       
