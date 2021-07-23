@@ -472,9 +472,9 @@ profvis({
     # Plot results
     ## Not run:
     #saves plots to working directory
-    qq <- plot_results(results = results, by = "set", plot_all = TRUE)
-    qq <- plot_results(results = results, by = "trait",
-                       plot_all = FALSE, var = "trait1")
+    #qq <- plot_results(results = results, by = "set", plot_all = TRUE)
+    #qq <- plot_results(results = results, by = "trait",
+    #                  plot_all = FALSE, var = "trait1")
 
     # Displays interactive plot. Select a trait/set to plot and
     # set arguments save_plot=FALSE, plot_all = FALSE
