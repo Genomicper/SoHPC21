@@ -454,12 +454,19 @@ profvis({
 
     # Perform permutations:
     snps_permutation(ordered_alldata = ordered_alldata,
-    pers_ids = pers_ids, ntraits = c(7:13), nper = 10, saveto = "workspace",
-    threshold = 0.05, gs_locs = gs_locs, envir = gper.env)
+                     pers_ids = pers_ids, 
+                     ntraits = 7, 
+                     nper = 10, 
+                     saveto = "workspace",
+                     threshold = 0.05, 
+                     gs_locs = gs_locs, 
+                     envir = gper.env)
 
     # Get results
-    results <- get_results(res_pattern = "Permus", level = "snp",
-                           from = "workspace", threshold = 0.05,
+    results <- get_results(res_pattern = "Permus", 
+                           level = "snp",
+                           from = "workspace", 
+                           threshold = 0.05,
                            envir = gper.env)
 
     # Plot results
