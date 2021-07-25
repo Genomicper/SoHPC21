@@ -194,9 +194,38 @@ profvis({
 
 Just profile the most expensive routine
 
+```{r test_which}
+# is.na returns TRUE for NA values, FALSE for real values
+# which returns the position where a TRUE value is found, the test for truth
+# is redundant. You can use the is.na directly to return non-na values the
+# which may be redundant but will require changes.
+
+# Check
+expect_equal(which(is.na(all_data[, 2]) == TRUE),
+             which(is.na(all_data[, 2])))
+
+# Test for a performance difference
+res <- microbenchmark(
+  which(is.na(all_data[, 2]) == TRUE),
+  which(is.na(all_data[, 2])),
+  is.na(all_data[, 2])
+)
+
+# Plot the results
+boxplot(res, 
+        names = c("which + test", "which", "is.na"),
+        col = c("red", "yellow", "green"))
+
+# print the differences
+print(res)
+```
+
 ```{r prof_genome_order}
+
 profvis({
-      # Order data according to the genome
+  
+    # Order data according to the genome using v2 makes it possible to make
+    # changes to the code base to try an improve the performance.
     genome_results <- genome_order_v2(all_data = all_data)
 
 })
