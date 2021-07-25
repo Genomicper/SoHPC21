@@ -1,0 +1,148 @@
+---
+title: "Genomicper Notebook - 30k Use case"
+author: " Aybuke Ozcelik, Irem Okur, Mario Antonioletti, Pau Navarro, Claudia Cabrera"
+output: 
+  html_document:
+    toc: true
+  md_document:
+      variant: markdown_github
+      toc: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Setup
+
+```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
+
+library(genomicper)        # Package to be analysed
+library(microbenchmark)    # Microbenchmark routines
+library(profvis)           # Profile routines
+library(lintr)             # Static R analyser
+library(diffr)             # Source file comparison
+library(here)              # Determine the root of where the files live
+library(compiler)          # Library to compiler byte compile R functions
+library(testthat)          # Testing routines.
+library(ggplot2)           # Add plots
+library(dplyr)             # Manipulate data frames
+
+# Make sure the working directory is set to where this file lives.
+setwd(paste0(here(), "/Workspaces/"))
+
+# Remove all objects in the current environment
+rm(list = ls())
+
+```
+
+## Baseline performance
+
+### Load functions
+
+Find out how long routines are taking to run. To start we need to load up the
+new version of the files. If you change these you will have to load them up 
+again. You should probably focus on the routines that are taking the longest 
+time.
+
+```{r read_alternative_files}
+
+# Load all the alternative versions of the code (follow the *_v2.R pattern)
+new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
+
+# Loop round the files and source them to load them to the environment
+for (file in new_files){
+  source(file = file)
+}
+
+```
+
+## Pofile
+
+Profile an example piece of code:
+
+```{r profile_30k}
+
+profvis({
+
+    #### SNP-level  ##########################################################
+    # SNPs annotation and Pathways provided by user
+    # all data stored at the WORKSPACE
+
+    ### Load files for analysis
+    # data(demo, SNPsAnnotation)
+    all_data <- read_pvals(data_name="Data/GWAS_30K.txt", 
+                           snps_ann="Data/SNP_Table_Annotation_30K.txt",
+                           from="directory")
+    
+    # Read & format GWAS pvalues
+    #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
+    dataname <- read.table("Data/GWAS_30K.txt",
+                            sep = "\t", 
+                            header = T,
+                            stringsAsFactors = F)
+    ann <- read.table("Data/SNP_Table_Annotation_30K.txt",
+                      header = T,
+                      stringsAsFactors = F)
+
+    all_data <- read_pvals(data_name = dataname, 
+                           snps_ann = ann,
+                           from = "workspace")
+    
+    # Order data according to the genome
+    genome_results <- genome_order(all_data = all_data)
+
+    # Results from genome_order
+    ordered_alldata <- genome_results$ordered_alldata
+    gs_locs <- genome_results$gs_locs
+
+    # Create new environment to save variables (e.g. pathways, permutations):
+    gper.env <- new.env()
+
+    # Pathways can be downloaded using the function get_pathways()
+    # Load example pathways into the new environment.
+    data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572,
+         RHSA109582, RHSA1474244, envir = gper.env)
+
+    # Map SNPs to pathways
+    paths_res <- read2_paths(ordered_alldata = ordered_alldata,
+                             gs_locs = gs_locs,
+                             sets_from = "workspace",
+                             sets_prefix = "RHSA",
+                             level = "snp",
+                             envir = gper.env)
+
+    # Results from read2_paths:
+    pers_ids <- paths_res$per_ors
+    pathways <- paths_res$pathways
+
+    # Perform permutations:
+    snps_permutation(ordered_alldata = ordered_alldata,
+                     pers_ids = pers_ids, 
+                     ntraits = 7, 
+                     nper = 10, 
+                     saveto = "workspace",
+                     threshold = 0.05, 
+                     gs_locs = gs_locs, 
+                     envir = gper.env)
+
+    # Get results
+    results <- get_results(res_pattern = "Permus", level = "snp",
+                           from = "workspace", threshold = 0.05,
+                           envir = gper.env)
+
+    # Plot results
+    ## Not run:
+    #saves plots to working directory
+    #qq <- plot_results(results = results, by = "set", plot_all = TRUE)
+    #qq <- plot_results(results = results, by = "trait",
+    #                   plot_all = FALSE, var = "trait1")
+
+    # Displays interactive plot. Select a trait/set to plot and
+    # set arguments save_plot=FALSE, plot_all = FALSE
+    # IMPORTANT: to EXIT interactive plot, RIGHT CLICK on the
+    # plot and STOP.
+    #qq <- plot_results(results = results, by = "set", plot_all = FALSE,
+    #                  var = "RHSA109582", save_plot = FALSE)
+})
+
+```
