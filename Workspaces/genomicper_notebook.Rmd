@@ -43,15 +43,17 @@ library(testthat)          # Testing routines.
 library(ggplot2)           # Add plots
 library(dplyr)             # Manipulate data frames
 
-# Make sure the working directory is set to where this file lives.
-setwd(paste0(here(), "/Workspaces/"))
+# Make sure the working directory is set to where this file lives
+# across code chunks.
+dir <- paste0(here(), "/Workspaces/")
+knitr::opts_knit$set(root.dir = dir)
+
+# Remove all objects in the current environment
+rm(list = ls())
 
 ```
 
 ```{r workflow}
-
-# Remove all objects in the current environment
-rm(list = ls())
 
 # Sample workflow from the genomicper documentation
 
