@@ -26,9 +26,13 @@ library(compiler)          # Library to compiler byte compile R functions
 library(testthat)          # Testing routines.
 library(ggplot2)           # Add plots
 library(dplyr)             # Manipulate data frames
+library(readr)             # tidyverse reading tools
+library(pryr)              # Memory usage
 
-# Make sure the working directory is set to where this file lives.
-setwd(paste0(here(), "/Workspaces/"))
+# Make sure the working directory is set to where this file lives
+# across code chunks.
+dir <- paste0(here(), "/Workspaces/")
+knitr::opts_knit$set(root.dir = dir)
 
 # Remove all objects in the current environment
 rm(list = ls())
@@ -58,6 +62,57 @@ for (file in new_files){
 
 ## Pofile
 
+```{r reading_data}
+
+cols <- cols(
+  CHR = col_double(),
+  BP = col_double(),
+  SNP = col_character(),
+  P = col_double(),
+  A1 = col_character(),
+  OR = col_double(),
+  N = col_double()
+)
+
+res <- microbenchmark(
+                      read.table(file = "Data/GWASblonde.assoc",
+                                 header = TRUE, 
+                                 stringsAsFactors = FALSE),
+                      read_table(file = "Data/GWASblonde.assoc",
+                                 col_types = cols),
+                      times = 20
+                    )
+
+# Boxplot of the results
+boxplot(res, xlab = "read.table vs read_table", 
+        names = c("read.table", "read_table"),
+        col = c("red", "yellow"))
+
+# Using ggplot explicitly to plot the results
+res %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of read.table vs read_table for 8M entries") +
+        scale_x_discrete(labels = c("read.table", "read_table")) 
+
+# Check memory usage, see:
+# http://adv-r.had.co.nz/memory.html
+
+gwas <- read.table(file = "Data/GWASblonde.assoc",
+                   header = TRUE, 
+                   stringsAsFactors = FALSE)
+tgwas <- read_table(file = "Data/GWASblonde.assoc",
+                           col_types = cols)
+
+object_size(gwas)   # On MA's Mac 988Mb
+object_size(tgwas)  # On MA's Mac 1.1Gb
+
+```
+
 Profile an example piece of code:
 
 ```{r profile_8M}
@@ -68,37 +123,22 @@ profvis({
     # SNPs annotation and Pathways provided by user
     # all data stored at the WORKSPACE
 
-    ### FROM HERE ###
-  
     ### Load files for analysis
-    all_data <- read_pvals(data_name="Data/GWASblonde.assoc", 
-                 snps_ann="Data/SNP_Table_Annotation_ALL.txt",
-                           from="directory")
+    # all_data <- read_pvals(data_name = "Data/GWASblonde.assoc", 
+    #                        snps_ann = "Data/SNP_Table_Annotation_ALL.txt",
+    #                        from = "directory")
+    
       # Read & format GWAS pvalues
-      #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
-      gwas <- read.table("Data/GWASblonde.assoc",header=T,stringsAsFactors=F)
-      ann<- read.table("Data/SNP_Table_Annotation_ALL.txt",header=T, sep="\t", stringsAsFactors=F)
-    
-    ### TO HERE ###
+      gwas <- read.table(file = "Data/GWASblonde.assoc",
+                         header = TRUE, 
+                         stringsAsFactors = FALSE)
       
-    ###AFTER HERE###
-  
-    #dataname <- read.table("Data/GWASblonde.assoc",
-    #                        sep = "\t", 
-    #                        header = T,
-    #                        stringsAsFactors = F)
-    #I took a commend data name
-  
-    #gwas <- read.table("Data/GWASblonde.assoc",header=T,stringsAsFactors=F)
-    #I took line 404
-  
-    #ann <- read.table("Data/SNP_Table_Annotation_ALL.txt",
-    #                  header = T,
-    #                  stringsAsFactors = F)
-    #I pulled before pushing, I remember there was Data/ here
+      ann<- read.table("Data/SNP_Table_Annotation_ALL.txt",
+                       header = T, 
+                       sep = "\t", 
+                       stringsAsFactors = F)
     
-    ### TO HERE ###
-    
+
     # NOTE: gwas table contains more columns than needed
     # We can select which columns we need (In this case 3,4):
     all_data <- read_pvals(data_name=gwas[,c(3,4)],snps_ann=ann,from="workspace")
@@ -147,20 +187,18 @@ profvis({
                            threshold = 0.05,
                            envir = gper.env)
 
-    # Plot results
-    ## Not run:
-    #saves plots to working directory
-    #qq <- plot_results(results = results, by = "set", plot_all = TRUE)
-    #qq <- plot_results(results = results, by = "trait",
-    #                  plot_all = FALSE, var = "trait1")
 
-    # Displays interactive plot. Select a trait/set to plot and
-    # set arguments save_plot=FALSE, plot_all = FALSE
-    # IMPORTANT: to EXIT interactive plot, RIGHT CLICK on the
-    # plot and STOP.
-    #qq <- plot_results(results = results, by = "set", plot_all = FALSE,
-    #                  var = "RHSA109582", save_plot = FALSE)
 })
 
+```
+
+Just profile the most expensive routine
+
+```{r prof_genome_order}
+profvis({
+      # Order data according to the genome
+    genome_results <- genome_order_v2(all_data = all_data)
+
+})
 ```
 
