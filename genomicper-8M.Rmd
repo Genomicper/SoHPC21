@@ -28,8 +28,8 @@ library(ggplot2)           # Add plots
 library(dplyr)             # Manipulate data frames
 library(readr)             # tidyverse reading tools
 library(pryr)              # Memory usage
-library(data.table)
-library(vroom)
+library(data.table)        # For the fread function
+library(vroom)             # To read files
 
 # Make sure the working directory is set to where this file lives
 # across code chunks.
