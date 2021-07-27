@@ -26,7 +26,10 @@ library(compiler)          # Library to compiler byte compile R functions
 library(testthat)          # Testing routines.
 library(ggplot2)           # Add plots
 library(dplyr)             # Manipulate data frames
-
+library(readr)             # tidyverse reading tools
+library(pryr)              # Memory usage
+library(vroom)
+library(data.table)
 # Make sure the working directory is set to where this file lives
 # across code chunks.
 dir <- paste0(here(), "/Workspaces/")
@@ -58,7 +61,7 @@ for (file in new_files){
 
 ```
 
-## Pofile
+## Profile
 
 Profile an example piece of code:
 
@@ -78,11 +81,11 @@ profvis({
     
     # Read & format GWAS pvalues
     #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
-    dataname <- read.table("Data/GWAS_30K.txt",
+    dataname <- vroom("Data/GWAS_30K.txt",
                             sep = "\t", 
                             header = T,
                             stringsAsFactors = F)
-    ann <- read.table("Data/SNP_Table_Annotation_30K.txt",
+    ann <- vroom("Data/SNP_Table_Annotation_30K.txt",
                       header = T,
                       stringsAsFactors = F)
 
@@ -146,5 +149,51 @@ profvis({
     #qq <- plot_results(results = results, by = "set", plot_all = FALSE,
     #                  var = "RHSA109582", save_plot = FALSE)
 })
+
+```
+
+
+```{r reading_data}
+
+cols <- cols(
+  CHR = col_double(),
+  BP = col_double(),
+  SNP = col_character(),
+  P = col_double(),
+  A1 = col_character(),
+  OR = col_double(),
+  N = col_double()
+)
+res <- microbenchmark(
+                      vroom(file = "Workspaces/Data/GWAS_30K.txt"),
+                     fread(file = "Workspaces/Data/GWAS_30K.txt"),
+                      times = 20
+                    )
+
+# Boxplot of the results
+boxplot(res, xlab = "vroom vs fread", 
+        names = c("vroom", "fread"),
+        col = c("red", "yellow"))
+
+# Using ggplot explicitly to plot the results
+res %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of vroom vs fread for 30K entries") +
+        scale_x_discrete(labels = c("vroom", "fread")) 
+
+# Check memory usage, see:
+# http://adv-r.had.co.nz/memory.html
+
+#gwas <- vroom(file = "Workspaces/Data/SNP_Table_Annotation_30K.txt")
+#tgwas <- fread(file = "Workspaces/Data/GWAS_30K.txt")
+
+#object_size(gwas)   # On MA's Mac 988Mb
+#object_size(tgwas)  # On MA's Mac 1.1Gb
+
 
 ```
