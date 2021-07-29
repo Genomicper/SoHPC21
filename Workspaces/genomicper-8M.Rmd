@@ -30,6 +30,7 @@ library(readr)             # tidyverse reading tools
 library(pryr)              # Memory usage
 library(data.table)        # For the fread function
 library(vroom)             # To read files
+library(testthat)          # Testing routines
 
 # Make sure the working directory is set to where this file lives
 # across code chunks.
@@ -50,7 +51,7 @@ new version of the files. If you change these you will have to load them up
 again. You should probably focus on the routines that are taking the longest 
 time.
 
-```{r read_alternative_files}
+```{r read_alternative_files, warning=TRUE}
 
 # Load all the alternative versions of the code (follow the *_v2.R pattern)
 new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
@@ -64,7 +65,7 @@ for (file in new_files){
 
 ## Pofile
 
-```{r reading_data}
+```{r benchmark_reading_data}
 
 # Column types for read_table
 cols <- cols(
@@ -113,24 +114,26 @@ res %>% select(time, expr)         %>%
 gwas <- read.table(file = "Data/GWASblonde.assoc",
                    header = TRUE, 
                    stringsAsFactors = FALSE)
+
 tgwas <- read_table(file = "Data/GWASblonde.assoc",
                            col_types = cols)
 
 fgwas <- fread(file = "Data/GWASblonde.assoc")
 
-vgwas <- read_table(file = "Data/GWASblonde.assoc",
-                           col_types = cols)
+vgwas <- vroom(file = "Data/GWASblonde.assoc", col_types = cols)
 
 object_size(gwas)   # On MA's Mac 988Mb
 object_size(tgwas)  # On MA's Mac 1.1Gb
 object_size(fgwas)  # On MA's Mac 988Mb
-object_size(vgwas)  # On MA's Mac
+object_size(vgwas)  # On MA's Mac 6,136 B (?!) - 6Mb
 
 # Is there a difference in performing tasks on the data?
-res2 <- microbenchmark(unique(tgwas$CHR), unique(fgwas$CHR))
+res2 <- microbenchmark(unique(tgwas$CHR), unique(fgwas$CHR),unique(vgwas$CHR))
 
+# Print a summary of the results
 print(res2)
 
+# Test load time between vroom and fread
 res3 <- microbenchmark(
                       vroom(file = "Data/GWASblonde.assoc",
                                  col_types = cols),
@@ -150,7 +153,7 @@ boxplot(res3, xlab = "vroom vs fread",
 res3 %>% select(time, expr)         %>% 
         mutate(time = time / 10^9) %>% # Convert to seconds
         ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
-        geom_violin() +
+        geom_violin() + scale_y_log10() +
         theme(legend.position = "none", 
               plot.title = element_text(hjust = 0.5)) +
         ylab("Time (s)") + xlab("Function version") +
@@ -216,7 +219,7 @@ profvis({
     pathways <- paths_res$pathways
 
     # Perform permutations:
-    snps_permutation(ordered_alldata = ordered_alldata,
+    snps_permutation_v2(ordered_alldata = ordered_alldata,
                      pers_ids = pers_ids, 
                      ntraits = 7, 
                      nper = 10, 
@@ -274,5 +277,7 @@ profvis({
     genome_results <- genome_order_v2(all_data = all_data)
 
 })
+
+test_ex[]
 ```
 
