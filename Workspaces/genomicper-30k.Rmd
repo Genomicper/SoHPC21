@@ -176,8 +176,8 @@ res %>% select(time, expr)         %>%
 
 gwas <- vroom(file = "Data/GWAS_30K.txt", col_types = cols)
 tgwas <- fread(file = "Data/GWAS_30K.txt")
-object_size(gwas)   # On Irem's laptop 2,208 B
-object_size(tgwas)  # On Irem's laptop 2,399,304 B
+object_size(gwas)   # On Irem's laptop 2,208 B, 4,144 B on Mac
+object_size(tgwas)  # On Irem's laptop 2,399,304 B, same on Mac
 
 
 ```
@@ -187,8 +187,8 @@ object_size(tgwas)  # On Irem's laptop 2,399,304 B
 Comparsion of read_pvals vs read_pvals_v2.
 
 ```{r v2}
-    dataname <- vroom("Data/GWAS_30K.txt")
-    ann <- vroom("Data/SNP_Table_Annotation_30K.txt")
+    dataname <- vroom("Data/GWAS_30K.txt", show_col_types = FALSE)
+    ann <- vroom("Data/SNP_Table_Annotation_30K.txt", show_col_types = FALSE)
 
 # Perform a benchmark - read pvals
 res <- microbenchmark(
