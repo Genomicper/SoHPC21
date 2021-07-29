@@ -93,7 +93,7 @@ profvis({
                            from = "workspace")
     
     # Order data according to the genome
-    genome_results <- genome_order_V2(all_data = all_data)
+    genome_results <- genome_order_vs2(all_data = all_data)
 
     # Results from genome_order
     ordered_alldata <- genome_results$ordered_alldata
