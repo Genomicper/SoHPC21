@@ -56,6 +56,11 @@ time.
 # Load all the alternative versions of the code (follow the *_v2.R pattern)
 new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
 
+# Check the files have been read in.
+if(length(new_files) == 0){
+  stop("Error: not read in any files.")
+}
+
 # Loop round the files and source them to load them to the environment
 for (file in new_files){
   source(file = file)
