@@ -174,7 +174,7 @@ res %>% select(time, expr)         %>%
 # Check memory usage, see:
 # http://adv-r.had.co.nz/memory.html
 
-gwas <- vroom(file = "Data/GWAS_30K.txt")
+gwas <- vroom(file = "Data/GWAS_30K.txt", col_types = cols)
 tgwas <- fread(file = "Data/GWAS_30K.txt")
 object_size(gwas)   # On Irem's laptop 2,208 B
 object_size(tgwas)  # On Irem's laptop 2,399,304 B
