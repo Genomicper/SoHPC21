@@ -33,7 +33,7 @@ library(data.table)
 # Make sure the working directory is set to where this file lives
 # across code chunks.
 dir <- paste0(here(), "/Workspaces/")
-sknitr::opts_knit$set(root.dir = dir)
+knitr::opts_knit$set(root.dir = dir)
 
 # Remove all objects in the current environment
 rm(list = ls())
