@@ -21,10 +21,8 @@ function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
         all_snps <- snps_ann
     }
     if (from == "directory") {
-        data <- read.table(data_name, sep = "\t", header = T,
-                           stringsAsFactors = FALSE)
-        all_snps <- read.table(snps_ann, sep = "\t", header = T,
-            stringsAsFactors = FALSE)
+        data <- vroom(data_name)
+        all_snps <- vroom(snps_ann)
     }
     colnames(data)[1] <- "name"
     colnames(all_snps)[1] <- "name"

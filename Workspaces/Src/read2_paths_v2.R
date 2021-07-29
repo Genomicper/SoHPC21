@@ -50,8 +50,7 @@ function(ordered_alldata = "", gs_locs = "", sets_from = "workspace",
         }
         if (sets_from == "directory") {
             moe <- strsplit(ps[i], split = "[/.]")[[1]][1]
-            genes <- as.numeric(read.table(ps[i], header = F,
-                sep = " "))
+            genes <- as.numeric(vroom(ps[i]))
         }
         paths_names <- c(paths_names, moe)
         per_orids_list <- c(per_orids_list, paste("per_orids_",

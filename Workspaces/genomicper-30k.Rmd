@@ -76,26 +76,20 @@ profvis({
 
     ### Load files for analysis
     # data(demo, SNPsAnnotation)
-    all_data <- read_pvals(data_name="Data/GWAS_30K.txt", 
+    all_data <- read_pvals_v2(data_name="Data/GWAS_30K.txt", 
                            snps_ann="Data/SNP_Table_Annotation_30K.txt",
                            from="directory")
     
     # Read & format GWAS pvalues
-    #all_data <- read_pvals(data_name = demo, snps_ann = SNPsAnnotation)
-    dataname <- vroom("Data/GWAS_30K.txt",
-                            sep = "\t", 
-                            header = T,
-                            stringsAsFactors = F)
-    ann <- vroom("Data/SNP_Table_Annotation_30K.txt",
-                      header = T,
-                      stringsAsFactors = F)
+    dataname <- vroom("Data/GWAS_30K.txt")
+    ann <- vroom("Data/SNP_Table_Annotation_30K.txt")
 
-    all_data <- read_pvals(data_name = dataname, 
+    all_data <- read_pvals_v2(data_name = dataname, 
                            snps_ann = ann,
                            from = "workspace")
     
     # Order data according to the genome
-    genome_results <- genome_order(all_data = all_data)
+    genome_results <- genome_order_V2(all_data = all_data)
 
     # Results from genome_order
     ordered_alldata <- genome_results$ordered_alldata
@@ -110,7 +104,7 @@ profvis({
          RHSA109582, RHSA1474244, envir = gper.env)
 
     # Map SNPs to pathways
-    paths_res <- read2_paths(ordered_alldata = ordered_alldata,
+    paths_res <- read2_paths_v2(ordered_alldata = ordered_alldata,
                              gs_locs = gs_locs,
                              sets_from = "workspace",
                              sets_prefix = "RHSA",
@@ -122,7 +116,8 @@ profvis({
     pathways <- paths_res$pathways
 
     # Perform permutations:
-    snps_permutation(ordered_alldata = ordered_alldata,
+    # nper should be bigger!
+    snps_permutation_v2(ordered_alldata = ordered_alldata,
                      pers_ids = pers_ids, 
                      ntraits = 7, 
                      nper = 10, 
@@ -132,14 +127,14 @@ profvis({
                      envir = gper.env)
 
     # Get results
-    results <- get_results(res_pattern = "Permus", level = "snp",
+    results <- get_results_v2(res_pattern = "Permus", level = "snp",
                            from = "workspace", threshold = 0.05,
                            envir = gper.env)
 
     # Plot results
     ## Not run:
     #saves plots to working directory
-    #qq <- plot_results(results = results, by = "set", plot_all = TRUE)
+    #qq <- plot_results_v2(results = results, by = "set", plot_all = TRUE)
     #qq <- plot_results(results = results, by = "trait",
     #                   plot_all = FALSE, var = "trait1")
 
@@ -153,6 +148,7 @@ profvis({
 
 ```
 
+##Comparsion of vroom vs fread 
 
 ```{r reading_data}
 
@@ -162,8 +158,8 @@ cols <- cols(
 )
 
 res <- microbenchmark(
-                      vroom(file = "Workspaces/Data/GWAS_30K.txt", col_types = cols),
-                      fread(file = "Workspaces/Data/GWAS_30K.txt"),
+                      vroom(file = "Data/GWAS_30K.txt", col_types = cols),
+                      fread(file = "Data/GWAS_30K.txt"),
                       times = 20
                     )
 
@@ -186,11 +182,49 @@ res %>% select(time, expr)         %>%
 # Check memory usage, see:
 # http://adv-r.had.co.nz/memory.html
 
-#gwas <- vroom(file = "Workspaces/Data/SNP_Table_Annotation_30K.txt")
-#tgwas <- fread(file = "Workspaces/Data/GWAS_30K.txt")
-
-#object_size(gwas)   # On MA's Mac 988Mb
-#object_size(tgwas)  # On MA's Mac 1.1Gb
+gwas <- vroom(file = "Data/GWAS_30K.txt")
+tgwas <- fread(file = "Data/GWAS_30K.txt")
+object_size(gwas)   # On Irem's laptop 2,208 B
+object_size(tgwas)  # On Irem's laptop 2,399,304 B
 
 
 ```
+
+##Comparsion of versions
+
+Comparsion of read_pvals vs read_pvals_v2.
+
+```{r v2}
+    dataname <- vroom("Data/GWAS_30K.txt")
+    ann <- vroom("Data/SNP_Table_Annotation_30K.txt")
+
+# Perform a benchmark - read pvals
+res <- microbenchmark(
+  read_pvals(data_name = dataname, snps_ann = ann, from = "workspace"),
+   read_pvals_v2(data_name = dataname, snps_ann = ann,from = "workspace", verbose = TRUE),
+  read_pvals_v2(data_name = dataname, snps_ann = ann,from = "workspace"),
+  unit = "s",
+  times = 20
+)
+
+# Boxplot of the results
+boxplot(res, xlab = "read_pvals functions", 
+        names = c("v1","v2 (outputs)", "v2 (no outputs)"),
+        col = c("red", "yellow","yellow"))
+
+
+# Using ggplot explicitly (more flexibility and control)
+res %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of read_pvals") +
+        scale_x_discrete(labels = c("v1","v2 (outputs)", "v2 (no output)")) 
+
+
+```
+
+

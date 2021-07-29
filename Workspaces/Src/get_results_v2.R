@@ -38,9 +38,9 @@ function(res_pattern = "Permus", level = "snp", from = "workspace",
                 z <- which(permus_list == x)
                 permus_list[z]
                 assign(permus_list[z], cbind(get(permus_list[z], envir = envir),
-                       read.table(i)), envir = envir)
+                       vroom(i)), envir = envir)
             } else {
-                assign(mode, read.table(i), envir = envir)
+                assign(mode, vroom(i), envir = envir)
                 permus_list <- c(permus_list, mode)
             }
         }
