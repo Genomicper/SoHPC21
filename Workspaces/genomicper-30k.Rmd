@@ -85,12 +85,9 @@ profvis({
                            from="directory")
     
     # Read & format GWAS pvalues
-    dataname <- vroom("Data/GWAS_30K.txt")
-    ann <- vroom("Data/SNP_Table_Annotation_30K.txt")
-
-    all_data <- read_pvals_v2(data_name = dataname, 
-                           snps_ann = ann,
-                           from = "workspace")
+    all_data <- read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
+                             snps_ann = "Data/SNP_Table_Annotation_30K.txt",
+                             from = "directory")
     
     # Order data according to the genome
     genome_results <- genome_order_v2(all_data = all_data)
@@ -187,14 +184,18 @@ object_size(tgwas)  # On Irem's laptop 2,399,304 B, same on Mac
 Comparsion of read_pvals vs read_pvals_v2.
 
 ```{r v2}
-    dataname <- vroom("Data/GWAS_30K.txt", show_col_types = FALSE)
-    ann <- vroom("Data/SNP_Table_Annotation_30K.txt", show_col_types = FALSE)
 
 # Perform a benchmark - read pvals
 res <- microbenchmark(
-  read_pvals(data_name = dataname, snps_ann = ann, from = "workspace"),
-   read_pvals_v2(data_name = dataname, snps_ann = ann,from = "workspace", verbose = TRUE),
-  read_pvals_v2(data_name = dataname, snps_ann = ann,from = "workspace"),
+  read_pvals(data_name = "Data/GWAS_30K.txt", 
+             snps_ann = "Data/SNP_Table_Annotation_30K.txt",
+             from = "directory"),
+   read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
+                snps_ann = "Data/SNP_Table_Annotation_30K.txt",
+                from = "directory", verbose = TRUE),
+  read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
+                snps_ann = "Data/SNP_Table_Annotation_30K.txt",
+                from = "directory"),
   unit = "s",
   times = 20
 )
