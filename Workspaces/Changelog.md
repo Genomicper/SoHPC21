@@ -38,6 +38,93 @@ We found two additional two problems with vroom:
 
 Add profiles in reverse chronological order.
 
+## Profile 2
+
+Look at a profile of `genome_order_v2` with the 8M (except that `all_data` is now 10520570) data set:
+
+![genome_order profile](./imgs/genome_order_v2-8Mprof.png)
+
+The run takes about 8m28s to run. Changes:
+
+* Got rid of `which(is.na(all_data[, 2]) == TRUE)` and 
+
+  ```R
+  if (length(rm_rs) != 0) {
+          all_data <- all_data[-c(rm_rs), ]
+      }
+  ```
+
+  Replaced with:
+
+  ```R
+  all_data <- all_data[!is.na(all_data[, 2]), ]
+  ```
+
+* Introduced a `verbose = FALSE` to the function arguments and output only if required.
+
+* Changed:
+
+  ```R
+   for (i in 7:colsf) {
+          all_data[, i] <- as.numeric(as.character(all_data[, i]))
+      }
+  ```
+
+  to
+
+  ```R
+     for (i in 7:colsf) {
+          if (!is.factor(all_data[, i])) {
+              next
+          }        
+          all_data[, i] <- as.numeric(as.character(all_data[, i]))
+      }
+  ```
+
+  Even though I think these lines are not necessary.
+
+* Changed:
+
+  ```R
+  or_data <- all_data
+  or_data[, 2] <- as.character(or_data[, 2])
+  
+  lk <- c(1:50)
+  lk <- as.character(lk)
+  ## Numeric Chromosomes
+  x <- which(or_data[, 2] %in% lk)
+  nums <- or_data[x, ]
+  ```
+
+  to
+
+  ```R
+      or_data <- all_data
+      or_data[, 2] <- as.character(or_data[, 2])
+  
+      lk <- as.character(1:50)
+      ## Numeric Chromosomes
+      x <- which(or_data[, 2] %in% lk)
+      nums <- or_data[x, ]
+      nums[, 2] <- as.numeric(nums[, 2])
+  ```
+
+  I am sure this can be simplified more but it risks breaking the code.
+
+  Test that the results are still the same:
+
+  ```R
+  expect_equal(genome_order(all_data = all_data),
+               genome_order_v2(all_data = all_data)
+               )
+  ```
+
+  This seems to not produce an error. A new profile produced:
+
+  ![Modified version of genome_order](./imgs/genome_order_v2Prof8M.png)
+
+  This version takes 7m31s so it has saved almost a minute.
+
 ### Profile 1
 
 An early profile for the 8M data case using `profvis`.
