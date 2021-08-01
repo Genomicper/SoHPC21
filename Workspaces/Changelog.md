@@ -123,7 +123,17 @@ The run takes about 8m28s to run. Changes:
 
   ![Modified version of genome_order](./imgs/genome_order_v2Prof8M.png)
 
-  This version takes 7m31s so it has saved almost a minute.
+  This version takes 7m31s so it has saved almost a minute. Running a microbenchmark for 5 runs confirms that there is a slight improvement:
+
+  ![Performance imporvemement for genome_order](imgs/genome_orderProf10M.png)
+
+  For the the 30k data set though the improvements are not as clear:
+
+  ![Performance improvement for 30k](./imgs/genomic_order30k.png)
+
+  Profiling the routine for the 30k data sets gives the following profile:
+
+  ![Profile of genome_order_v2 for 30k](./imgs/genome_order30kprof.png)
 
 ### Profile 1
 

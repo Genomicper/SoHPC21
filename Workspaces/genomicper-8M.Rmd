@@ -283,6 +283,49 @@ profvis({
 
 })
 
-test_ex[]
+
+```
+
+Check that it still gives the same results.
+
+```{r test_genome_order}
+
+expect_equal(genome_order(all_data = all_data),
+             genome_order_v2(all_data = all_data)
+             )
+
+```
+
+```{r m8icrobenchmark_genomic_order}
+
+# Run only 5 times as it takes a long time to run
+gres <- microbenchmark(
+  genome_order(all_data = all_data),
+  genome_order_v2(all_data = all_data),
+  unit = "s",
+  times = 5
+)
+
+# print out the results
+print(gres)
+
+# Boxplot of the results
+boxplot(gres, 
+        xlab = "Function", 
+        names = c("genome_order", "genome_order_v2"),
+        col = c("red", "yellow"))
+
+#
+gres %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() + scale_y_log10() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of genome_order improvements for 10M entries") +
+        scale_x_discrete(labels = c("genome_order", "genome_order_v2")) +
+        theme_bw() + theme(legend.position = "none")
+
 ```
 

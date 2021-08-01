@@ -1,24 +1,24 @@
 genome_order_v2 <-
-function(all_data = "") {
+function(all_data = "", verbose = FALSE) {
 
-    rm_rs <- which(is.na(all_data[, 2]) == TRUE)
-    cat("Number of SNPs without location and removed: ",
-        length(rm_rs), sep = "")
-    if (length(rm_rs) != 0) {
-        all_data <- all_data[-c(rm_rs), ]
+    if (verbose) {
+       cat("Number of SNPs without location and removed: ",
+           length(rm_rs), sep = "")
     }
+    all_data <- all_data[!is.na(all_data[, 2]), ]
     rowsf <- length(unique(sort(as.character(all_data[, 4]))))
     colsf <- length(all_data)
     colnames(all_data)[4] <- "GENE_ID"
     for (i in 7:colsf) {
+        if (!is.factor(all_data[, i])) { 
+            next 
+        }
         all_data[, i] <- as.numeric(as.character(all_data[, i]))
     }
     or_data <- all_data
     or_data[, 2] <- as.character(or_data[, 2])
 
-
-    lk <- c(1:50)
-    lk <- as.character(lk)
+    lk <- as.character(1:50)
     ## Numeric Chromosomes
     x <- which(or_data[, 2] %in% lk)
     nums <- or_data[x, ]
