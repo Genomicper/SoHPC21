@@ -179,7 +179,7 @@ object_size(tgwas)  # On Irem's laptop 2,399,304 B, same on Mac
 
 ```
 
-##Comparsion of versions
+## Comparsion of versions
 
 Comparsion of read_pvals vs read_pvals_v2.
 
@@ -219,5 +219,50 @@ res %>% select(time, expr)         %>%
 
 
 ```
+### genome_order changes
 
+```{r prof_genome_order}
+
+profvis({
+  
+    # Order data according to the genome using v2 makes it possible to make
+    # changes to the code base to try an improve the performance.
+    genome_results <- genome_order_v2(all_data = all_data)
+
+})
+
+
+```
+
+```{r microbenchmark_genomic_order}
+
+# Run only 5 times as it takes a long time to run
+gres <- microbenchmark(
+  genome_order(all_data = all_data),
+  genome_order_v2(all_data = all_data),
+  unit = "s",
+  times = 20
+)
+
+# print out the results
+print(gres)
+
+# Boxplot of the results
+boxplot(gres, 
+        xlab = "Function", 
+        names = c("genome_order", "genome_order_v2"),
+        col = c("red", "yellow"))
+#
+gres %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() + scale_y_log10() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of genome_order improvements for 30k entries") +
+        scale_x_discrete(labels = c("genome_order", "genome_order_v2")) +
+        theme_bw() + theme(legend.position = "none")
+
+```
 

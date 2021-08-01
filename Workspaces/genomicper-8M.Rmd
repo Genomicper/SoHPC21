@@ -296,7 +296,7 @@ expect_equal(genome_order(all_data = all_data),
 
 ```
 
-```{r m8icrobenchmark_genomic_order}
+```{r microbenchmark_genomic_order}
 
 # Run only 5 times as it takes a long time to run
 gres <- microbenchmark(
@@ -314,7 +314,6 @@ boxplot(gres,
         xlab = "Function", 
         names = c("genome_order", "genome_order_v2"),
         col = c("red", "yellow"))
-
 #
 gres %>% select(time, expr)         %>% 
         mutate(time = time / 10^9) %>% # Convert to seconds
