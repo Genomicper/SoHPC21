@@ -34,6 +34,8 @@ We found two additional two problems with vroom:
 * There was a `locale` issue on Windows on a machine with a Turkish locale `vroom::locale()` gave an error. We could not fix this in RStudio using a `.RProfile` file and setting the locale explicitly: `Sys.setlocale(category = "LC_ALL", locale = "Turkish")`. There was some connection with finding `tzdb`.
 * Other problem was also on a windows system which seemed to be related to this [issue](https://github.com/r-lib/vroom/issues/40) - the data file needed to have an extra line at the end when read in by a windows machine. Once we explicitly added a new empty line the file read in ok.
 
+On the call 03/08/21 it was decided that `vroom` gave the best performance but was introducing too many issues so we would go on to use `fread` from `data.table`. Irem would make the change. She would also investigate the use of alternatives to `rbind` that appeared to be faster (see [here](https://rstudio-pubs-static.s3.amazonaws.com/406521_7fc7b6c1dc374e9b8860e15a699d8bb0.html)).
+
 # Profiles
 
 Add profiles in reverse chronological order.
@@ -134,6 +136,12 @@ The run takes about 8m28s to run. Changes:
   Profiling the routine for the 30k data sets gives the following profile:
 
   ![Profile of genome_order_v2 for 30k](./imgs/genome_order30kprof.png)
+
+  Irem run a microbenchmark with the same code and she gets the modified code and she finds it goes faster:
+
+  ![Irem's genome_order_v2 microbenchmark on the 30k data set](./imgs/Irem_30k_genome_order.png)
+
+  on the call on the 03/08/21 it became apparent that we may not be comparing like with like - Irem might be using a `tibble` as she used `vroom` to read the data and Mario may have used a `data.table` as he read the data in using the original code.
 
 ### Profile 1
 
