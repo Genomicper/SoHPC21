@@ -265,4 +265,14 @@ gres %>% select(time, expr)         %>%
         theme_bw() + theme(legend.position = "none")
 
 ```
+```{r mem_profile_genome_order}
+
+library(profmem)
+
+profmem({
+    # Order data according to the genome using v2 makes it possible to make
+    # changes to the code base to try an improve the performance.
+    genome_results <- genome_order_v2(all_data = all_data)
+})
+```
 
