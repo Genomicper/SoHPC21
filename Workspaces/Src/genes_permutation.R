@@ -1,13 +1,13 @@
 genes_permutation <-
-function (ordered_alldata = "", pers_ids = "", pathways = "", 
-    ntraits = "", nper = 100, threshold = 0.05, seed=10,saveto = "workspace", 
-gs_locs = "",envir = "") 
+function (ordered_alldata = "", pers_ids = "", pathways = "",
+    ntraits = "", nper = 100, threshold = 0.05, seed=10,saveto = "workspace",
+gs_locs = "",envir = "")
 {
     print("Arguments set:")
-    print(paste("Ordered dataset: ", substitute(ordered_alldata), 
+    print(paste("Ordered dataset: ", substitute(ordered_alldata),
         sep = ""))
     print(paste("Indexes of Gene Annotations: ", substitute(pers_ids)))
-    print(paste("Gene-sets Information and counts: ", substitute(pathways), 
+    print(paste("Gene-sets Information and counts: ", substitute(pathways),
         sep = ""))
     print(paste("Indexes of Traits to Analyse:", as.numeric(ntraits)))
     print(paste("Traits:", colnames(ordered_alldata)[as.numeric(ntraits)]))
@@ -41,13 +41,13 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
     k <- NULL
     all_ts <- NULL
     listf <- as.numeric(as.character(gs_locs[, 4]))
-    pathways2 <- matrix(data = 0, nrow = length(paths_list), 
+    pathways2 <- matrix(data = 0, nrow = length(paths_list),
         ncol = 4 + length(ntraits))
     pathways2[, 1:4] <- pathways[ns, 1:4]
     pathways <- pathways2
     for (i in 7:length(temp)) {
         temp2 <- temp[, i]
-        hyper_mat <- matrix(data = NA, nrow = length(sd) + 1, 
+        hyper_mat <- matrix(data = NA, nrow = length(sd) + 1,
             ncol = length(paths_list))
         trtsnm <- colnames(temp)[i]
         print(trtsnm)
@@ -55,7 +55,7 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
         sig_genes_real <- 0
         for (j in 1:length(sd)) {
             sig_genes <- 0
-            path_counts <- matrix(data = 0, nrow = length(paths_list), 
+            path_counts <- matrix(data = 0, nrow = length(paths_list),
                 ncol = 2)
             for (m in 1:length(paths_list)) {
                 path_counts[m, 1] <- paths_list[m]
@@ -65,13 +65,13 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
                 strt <- as.numeric(gs_locs[k, 5])
                 ed <- strt + obs - 1
                 if (j == 1) {
-                  tscore <- pchisq(-2 * (sum(log(temp[c(strt:ed), 
+                  tscore <- pchisq(-2 * (sum(log(temp[c(strt:ed),
                     i]))), df = 2 * (obs), lower.tail = F)
                   if (tscore <= threshold) {
                     sig_genes_real <- sig_genes_real + 1
                     for (m in 1:length(paths_list)) {
                       if (k %in% pers_ids[[m]]) {
-                        pathways[m, i - 2] <- as.numeric(pathways[m, 
+                        pathways[m, i - 2] <- as.numeric(pathways[m,
                           i - 2]) + 1
                       }
                     }
@@ -81,13 +81,13 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
                 fkstrt <- as.numeric(gs_locs[k, 5]) + sd[j]
                 fkend <- fkstrt + obs - 1
                 if (fkend <= mx_rs) {
-                  tscore <- pchisq(-2 * (sum(log(temp2[c(fkstrt:fkend)]))), 
+                  tscore <- pchisq(-2 * (sum(log(temp2[c(fkstrt:fkend)]))),
                     df = 2 * (obs), lower.tail = F)
                   if (tscore <= threshold) {
                     sig_genes <- sig_genes + 1
                     for (m in 1:length(paths_list)) {
                       if (k %in% pers_ids[[m]]) {
-                        path_counts[m, 2] <- as.numeric(path_counts[m, 
+                        path_counts[m, 2] <- as.numeric(path_counts[m,
                           2]) + 1
                       }
                     }
@@ -101,13 +101,13 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
                     if (nend > mx_rs) {
                       rst <- nend - mx_rs
                       ps <- c(pls:mx_rs, 1:rst)
-                      tscore <- pchisq(-2 * (sum(log(temp2[ps]))), 
+                      tscore <- pchisq(-2 * (sum(log(temp2[ps]))),
                         df = 2 * (obs), lower.tail = F)
                       if (tscore <= threshold) {
                         sig_genes <- sig_genes + 1
                         for (m in 1:length(paths_list)) {
                           if (k %in% pers_ids[[m]]) {
-                            path_counts[m, 2] <- as.numeric(path_counts[m, 
+                            path_counts[m, 2] <- as.numeric(path_counts[m,
                               2]) + 1
                           }
                         }
@@ -116,13 +116,13 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
                     }
                     else {
                       ps <- c(pls:nend)
-                      tscore <- pchisq(-2 * (sum(log(temp2[ps]))), 
+                      tscore <- pchisq(-2 * (sum(log(temp2[ps]))),
                         df = 2 * (obs), lower.tail = F)
                       if (tscore <= threshold) {
                         sig_genes <- sig_genes + 1
                         for (m in 1:length(paths_list)) {
                           if (k %in% pers_ids[[m]]) {
-                            path_counts[m, 2] <- as.numeric(path_counts[m, 
+                            path_counts[m, 2] <- as.numeric(path_counts[m,
                               2]) + 1
                           }
                         }
@@ -133,13 +133,13 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
                   else {
                     rst <- fkend - mx_rs
                     ps <- c(fkstrt:mx_rs, 1:rst)
-                    tscore <- pchisq(-2 * (sum(log(temp2[ps]))), 
+                    tscore <- pchisq(-2 * (sum(log(temp2[ps]))),
                       df = 2 * (obs), lower.tail = F)
                     if (tscore <= threshold) {
                       sig_genes <- sig_genes + 1
                       for (m in 1:length(paths_list)) {
                         if (k %in% pers_ids[[m]]) {
-                          path_counts[m, 2] <- as.numeric(path_counts[m, 
+                          path_counts[m, 2] <- as.numeric(path_counts[m,
                             2]) + 1
                         }
                       }
@@ -149,20 +149,20 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
             }
             if (j == 1) {
                 for (m in 1:length(paths_list)) {
-                  hypr_ps <- hyprbg(Sig_in_Paths = as.numeric(pathways[m, 
-                    i - 2]), uniSig = sig_genes_real, gns_in_Paths = as.numeric(pathways[m, 
+                  hypr_ps <- hyprbg(Sig_in_Paths = as.numeric(pathways[m,
+                    i - 2]), uniSig = sig_genes_real, gns_in_Paths = as.numeric(pathways[m,
                     3]), universe = rowsf)
                   hyper_mat[j, m] <- hypr_ps
-                  hypr_ps <- hyprbg(Sig_in_Paths = as.numeric(path_counts[m, 
-                    2]), uniSig = sig_genes, gns_in_Paths = as.numeric(pathways[m, 
+                  hypr_ps <- hyprbg(Sig_in_Paths = as.numeric(path_counts[m,
+                    2]), uniSig = sig_genes, gns_in_Paths = as.numeric(pathways[m,
                     3]), universe = rowsf)
                   hyper_mat[j + 1, m] <- hypr_ps
                 }
             }
             else {
                 for (m in 1:length(paths_list)) {
-                  hypr_ps <- hyprbg(Sig_in_Paths = as.numeric(path_counts[m, 
-                    2]), uniSig = sig_genes, gns_in_Paths = as.numeric(pathways[m, 
+                  hypr_ps <- hyprbg(Sig_in_Paths = as.numeric(path_counts[m,
+                    2]), uniSig = sig_genes, gns_in_Paths = as.numeric(pathways[m,
                     3]), universe = rowsf)
                   hyper_mat[j + 1, m] <- hypr_ps
                 }
@@ -171,15 +171,15 @@ set.seed(as.numeric(seed), kind = "Mersenne-Twister")
         rownames(hyper_mat) <- c("REAL_Pval", 1:length(sd))
         colnames(hyper_mat) <- paths_list
         if (saveto == "directory") {
-            write.table(hyper_mat, file = paste("Permus_", trtsnm, 
-                ".txt", sep = ""), sep = "\t", row.names = T, 
+            write.table(hyper_mat, file = paste("Permus_", trtsnm,
+                ".txt", sep = ""), sep = "\t", row.names = T,
                 col.names = T, quote = F)
         }
         if (saveto == "workspace") {
-            assign(paste("Permus_", trtsnm, sep = ""), hyper_mat, 
+            assign(paste("Permus_", trtsnm, sep = ""), hyper_mat,
                 envir = envir)
         }
     }
-    colnames(pathways) <- c("ID", "GenesInPath", "GenesFound", 
+    colnames(pathways) <- c("ID", "GenesInPath", "GenesFound",
         "SNPsInPath", all_ts)
 }

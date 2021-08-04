@@ -137,7 +137,8 @@ profvis({
 
 ```
 
-##Comparsion of vroom vs fread 
+##Comparsion of vroom vs fread
+"vroom" is faster but it is causing problems with locale and reading files on Windows systems.
 
 ```{r reading_data}
 

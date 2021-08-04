@@ -10,8 +10,8 @@ function(all_data = "", verbose = FALSE) {
     colsf <- length(all_data)
     colnames(all_data)[4] <- "GENE_ID"
     for (i in 7:colsf) {
-        if (!is.factor(all_data[, i])) { 
-            next 
+        if (!is.factor(all_data[, i])) {
+            next
         }
         all_data[, i] <- as.numeric(as.character(all_data[, i]))
     }
@@ -32,7 +32,7 @@ function(all_data = "", verbose = FALSE) {
     lets <- lets[indx_lets, ]
 
     # bind both datasets
-    or_data <- rbind(nums, lets)
+    or_data <- rbindlist(nums, lets)
     # unique genes
     listf <- unique(sort(or_data[, 4]))
     gs_locs <- matrix(data = NA, nrow = rowsf, ncol = 6)
