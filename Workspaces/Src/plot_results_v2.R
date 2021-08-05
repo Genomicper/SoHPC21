@@ -1,9 +1,12 @@
 plot_results_v2 <-
 function(results = "", by="", plot_all = TRUE, var = "", save_plot = TRUE,
-         plot_name = "", bf = FALSE, save_qq = TRUE) {
-    cat("Arguments set:\n")
-    cat("\tData:", substitute(results), "\n", sep = " ")
-    cat("\tPlot results by:", substitute(by), "\n", sep = " ")
+         plot_name = "", bf = FALSE, save_qq = TRUE, verbose = FALSE) {
+
+    if (verbose) {
+       cat("Arguments set:\n")
+       cat("\tData:", substitute(results), "\n", sep = " ")
+       cat("\tPlot results by:", substitute(by), "\n", sep = " ")
+    }
     if (plot_name != "") {
        cat("\tSave plot as:", substitute(plot_name), sep = " ")
     }
