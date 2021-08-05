@@ -137,7 +137,12 @@ profvis({
 
 ```
 
+<<<<<<< HEAD
 ## Comparsion of vroom vs fread 
+=======
+##Comparsion of vroom vs fread
+"vroom" is faster but it is causing problems with locale and reading files on Windows systems.
+>>>>>>> 4cd30b78cd2dfd8111a118087087909f5f28144d
 
 ```{r reading_data}
 
