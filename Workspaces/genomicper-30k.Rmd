@@ -81,13 +81,13 @@ profvis({
     ### Load files for analysis
     # data(demo, SNPsAnnotation)
     all_data <- read_pvals_v2(data_name="Data/GWAS_30K.txt", 
-                           snps_ann="Data/SNP_Table_Annotation_30K.txt",
-                           from="directory")
+                              snps_ann="Data/SNP_Table_Annotation_30K.txt",
+                              from="directory")
     
     # Read & format GWAS pvalues
     all_data <- read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
-                             snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-                             from = "directory")
+                              snps_ann = "Data/SNP_Table_Annotation_30K.txt",
+                              from = "directory")
     
     # Order data according to the genome
     genome_results <- genome_order_v2(all_data = all_data)
@@ -137,7 +137,7 @@ profvis({
 
 ```
 
-##Comparsion of vroom vs fread 
+## Comparsion of vroom vs fread 
 
 ```{r reading_data}
 
