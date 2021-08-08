@@ -3,7 +3,7 @@ function(all_data = "", verbose = FALSE) {
 
     if (verbose) {
        cat("Number of SNPs without location and removed: ",
-           length(rm_rs), sep = "")
+           sum(is.na(all_data[, 2])), sep = "")
     }
     all_data <- all_data[!is.na(all_data[, 2]), ]
     rowsf <- length(unique(sort(as.character(all_data[, 4]))))
