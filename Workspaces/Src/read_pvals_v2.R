@@ -21,8 +21,8 @@ function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
         all_snps <- snps_ann
     }
     if (from == "directory") {
-        data <- fread(data_name, show_col_types = FALSE)
-        all_snps <- fread(snps_ann, show_col_types = FALSE)
+        data <- fread(data_name)
+        all_snps <- fread(snps_ann)
     }
     colnames(data)[1] <- "name"
     colnames(all_snps)[1] <- "name"
