@@ -5,10 +5,13 @@ function(all_data = "", verbose = FALSE) {
        cat("Number of SNPs without location and removed: ",
            sum(is.na(all_data[, 2])), sep = "")
     }
+    # Remove any NA values in the Chromosome column.
     all_data <- all_data[!is.na(all_data[, 2]), ]
     rowsf <- length(unique(sort(as.character(all_data[, 4]))))
     colsf <- length(all_data)
     colnames(all_data)[4] <- "GENE_ID"
+    # Convert any columns from 7 that may be factors to numeric values - do
+    # this only if the column is a factor.
     for (i in 7:colsf) {
         if (!is.factor(all_data[, i])) {
             next
