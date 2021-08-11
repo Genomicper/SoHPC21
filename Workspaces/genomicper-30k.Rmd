@@ -79,15 +79,9 @@ profvis({
     # all data stored at the WORKSPACE
 
     ### Load files for analysis
-    # data(demo, SNPsAnnotation)
-    all_data <- read_pvals_v2(data_name="Data/GWAS_30K.txt", 
-                              snps_ann="Data/SNP_Table_Annotation_30K.txt",
-                              from="directory")
-    
+
     # Read & format GWAS pvalues
-    all_data <- read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
-                              snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-                              from = "directory")
+    all_data <- fread(file = "Data/AllData50k.tsv",data.table = FALSE)
     
     # Order data according to the genome
     genome_results <- genome_order_v2(all_data = all_data)
@@ -132,8 +126,8 @@ profvis({
                            from = "workspace", threshold = 0.05,
                            envir = gper.env)
 
-
-})
+  
+    })
 
 ```
 

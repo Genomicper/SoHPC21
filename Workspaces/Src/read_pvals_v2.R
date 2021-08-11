@@ -1,7 +1,8 @@
 read_pvals_v2 <-
 function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
 
-    if (verbose) {
+
+     if (verbose) {
        cat("Arguments set (read_pvals):\n")
        cat("\t", substitute(data_name), ",\n", sep = "")
        cat("\t", substitute(snps_ann), ",\n", sep = "")
@@ -21,12 +22,13 @@ function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
         all_snps <- snps_ann
     }
     if (from == "directory") {
-        data <- fread(data_name)
-        all_snps <- fread(snps_ann)
+        data <- fread(file = data_name,data.table = FALSE)
+        all_snps <- fread(file = snps_ann,data.table = FALSE)
     }
     colnames(data)[1] <- "name"
     colnames(all_snps)[1] <- "name"
-    all_data <- merge(all_snps, data, by = "name", all.x = FALSE,
+    all_data <- inner_join(all_snps, data, by = "name", all.x = FALSE,
                       all.y = TRUE, incomparables = "NA")
     return(all_data)
 }
+

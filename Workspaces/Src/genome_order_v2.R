@@ -32,7 +32,7 @@ function(all_data = "", verbose = FALSE) {
     lets <- lets[indx_lets, ]
 
     # bind both datasets
-    or_data <- rbindlist(nums, lets)
+    or_data <- rbind(nums, lets)
     # unique genes
     listf <- unique(sort(or_data[, 4]))
     gs_locs <- matrix(data = NA, nrow = rowsf, ncol = 6)
@@ -52,3 +52,4 @@ function(all_data = "", verbose = FALSE) {
     ordered_alldata <- or_data
     return(list(ordered_alldata = ordered_alldata, gs_locs = gs_locs))
 }
+
