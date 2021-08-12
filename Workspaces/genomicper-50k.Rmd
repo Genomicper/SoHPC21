@@ -1,5 +1,5 @@
 ---
-title: "Genomicper Notebook - 30k Use case"
+title: "Genomicper Notebook - 50k Use case"
 author: " Aybuke Ozcelik, Irem Okur, Mario Antonioletti, Pau Navarro, Claudia Cabrera"
 output: 
   html_document:
@@ -70,7 +70,7 @@ for (file in new_files){
 
 Profile an example piece of code:
 
-```{r profile_30k}
+```{r profile_50k}
 
 profvis({
 
@@ -78,12 +78,8 @@ profvis({
     # SNPs annotation and Pathways provided by user
     # all data stored at the WORKSPACE
 
-    ### Load files for analysis
-
     # Read & format GWAS pvalues
-    all_data <- read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
-                snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-                from = "directory")
+    all_data <- fread(file = "Data/AllData50k.tsv",data.table = FALSE)
     
     # Order data according to the genome
     genome_results <- genome_order_v2(all_data = all_data)
@@ -134,10 +130,9 @@ profvis({
 ```
 
 
-## Comparsion of vroom vs fread
-"vroom" is causing problems with locale and reading files on Windows systems.
+## Comparsion of vroom vs fread - 50K use case
 
-```{r reading_data}
+```{r reading_data_50K}
 
 cols <- cols(
   name = col_character(),
@@ -145,8 +140,8 @@ cols <- cols(
 )
 
 res <- microbenchmark(
-                      vroom(file = "Data/GWAS_30K.txt", col_types = cols),
-                      fread(file = "Data/GWAS_30K.txt"),
+                      vroom(file = "Data/AllData50k.tsv"),
+                      fread(file = "Data/AllData50k.tsv"),
                       times = 20
                     )
 
@@ -169,55 +164,15 @@ res %>% select(time, expr)         %>%
 # Check memory usage, see:
 # http://adv-r.had.co.nz/memory.html
 
-gwas <- vroom(file = "Data/GWAS_30K.txt", col_types = cols)
-tgwas <- fread(file = "Data/GWAS_30K.txt")
+gwas <- vroom(file = "Data/AllData50k.tsv")
+tgwas <- fread(file = "Data/AllData50k.tsv")
 object_size(gwas)   # On Irem's laptop 2,208 B, 4,144 B on Mac
 object_size(tgwas)  # On Irem's laptop 2,399,304 B, same on Mac
 
 
 ```
 
-## Comparsion of versions
-
-Comparsion of read_pvals vs read_pvals_v2.
-
-```{r v2}
-
-# Perform a benchmark - read pvals
-res <- microbenchmark(
-  read_pvals(data_name = "Data/GWAS_30K.txt", 
-             snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-             from = "directory"),
-   read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
-                snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-                from = "directory", verbose = TRUE),
-  read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
-                snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-                from = "directory"),
-  unit = "s",
-  times = 20
-)
-
-# Boxplot of the results
-boxplot(res, xlab = "read_pvals functions", 
-        names = c("v1","v2 (outputs)", "v2 (no outputs)"),
-        col = c("red", "yellow","yellow"))
-
-
-# Using ggplot explicitly (more flexibility and control)
-res %>% select(time, expr)         %>% 
-        mutate(time = time / 10^9) %>% # Convert to seconds
-        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
-        geom_violin() +
-        theme(legend.position = "none", 
-              plot.title = element_text(hjust = 0.5)) +
-        ylab("Time (s)") + xlab("Function version") +
-        ggtitle("Comparsion of read_pvals") +
-        scale_x_discrete(labels = c("v1","v2 (outputs)", "v2 (no output)")) 
-
-
-```
-### genome_order changes
+### Genome_order changes
 
 ```{r prof_genome_order}
 
@@ -225,6 +180,7 @@ profvis({
   
     # Order data according to the genome using v2 makes it possible to make
     # changes to the code base to try an improve the performance.
+    all_data <- fread(file = "Data/AllData50k.tsv",data.table = FALSE)
     genome_results <- genome_order_v2(all_data = all_data)
 
 })
@@ -234,7 +190,7 @@ profvis({
 
 ```{r microbenchmark_genomic_order}
 
-# Run only 5 times as it takes a long time to run
+# Run only 5 times if it takes a long time to run
 gres <- microbenchmark(
   genome_order(all_data = all_data),
   genome_order_v2(all_data = all_data),
@@ -258,7 +214,7 @@ gres %>% select(time, expr)         %>%
         theme(legend.position = "none", 
               plot.title = element_text(hjust = 0.5)) +
         ylab("Time (s)") + xlab("Function version") +
-        ggtitle("Comparsion of genome_order improvements for 30k entries") +
+        ggtitle("Comparsion of genome_order improvements for 50k entries") +
         scale_x_discrete(labels = c("genome_order", "genome_order_v2")) +
         theme_bw() + theme(legend.position = "none")
 

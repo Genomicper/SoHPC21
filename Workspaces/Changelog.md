@@ -159,17 +159,5 @@ The `as.numeric` appearance is interesting and comes from lines like 13-15 from 
 
 This is converting `factors` into `numeric` values. Probably no longer necessary as from R4.0.0 the default when reading in data would be `stringsAsFactors = FALSE`.
 
-The `rbind()` is slower than the`rbindlist()` based on the [article](https://rstudio-pubs-static.s3.amazonaws.com/406521_7fc7b6c1dc374e9b8860e15a699d8bb0.html). It is in the `genome_order_v2.R`.
-
-So, changed:
-
-```R
-    or_data <- rbind(nums, lets)
-```
-
-to
-
-```R
-    or_data <- rbindlist(nums, lets)
-```
+The `rbind()` is slower than the`rbindlist()` based on the [article](https://rstudio-pubs-static.s3.amazonaws.com/406521_7fc7b6c1dc374e9b8860e15a699d8bb0.html). It is in the `genome_order_v2.R`. But changing it causes a problem. Go back to the original `rbind()`.
 
