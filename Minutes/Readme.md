@@ -1,5 +1,6 @@
 # Project meeting minutes
 
+* [17/08/21 Meeting](./2021-08-17.md).
 * [10/08/21 Meeting](./2021-08-10.md).
 * [03/08/21 Meeting](./2021-08-03.md).
 * [27/07/21 Meeting](./2021-07-27.md).
