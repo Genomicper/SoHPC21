@@ -1,0 +1,231 @@
+---
+title: "Genomicper Notebook - 1M Use case"
+author: " Aybuke Ozcelik, Irem Okur, Mario Antonioletti, Pau Navarro, Claudia Cabrera"
+output: 
+  html_document:
+    toc: true
+  md_document:
+      variant: markdown_github
+      toc: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Setup
+
+```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
+
+library(genomicper)        # Package to be analysed
+library(microbenchmark)    # Microbenchmark routines
+library(profvis)           # Profile routines
+library(lintr)             # Static R analyser
+library(diffr)             # Source file comparison
+library(here)              # Determine the root of where the files live
+library(compiler)          # Library to compiler byte compile R functions
+library(testthat)          # Testing routines.
+library(ggplot2)           # Add plots
+library(dplyr)             # Manipulate data frames
+library(readr)             # tidyverse reading tools
+library(pryr)              # Memory usage
+library(vroom)
+library(data.table)
+# Make sure the working directory is set to where this file lives
+# across code chunks.
+dir <- paste0(here(), "/Workspaces/")
+knitr::opts_knit$set(root.dir = dir)
+
+# Remove all objects in the current environment
+rm(list = ls())
+
+```
+
+## Baseline performance
+
+### Load functions
+
+Find out how long routines are taking to run. To start we need to load up the
+new version of the files. If you change these you will have to load them up 
+again. You should probably focus on the routines that are taking the longest 
+time.
+
+```{r read_alternative_files}
+
+# Load all the alternative versions of the code (follow the *_v2.R pattern)
+new_files <- list.files(path = "Src", pattern = "*_v2.R", full.names = TRUE)
+
+# Check the files have been read in.
+if(length(new_files) == 0){
+  stop("Error: not read in any files.")
+}
+
+# Loop round the files and source them to load them to the environment
+for (file in new_files){
+  source(file = file)
+}
+
+```
+
+## Profile
+
+Profile an example piece of code:
+
+```{r profile_1M}
+
+profvis({
+
+    #### SNP-level  ##########################################################
+    # SNPs annotation and Pathways provided by user
+    # all data stored at the WORKSPACE
+
+    # Read & format GWAS pvalues
+    all_data <- fread(file = "Data/AllData1M.tsv",data.table = FALSE)
+    
+    # Order data according to the genome
+    genome_results <- genome_order_v2(all_data = all_data)
+
+    # Results from genome_order
+    ordered_alldata <- genome_results$ordered_alldata
+    gs_locs <- genome_results$gs_locs
+
+    # Create new environment to save variables (e.g. pathways, permutations):
+    gper.env <- new.env()
+
+    # Pathways can be downloaded using the function get_pathways()
+    # Load example pathways into the new environment.
+    data(RHSA164843, RHSA446343, RHSA8876384, RHSA8964572,
+         RHSA109582, RHSA1474244, envir = gper.env)
+
+    # Map SNPs to pathways
+    paths_res <- read2_paths_v2(ordered_alldata = ordered_alldata,
+                             gs_locs = gs_locs,
+                             sets_from = "workspace",
+                             sets_prefix = "RHSA",
+                             level = "snp",
+                             envir = gper.env)
+
+    # Results from read2_paths:
+    pers_ids <- paths_res$per_ors
+    pathways <- paths_res$pathways
+
+    # Perform permutations:
+    snps_permutation_v2(ordered_alldata = ordered_alldata,
+                     pers_ids = pers_ids, 
+                     ntraits = 7, 
+                     nper = 100, 
+                     saveto = "workspace",
+                     threshold = 0.05, 
+                     gs_locs = gs_locs, 
+                     envir = gper.env)
+
+    # Get results
+    results <- get_results_v2(res_pattern = "Permus", level = "snp",
+                           from = "workspace", threshold = 0.05,
+                           envir = gper.env)
+
+  
+    })
+
+```
+
+
+## Comparsion of vroom vs fread - 1M use case
+
+```{r reading_data_1M}
+
+cols <- cols(
+  name = col_character(),
+  Trait = col_double()
+)
+
+res <- microbenchmark(
+                      vroom(file = "Data/AllData1M.tsv"),
+                      fread(file = "Data/AllData1M.tsv"),
+                      times = 20
+                    )
+
+# Boxplot of the results
+boxplot(res, xlab = "vroom vs fread", 
+        names = c("vroom", "fread"),
+        col = c("red", "yellow"))
+
+# Using ggplot explicitly to plot the results
+res %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of vroom vs fread for 30K entries") +
+        scale_x_discrete(labels = c("vroom", "fread")) 
+
+# Check memory usage, see:
+# http://adv-r.had.co.nz/memory.html
+
+gwas <- vroom(file = "Data/AllData1M.tsv")
+tgwas <- fread(file = "Data/AllData1M.tsv")
+object_size(gwas)   
+object_size(tgwas)  
+
+
+```
+
+### Genome_order changes
+
+```{r prof_genome_order}
+
+profvis({
+  
+    # Order data according to the genome using v2 makes it possible to make
+    # changes to the code base to try an improve the performance.
+    all_data <- fread(file = "Data/AllData1M.tsv",data.table = FALSE)
+    genome_results <- genome_order_v2(all_data = all_data)
+
+})
+
+
+```
+
+```{r microbenchmark_genomic_order}
+
+# Run only 5 times if it takes a long time to run
+gres <- microbenchmark(
+  genome_order(all_data = all_data),
+  genome_order_v2(all_data = all_data),
+  unit = "s",
+  times = 20
+)
+
+# print out the results
+print(gres)
+
+# Boxplot of the results
+boxplot(gres, 
+        xlab = "Function", 
+        names = c("genome_order", "genome_order_v2"),
+        col = c("red", "yellow"))
+#
+gres %>% select(time, expr)         %>% 
+        mutate(time = time / 10^9) %>% # Convert to seconds
+        ggplot(aes(x = expr, y = time, fill = expr), alpha = 0.5) +
+        geom_violin() + scale_y_log10() +
+        theme(legend.position = "none", 
+              plot.title = element_text(hjust = 0.5)) +
+        ylab("Time (s)") + xlab("Function version") +
+        ggtitle("Comparsion of genome_order improvements for 50k entries") +
+        scale_x_discrete(labels = c("genome_order", "genome_order_v2")) +
+        theme_bw() + theme(legend.position = "none")
+
+```
+```{r mem_profile_genome_order}
+
+library(profmem)
+
+profmem({
+    # Order data according to the genome using v2 makes it possible to make
+    # changes to the code base to try an improve the performance.
+    genome_results <- genome_order_v2(all_data = all_data)
+})
+```
+
