@@ -1,0 +1,768 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang2057{\fonttbl{\f0\fmodern Consolas;}{\f1\fmodern\fcharset0 Consolas;}{\f2\fnil\fcharset129 Courier New;}}
+{\colortbl ;\red20\green20\blue20;\red142\green142\blue142;\red16\green158\blue98;\red148\green146\blue12;\red170\green51\blue170;\red56\green136\blue159;\red18\green124\blue155;\red170\green85\blue85;\red94\green147\blue162;}
+\viewkind4\uc1\pard\f0\fs20      \u9484?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9488?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?                        \cf3\f1\bullet  MobaXterm 20.2 \bullet  \cf0\f0                          \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?            \cf4 (SSH client, X-server and networking tools)\cf0              \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?                                                                    \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474? \u8594? SSH session to \cf5 pnavarro\cf0 @\cf5 eddie.ecdf.ed.ac.uk                      \cf0\u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?\f1    \bullet  SSH gateway     : \cf3\f0 v\cf0   (pnavarro@bioinfmsc5.bio.ed.ac.uk)        \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?\f1    \bullet  SSH compression : \cf3\f0 v\cf0                                             \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?\f1    \bullet  SSH-browser     : \cf3\f0 v\cf0                                             \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?\f1    \bullet  X11-forwarding  : \cf3\f0 v\cf0   (remote display is forwarded through SSH) \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?\f1    \bullet  DISPLAY         : \cf3\f0 v\cf0   (automatically set on remote server)      \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474?                                                                    \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9474? \u8594? For more info, ctrl+click on \cf6\ul help\cf0\ulnone  or visit our \cf6\ul website\cf0\ulnone            \u9474?\cf1\highlight2 
+\par \cf0\highlight0      \u9492?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9496?\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Last login: Wed Oct 13 17:54:16 2021 from bioinfmsc5.bio.ed.ac.uk\cf1\highlight2 
+\par \cf0\highlight0          _______    _     _ _\cf1\highlight2 
+\par \cf0\highlight0         (_______)  | |   | (_)\cf1\highlight2 
+\par \cf0\highlight0          _____   _ | | _ | |_  ____\cf1\highlight2 
+\par \cf0\highlight0         |  ___) / || |/ || | |/ _  )\cf1\highlight2 
+\par \cf0\highlight0         | |____( (_| ( (_| | ( (/ /\cf1\highlight2 
+\par \cf0\highlight0         |_______)____|\\____|_|\\____)\cf1\highlight2 
+\par 
+\par 
+\par \cf0\highlight0            WELCOME TO Eddie\cf1\highlight2 
+\par 
+\par \cf0\highlight0            www.ecdf.ed.ac.uk\cf1\highlight2 
+\par \cf0\highlight0 _____________________________________________________________________\cf1\highlight2 
+\par 
+\par \cf0\highlight0 A guide to getting started is available here:\cf1\highlight2 
+\par \cf0\highlight0 https://www.wiki.ed.ac.uk/display/ResearchServices/Quickstart\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Service documentation is here:\cf1\highlight2 
+\par \cf0\highlight0 https://www.wiki.ed.ac.uk/display/ResearchServices/Eddie\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Please report any issues to IS.Helpline@ed.ac.uk\cf1\highlight2 
+\par \cf0\highlight0 _____________________________________________________________________\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [pnavarro@login01\cf7 (eddie)\cf0  ~]$ cd /exports/igmm/eddie/genomicper/\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@login01\cf7 (eddie)\cf0  genomicper]$ ls -lrt\cf1\highlight2 
+\par \cf0\highlight0 total 427136\cf1\highlight2 
+\par \cf0\highlight0 -rw------- 1 pnavarro igmm_datastore_haley-lab  262121686 Jul 29 12:27 \cf8 migraine_gwas_pvals.txt.gz\cf1\highlight2 
+\par \cf0\highlight0 -rw------- 1 pnavarro igmm_datastore_genomicper 175213311 Aug 18 21:34 \cf8 two_traits.txt.gz\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@login01\cf7 (eddie)\cf0  genomicper]$ zcat migraine_gwas_pvals.txt.gz | head\cf1\highlight2 
+\par \cf0\highlight0 SNP PV-clinical_c_G43\cf1\highlight2 
+\par \cf0\highlight0 10:62535_C_A 0.8751399999999999\cf1\highlight2 
+\par \cf0\highlight0 10:66208_T_C 0.0023925\cf1\highlight2 
+\par \cf0\highlight0 10:67991_A_C 0.7804300000000001\cf1\highlight2 
+\par \cf0\highlight0 10:71727_G_A 0.24653000000000003\cf1\highlight2 
+\par \cf0\highlight0 10:73688_A_G 0.9138700000000001\cf1\highlight2 
+\par \cf0\highlight0 10:74569_G_C 0.35474\cf1\highlight2 
+\par \cf0\highlight0 10:75623_G_A 0.72275\cf1\highlight2 
+\par \cf0\highlight0 10:76241_C_T 0.8378899999999999\cf1\highlight2 
+\par \cf0\highlight0 10:79327_C_T 0.22041\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@login01\cf7 (eddie)\cf0  genomicper]$ zcat migraine_gwas_pvals.txt.gz | tail\cf1\highlight2 
+\par \cf0\highlight0 rs563299799 0.34135\cf1\highlight2 
+\par \cf0\highlight0 rs563889179 0.81971\cf1\highlight2 
+\par \cf0\highlight0 rs567728629 0.97034\cf1\highlight2 
+\par \cf0\highlight0 rs570079498 0.51254\cf1\highlight2 
+\par \cf0\highlight0 rs570439458 0.67284\cf1\highlight2 
+\par \cf0\highlight0 rs572563138 0.039896\cf1\highlight2 
+\par \cf0\highlight0 rs746752275 0.28989000000000004\cf1\highlight2 
+\par \cf0\highlight0 rs76218080 0.21849000000000002\cf1\highlight2 
+\par \cf0\highlight0 rs777585747 0.42863\cf1\highlight2 
+\par \cf0\highlight0 rs7848839 0.7227600000000001\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@login01\cf7 (eddie)\cf0  genomicper]$ zcat migraine_gwas_pvals.txt.gz | wc\cf1\highlight2 
+\par \cf0\highlight0 ^C\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@login01\cf7 (eddie)\cf0  genomicper]$ qlogin -pe interactivemem 8 -l h_vmem=8G\cf1\highlight2 
+\par \cf0\highlight0 Your job 15372936 ("QLOGIN") has been submitted\cf1\highlight2 
+\par \cf0\highlight0 waiting for interactive job to be scheduled ...timeout (5 s) expired while waiting on socket fd 9\cf1\highlight2 
+\par \cf0\highlight0 .\cf1\highlight2 
+\par \cf0\highlight0 Your interactive job 15372936 has been successfully scheduled.\cf1\highlight2 
+\par \cf0\highlight0 Establishing /exports/applications/gridengine/ge-8.6.5/util/qlogin_wrapper session to host node2F25.ecdf.ed.ac.uk ...\cf1\highlight2 
+\par \cf0\highlight0 Warning: Permanently added '[node2f25.ecdf.ed.ac.uk]:36131,[192.41.105.186]:36131' (ECDSA) to the list of known hosts.\cf1\highlight2 
+\par \cf0\highlight0 Last login: Mon Oct  4 12:17:33 2021 from login02.ecdf.ed.ac.uk\cf1\highlight2 
+\par \cf0\highlight0 (reverse-i-search)`geno': ldd /gpfs/igmmfs01/eddie/haley-lab/richard/ukbb/^Cnotypes/old_analysis/bristol/dissect.openmpi.1.6.2\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@node2f25\cf7 (eddie)\cf0  ~]$ cd /exports/igmm/eddie/genomicper/\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@node2f25\cf7 (eddie)\cf0  genomicper]$ zcat migraine_gwas_pvals.txt.gz | wc -l\cf1\highlight2 
+\par \cf0\highlight0 30797652\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@node2f25\cf7 (eddie)\cf0  genomicper]$ R\cf1\highlight2 
+\par \cf0\highlight0 -bash: R: command not found\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@node2f25\cf7 (eddie)\cf0  genomicper]$ module load igmm/apps/R/4.1.0\cf1\highlight2 
+\par \cf0\highlight0 [pnavarro@node2f25\cf7 (eddie)\cf0  genomicper]$ R\cf1\highlight2 
+\par 
+\par \cf0\highlight0 R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"\cf1\highlight2 
+\par \cf0\highlight0 Copyright (C) 2021 The R Foundation for Statistical Computing\cf1\highlight2 
+\par \cf0\highlight0 Platform: x86_64-pc-linux-gnu (64-bit)\cf1\highlight2 
+\par 
+\par \cf0\highlight0 R is free software and comes with ABSOLUTELY NO WARRANTY.\cf1\highlight2 
+\par \cf0\highlight0 You are welcome to redistribute it under certain conditions.\cf1\highlight2 
+\par \cf0\highlight0 Type 'license()' or 'licence()' for distribution details.\cf1\highlight2 
+\par 
+\par \cf0\highlight0   Natural language support but running in an English locale\cf1\highlight2 
+\par 
+\par \cf0\highlight0 R is a collaborative project with many contributors.\cf1\highlight2 
+\par \cf0\highlight0 Type 'contributors()' for more information and\cf1\highlight2 
+\par \cf0\highlight0 'citation()' on how to cite R or R packages in publications.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Type 'demo()' for some demos, 'help()' for on-line help, or\cf1\highlight2 
+\par \cf0\highlight0 'help.start()' for an HTML browser interface to help.\cf1\highlight2 
+\par \cf0\highlight0 Type 'q()' to quit R.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 ls()\cf1\highlight2 
+\par \cf0\highlight0 library( RSQLite )\cf1\highlight2 
+\par 
+\par 
+\par 
+\par \cf0\highlight0 [Previously saved workspace restored]\cf1\highlight2 
+\par 
+\par \cf0\highlight0 > ls()\cf1\highlight2 
+\par \cf0\highlight0 [1] "connection" "gwas"       "gwas_hair"  "index"      "two_traits"\cf1\highlight2 
+\par \cf0\highlight0 > library( RSQLite )\cf1\highlight2 
+\par \cf0\highlight0\f1 Error in library(RSQLite) : there is no package called \lquote RSQLite\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 >\cf1\highlight2 
+\par \cf0\highlight0 >\cf1\highlight2 
+\par \cf0\highlight0 >\cf1\highlight2 
+\par \cf0\highlight0 > summary(gwas_hair)\cf1\highlight2 
+\par \cf0\highlight0       CHR               BP                SNP                  P\cf1\highlight2 
+\par \cf0\highlight0  Min.   : 1.000   Min.   :      828   Length:9154080     Min.   :0.0\cf1\highlight2 
+\par \cf0\highlight0  1st Qu.: 4.000   1st Qu.: 33487892   Class :character   1st Qu.:0.2\cf1\highlight2 
+\par \cf0\highlight0  Median : 8.000   Median : 69050319   Mode  :character   Median :0.5\cf1\highlight2 
+\par \cf0\highlight0  Mean   : 8.573   Mean   : 78943994                      Mean   :0.5\cf1\highlight2 
+\par \cf0\highlight0  3rd Qu.:13.000   3rd Qu.:114164585                      3rd Qu.:0.7\cf1\highlight2 
+\par \cf0\highlight0  Max.   :22.000   Max.   :249225077                      Max.   :1.0\cf1\highlight2 
+\par \cf0\highlight0                                                          NA's   :411316\cf1\highlight2 
+\par \cf0\highlight0       A1                  OR               N\cf1\highlight2 
+\par \cf0\highlight0  Length:9154080     Min.   : 0.0     Min.   :307152\cf1\highlight2 
+\par \cf0\highlight0  Class :character   1st Qu.: 1.0     1st Qu.:322708\cf1\highlight2 
+\par \cf0\highlight0  Mode  :character   Median : 1.0     Median :323148\cf1\highlight2 
+\par \cf0\highlight0                     Mean   : 1.0     Mean   :322761\cf1\highlight2 
+\par \cf0\highlight0                     3rd Qu.: 1.0     3rd Qu.:323291\cf1\highlight2 
+\par \cf0\highlight0                     Max.   :44.6     Max.   :323317\cf1\highlight2 
+\par \cf0\highlight0                     NA's   :411316\cf1\highlight2 
+\par \cf0\highlight0 > nrow(gwas)\cf1\highlight2 
+\par \cf0\highlight0 [1] 30797651\cf1\highlight2 
+\par \cf0\highlight0 > head(gwas)\cf1\highlight2 
+\par \cf0\highlight0            SNP PV-clinical_c_G43\cf1\highlight2 
+\par \cf0\highlight0 1 10:62535_C_A         0.8751400\cf1\highlight2 
+\par \cf0\highlight0 2 10:66208_T_C         0.0023925\cf1\highlight2 
+\par \cf0\highlight0 3 10:67991_A_C         0.7804300\cf1\highlight2 
+\par \cf0\highlight0 4 10:71727_G_A         0.2465300\cf1\highlight2 
+\par \cf0\highlight0 5 10:73688_A_G         0.9138700\cf1\highlight2 
+\par \cf0\highlight0 6 10:74569_G_C         0.3547400\cf1\highlight2 
+\par \cf0\highlight0 > install.packages("RSQLite")\cf1\highlight2 
+\par \cf0\highlight0\f1 Installing package into \lquote /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 (as \lquote lib\rquote  is unspecified)\cf1\highlight2\f0 
+\par \cf0\highlight0 --- Please select a CRAN mirror for use in this session ---\cf1\highlight2 
+\par \cf0\highlight0 0\cf1\highlight2 
+\par \cf0\highlight0\f1 also installing the dependencies \lquote ellipsis\rquote , \lquote glue\rquote , \lquote fastmap\rquote , \lquote bit\rquote , \lquote rlang\rquote , \lquote vctrs\rquote , \lquote cachem\rquote , \lquote bit64\rquote , \lquote blob\rquote , \lquote DBI\rquote , \lquote memoise\rquote , \lquote pkgconfig\rquote , \lquote Rcpp\rquote , \lquote plogr\rquote\cf1\highlight2\f0 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/ellipsis_0.3.2.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 8066 bytes\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 8066 bytes\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/glue_1.4.2.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 99049 bytes (96 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 96 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/fastmap_1.1.0.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 44277 bytes (43 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 43 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/bit_4.0.4.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 279723 bytes (273 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 273 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/rlang_0.4.12.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 861658 bytes (841 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 841 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/vctrs_0.3.8.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 782608 bytes (764 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 764 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/cachem_1.0.6.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 25413 bytes (24 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 24 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/bit64_4.0.5.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 135091 bytes (131 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 131 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/blob_1.2.2.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 10194 bytes\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 10194 bytes\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/DBI_1.1.1.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 743802 bytes (726 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 726 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/memoise_2.0.0.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 17337 bytes (16 KB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 16 KB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/pkgconfig_2.0.3.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 6080 bytes\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 6080 bytes\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/Rcpp_1.0.7.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 2941808 bytes (2.8 MB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 2.8 MB\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/plogr_0.2.0.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 7795 bytes\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 7795 bytes\cf1\highlight2 
+\par 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/RSQLite_2.2.8.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 3628717 bytes (3.5 MB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 3.5 MB\cf1\highlight2 
+\par 
+\par \cf0\highlight0\f1 * installing *source* package \lquote glue\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote glue\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c glue.c -o glue.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c trim.c -o trim.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o glue.so glue.o init.o trim.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-glue/00new/glue/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 *** copying figures\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (glue)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote fastmap\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote fastmap\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++11 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -Ilib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -DR_NO_REMAP -fpic  -g -O2  -c fastmap.cpp -o fastmap.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -Ilib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++11 -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o fastmap.so fastmap.o init.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-fastmap/00new/fastmap/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (fastmap)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote bit\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote bit\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c attrutil.c -o attrutil.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c bit.c -o bit.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c chunkutil.c -o chunkutil.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c clone.c -o clone.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c integerutil.c -o integerutil.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c merge.c -o merge.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c rle.c -o rle.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c sort.c -o sort.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o bit.so attrutil.o bit.o chunkutil.o clone.o init.o integerutil.o merge.o rle.o sort.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-bit/00new/bit/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (bit)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote rlang\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote rlang\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I./lib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c capture.c -o capture.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I./lib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c export.c -o export.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I./lib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c internal.c -o internal.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I./lib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c lib.c -o lib.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I./lib/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c version.c -o version.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o rlang.so capture.o export.o internal.o lib.o version.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-rlang/00new/rlang/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 *** copying figures\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (rlang)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote DBI\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote DBI\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (DBI)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote pkgconfig\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote pkgconfig\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (pkgconfig)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote Rcpp\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote Rcpp\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I../inst/include/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -g -O2  -c api.cpp -o api.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I../inst/include/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -g -O2  -c attributes.cpp -o attributes.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I../inst/include/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -g -O2  -c barrier.cpp -o barrier.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I../inst/include/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -g -O2  -c date.cpp -o date.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I../inst/include/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -g -O2  -c module.cpp -o module.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I../inst/include/  -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -g -O2  -c rcpp_init.cpp -o rcpp_init.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o Rcpp.so api.o attributes.o barrier.o date.o module.o rcpp_init.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-Rcpp/00new/Rcpp/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (Rcpp)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote plogr\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote plogr\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (plogr)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote ellipsis\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote ellipsis\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c dots.c -o dots.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o ellipsis.so dots.o init.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-ellipsis/00new/ellipsis/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (ellipsis)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote cachem\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote cachem\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c cache.c -o cache.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o cachem.so cache.o init.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-cachem/00new/cachem/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (cachem)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote bit64\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote bit64\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c bsearch.c -o bsearch.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c cache.c -o cache.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c hash64.c -o hash64.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c integer64.c -o integer64.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c sort64.c -o sort64.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include   -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c sortuse64.c -o sortuse64.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o bit64.so bsearch.o cache.o hash64.o init.o integer64.o sort64.o sortuse64.o -lm -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-bit64/00new/bit64/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** data\cf1\highlight2 
+\par \cf0\highlight0 ** exec\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (bit64)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote vctrs\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote vctrs\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c altrep-rle.c -o altrep-rle.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c arg-counter.c -o arg-counter.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c arg.c -o arg.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c bind.c -o bind.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c c-unchop.c -o c-unchop.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c c.c -o c.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c callables.c -o callables.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c cast-bare.c -o cast-bare.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c cast-dispatch.c -o cast-dispatch.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c cast.c -o cast.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c compare.c -o compare.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c complete.c -o complete.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c conditions.c -o conditions.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c dictionary.c -o dictionary.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c dim.c -o dim.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c equal.c -o equal.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fields.c -o fields.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fill.c -o fill.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c group.c -o group.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c growable.c -o growable.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c hash.c -o hash.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c names.c -o names.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c order-groups.c -o order-groups.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c order-radix.c -o order-radix.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c order-sortedness.c -o order-sortedness.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c order-transform.c -o order-transform.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c order-truelength.c -o order-truelength.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c poly-op.c -o poly-op.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c proxy-restore.c -o proxy-restore.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c proxy.c -o proxy.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c ptype2-dispatch.c -o ptype2-dispatch.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c rep.c -o rep.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c runs.c -o runs.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c shape.c -o shape.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c size-common.c -o size-common.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c size.c -o size.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c slice-array.c -o slice-array.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c slice-assign-array.c -o slice-assign-array.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c slice-assign.c -o slice-assign.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c slice-chop.c -o slice-chop.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c slice.c -o slice.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c split.c -o split.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c subscript-loc.c -o subscript-loc.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c subscript.c -o subscript.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c translate.c -o translate.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type-data-frame.c -o type-data-frame.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type-date-time.c -o type-date-time.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type-factor.c -o type-factor.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type-info.c -o type-info.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type-tibble.c -o type-tibble.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type.c -o type.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c type2.c -o type2.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c typeof2-s3.c -o typeof2-s3.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c typeof2.c -o typeof2.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c unspecified.c -o unspecified.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c utils-dispatch.c -o utils-dispatch.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c utils-rlang.c -o utils-rlang.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c utils.c -o utils.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c version.c -o version.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o vctrs.so altrep-rle.o arg-counter.o arg.o bind.o c-unchop.o c.o callables.o cast-bare.o cast-dispatch.o cast.o compare.o complete.o conditions.o dictionary.o dim.o equal.o fields.o fill.o group.o growable.o hash.o init.o names.o order-groups.o order-radix.o order-sortedness.o order-transform.o order-truelength.o poly-op.o proxy-restore.o proxy.o ptype2-dispatch.o rep.o runs.o shape.o size-common.o size.o slice-array.o slice-assign-array.o slice-assign.o slice-chop.o slice.o split.o subscript-loc.o subscript.o translate.o type-data-frame.o type-date-time.o type-factor.o type-info.o type-tibble.o type.o type2.o typeof2-s3.o typeof2.o unspecified.o utils-dispatch.o utils-rlang.o utils.o version.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-vctrs/00new/vctrs/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 *** copying figures\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (vctrs)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote memoise\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote memoise\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (memoise)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote blob\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote blob\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (blob)\cf1\highlight2 
+\par \cf0\highlight0\f1 * installing *source* package \lquote RSQLite\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote RSQLite\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbColumn.cpp -o DbColumn.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbColumnDataSource.cpp -o DbColumnDataSource.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbColumnDataSourceFactory.cpp -o DbColumnDataSourceFactory.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbColumnStorage.cpp -o DbColumnStorage.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbConnection.cpp -o DbConnection.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbDataFrame.cpp -o DbDataFrame.o\cf1\highlight2 
+\par \cf0\highlight0 In file included from \b vendor/boost/smart_ptr/detail/sp_thread_sleep.hpp:22\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b vendor/boost/smart_ptr/detail/yield_k.hpp:23\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b vendor/boost/smart_ptr/detail/spinlock_gcc_atomic.hpp:14\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b vendor/boost/smart_ptr/detail/spinlock.hpp:42\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b vendor/boost/smart_ptr/detail/spinlock_pool.hpp:25\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b vendor/boost/smart_ptr/shared_ptr.hpp:29\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b vendor/boost/shared_ptr.hpp:17\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b DbColumn.h:7\b0 ,\cf1\highlight2 
+\par \cf0\highlight0                  from \b DbDataFrame.cpp:3\b0 :\cf1\highlight2 
+\par \cf0\highlight0\b vendor/boost/config/pragma_message.hpp:24:34:\b0  \cf9 note: \cf0 #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.\cf1\highlight2 
+\par \cf0\highlight0    24 | # define BOOST_PRAGMA_MESSAGE(x) \cf9 _Pragma\cf0 (BOOST_STRINGIZE(message(x)))\cf1\highlight2 
+\par \cf0\highlight0       |                                  \cf9 ^~~~~~~\cf1\highlight2 
+\par \cf0\highlight0\b vendor/boost/config/pragma_message.hpp:24:34:\b0  \cf9 note: \cf0\f1 in definition of macro \lquote\b\f0 BOOST_PRAGMA_MESSAGE\b0\f1\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0    24 | # define BOOST_PRAGMA_MESSAGE(x) \cf9 _Pragma\cf0 (BOOST_STRINGIZE(message(x)))\cf1\highlight2 
+\par \cf0\highlight0       |                                  \cf9 ^~~~~~~\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c DbResult.cpp -o DbResult.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c SqliteColumnDataSource.cpp -o SqliteColumnDataSource.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c SqliteColumnDataSourceFactory.cpp -o SqliteColumnDataSourceFactory.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c SqliteDataFrame.cpp -o SqliteDataFrame.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c SqliteResult.cpp -o SqliteResult.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c SqliteResultImpl.cpp -o SqliteResultImpl.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c affinity.c -o affinity.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c connection.cpp -o connection.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c extension-functions.c -o extension-functions.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c extensions.cpp -o extensions.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c import-file.c -o import-file.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c regexp.c -o regexp.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c result.cpp -o result.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -g -O2  -c rsqlite.cpp -o rsqlite.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/plogr/include' -I'/exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/Rcpp/include' -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fvisibility=hidden -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c vendor/sqlite3/sqlite3.c -o vendor/sqlite3/sqlite3.o\cf1\highlight2 
+\par \cf0\highlight0 g++ -std=gnu++14 -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o RSQLite.so DbColumn.o DbColumnDataSource.o DbColumnDataSourceFactory.o DbColumnStorage.o DbConnection.o DbDataFrame.o DbResult.o RcppExports.o SqliteColumnDataSource.o SqliteColumnDataSourceFactory.o SqliteDataFrame.o SqliteResult.o SqliteResultImpl.o affinity.o connection.o extension-functions.o extensions.o import-file.o regexp.o result.o rsqlite.o vendor/sqlite3/sqlite3.o -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-RSQLite/00new/RSQLite/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (RSQLite)\cf1\highlight2 
+\par 
+\par \cf0\highlight0 The downloaded source packages are in\cf1\highlight2 
+\par \cf0\highlight0\f1         \lquote /tmp/RtmpQZEH4a/downloaded_packages\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > 0\cf1\highlight2 
+\par \cf0\highlight0 [1] 0\cf1\highlight2 
+\par \cf0\highlight0 > library( RSQLite )\cf1\highlight2 
+\par \cf0\highlight0 > con <- dbConnect(SQLite())\cf1\highlight2 
+\par \cf0\highlight0 > dbWriteTable(con, "gwas_db",gwas)\cf1\highlight2 
+\par \cf0\highlight0 Error in (function (classes, fdef, mtable)  :\cf1\highlight2 
+\par \cf0\highlight0\f1   unable to find an inherited method for function \lquote dbWriteTable\rquote  for signature \lquote "SQLiteConnection", "character", "data.table"\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > is(gwas)\cf1\highlight2 
+\par \cf0\highlight0 [1] "data.table"\cf1\highlight2 
+\par \cf0\highlight0 > my_db <- src_sqlite("gwas_db",create=T)\cf1\highlight2 
+\par \cf0\highlight0 Error in src_sqlite("gwas_db", create = T) :\cf1\highlight2 
+\par \cf0\highlight0   could not find function "src_sqlite"\cf1\highlight2 
+\par \cf0\highlight0 > gwasdf <- fread("./migraine_gwas_pvals.txt.gz",data.table=FALSE)\cf1\highlight2 
+\par \cf0\highlight0 Error in fread("./migraine_gwas_pvals.txt.gz", data.table = FALSE) :\cf1\highlight2 
+\par \cf0\highlight0   could not find function "fread"\cf1\highlight2 
+\par \cf0\highlight0 > library(fread)\cf1\highlight2 
+\par \cf0\highlight0\f1 Error in library(fread) : there is no package called \lquote fread\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > install.packages("fread")\cf1\highlight2 
+\par \cf0\highlight0\f1 Installing package into \lquote /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 (as \lquote lib\rquote  is unspecified)\cf1\highlight2\f0 
+\par \cf0\highlight0 Warning message:\cf1\highlight2 
+\par \cf0\highlight0\f1 package \lquote fread\rquote  is not available for this version of R\cf1\highlight2\f0 
+\par 
+\par \cf0\highlight0 A version of this package for your version of R might be available elsewhere,\cf1\highlight2 
+\par \cf0\highlight0 see the ideas at\cf1\highlight2 
+\par \cf0\highlight0 https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages\cf1\highlight2 
+\par \cf0\highlight0 > library(fread)\cf1\highlight2 
+\par \cf0\highlight0\f1 Error in library(fread) : there is no package called \lquote fread\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > library(data.table)\cf1\highlight2 
+\par \cf0\highlight0\f1 Error in library(data.table) : there is no package called \lquote data.table\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > library("data.table")\cf1\highlight2 
+\par \cf0\highlight0\f1 Error in library("data.table") : there is no package called \lquote data.table\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > library("fread")\cf1\highlight2 
+\par \cf0\highlight0\f1 Error in library("fread") : there is no package called \lquote fread\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > install.packages("data.table")\cf1\highlight2 
+\par \cf0\highlight0\f1 Installing package into \lquote /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 (as \lquote lib\rquote  is unspecified)\cf1\highlight2\f0 
+\par \cf0\highlight0 trying URL 'https://cloud.r-project.org/src/contrib/data.table_1.14.2.tar.gz'\cf1\highlight2 
+\par \cf0\highlight0 Content type 'application/x-gzip' length 5301817 bytes (5.1 MB)\cf1\highlight2 
+\par \cf0\highlight0 ==================================================\cf1\highlight2 
+\par \cf0\highlight0 downloaded 5.1 MB\cf1\highlight2 
+\par 
+\par \cf0\highlight0\f1 * installing *source* package \lquote data.table\rquote  ...\cf1\highlight2\f0 
+\par \cf0\highlight0\f1 ** package \lquote data.table\rquote  successfully unpacked and MD5 sums checked\cf1\highlight2\f0 
+\par \cf0\highlight0 ** using staged installation\cf1\highlight2 
+\par \cf0\highlight0 gcc 9.3.0\cf1\highlight2 
+\par \cf0\highlight0 zlib 1.2.7 is available ok\cf1\highlight2 
+\par \cf0\highlight0 R CMD SHLIB supports OpenMP without any extra hint\cf1\highlight2 
+\par \cf0\highlight0 ** libs\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c assign.c -o assign.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c between.c -o between.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c bmerge.c -o bmerge.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c chmatch.c -o chmatch.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c cj.c -o cj.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c coalesce.c -o coalesce.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c dogroups.c -o dogroups.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fastmean.c -o fastmean.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fcast.c -o fcast.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fifelse.c -o fifelse.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fmelt.c -o fmelt.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c forder.c -o forder.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c frank.c -o frank.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fread.c -o fread.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c freadR.c -o freadR.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c froll.c -o froll.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c frollR.c -o frollR.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c frolladaptive.c -o frolladaptive.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fsort.c -o fsort.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fwrite.c -o fwrite.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c fwriteR.c -o fwriteR.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c gsumm.c -o gsumm.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c ijoin.c -o ijoin.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c init.c -o init.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c inrange.c -o inrange.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c nafill.c -o nafill.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c nqrecreateindices.c -o nqrecreateindices.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c openmp-utils.c -o openmp-utils.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c quickselect.c -o quickselect.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c rbindlist.c -o rbindlist.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c reorder.c -o reorder.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c shift.c -o shift.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c snprintf.c -o snprintf.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c subset.c -o subset.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c transpose.c -o transpose.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c types.c -o types.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c uniqlist.c -o uniqlist.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c utils.c -o utils.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c vecseq.c -o vecseq.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -I"/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/include" -DNDEBUG   -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -fopenmp  -fpic  -I/exports/applications/apps/community/phys/gcc-9.3.0/include  -c wrappers.c -o wrappers.o\cf1\highlight2 
+\par \cf0\highlight0 gcc -shared -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -L/exports/applications/apps/community/phys/gcc-9.3.0/lib64 -o data.table.so assign.o between.o bmerge.o chmatch.o cj.o coalesce.o dogroups.o fastmean.o fcast.o fifelse.o fmelt.o forder.o frank.o fread.o freadR.o froll.o frollR.o frolladaptive.o fsort.o fwrite.o fwriteR.o gsumm.o ijoin.o init.o inrange.o nafill.o nqrecreateindices.o openmp-utils.o quickselect.o rbindlist.o reorder.o shift.o snprintf.o subset.o transpose.o types.o uniqlist.o utils.o vecseq.o wrappers.o -fopenmp -lz -L/exports/igmm/software/pkg/el7/apps/R/4.1.0/lib64/R/lib -lR\cf1\highlight2 
+\par \cf0\highlight0 PKG_CFLAGS = -fopenmp\cf1\highlight2 
+\par \cf0\highlight0 PKG_LIBS = -fopenmp -lz\cf1\highlight2 
+\par \cf0\highlight0 if [ "data.table.so" != "datatable.so" ]; then mv data.table.so datatable.so; fi\cf1\highlight2 
+\par \cf0\highlight0 if [ "" != "Windows_NT" ] && [ `uname -s` = 'Darwin' ]; then install_name_tool -id datatable.so datatable.so; fi\cf1\highlight2 
+\par \cf0\highlight0 installing to /exports/eddie3_homes_local/pnavarro/R/x86_64-pc-linux-gnu-library/4.1/00LOCK-data.table/00new/data.table/libs\cf1\highlight2 
+\par \cf0\highlight0 ** R\cf1\highlight2 
+\par \cf0\highlight0 ** inst\cf1\highlight2 
+\par \cf0\highlight0 ** byte-compile and prepare package for lazy loading\cf1\highlight2 
+\par \cf0\highlight0 ** help\cf1\highlight2 
+\par \cf0\highlight0 *** installing help indices\cf1\highlight2 
+\par \cf0\highlight0 ** building package indices\cf1\highlight2 
+\par \cf0\highlight0 ** installing vignettes\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from temporary location\cf1\highlight2 
+\par \cf0\highlight0 ** checking absolute paths in shared objects and dynamic libraries\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package can be loaded from final location\cf1\highlight2 
+\par \cf0\highlight0 ** testing if installed package keeps a record of temporary installation path\cf1\highlight2 
+\par \cf0\highlight0 * DONE (data.table)\cf1\highlight2 
+\par 
+\par \cf0\highlight0 The downloaded source packages are in\cf1\highlight2 
+\par \cf0\highlight0\f1         \lquote /tmp/RtmpQZEH4a/downloaded_packages\rquote\cf1\highlight2\f0 
+\par \cf0\highlight0 > library("data.table")\cf1\highlight2 
+\par \cf0\highlight0 data.table 1.14.2 using 4 threads (see ?getDTthreads).  Latest news: r-datatable.com\cf1\highlight2 
+\par \cf0\highlight0 > gwasdf <- fread("./migraine_gwas_pvals.txt.gz",data.table=FALSE)\cf1\highlight2 
+\par \cf0\highlight0 |--------------------------------------------------|\cf1\highlight2 
+\par \cf0\highlight0 |==================================================|\cf1\highlight2 
+\par \cf0\highlight0 > dbWriteTable(con, "gwas_db",gwasdf)\cf1\highlight2 
+\par \cf0\highlight0 > id1<-dbGetQuery( con,"SELECT * FROM gwasdf LIMIT 10)\cf1\highlight2 
+\par \cf0\highlight0 +\cf1\highlight2 
+\par \cf0\highlight0 > id1<-dbGetQuery( con,"SELECT * FROM gwasdf LIMIT 10")\cf1\highlight2 
+\par \cf0\highlight0 Error: no such table: gwasdf\cf1\highlight2 
+\par \cf0\highlight0 > id1<-dbGetQuery( con,"SELECT * FROM gwas_db LIMIT 10")\cf1\highlight2 
+\par \cf0\highlight0 > id1\cf1\highlight2 
+\par \cf0\highlight0             SNP PV-clinical_c_G43\cf1\highlight2 
+\par \cf0\highlight0 1  10:62535_C_A         0.8751400\cf1\highlight2 
+\par \cf0\highlight0 2  10:66208_T_C         0.0023925\cf1\highlight2 
+\par \cf0\highlight0 3  10:67991_A_C         0.7804300\cf1\highlight2 
+\par \cf0\highlight0 4  10:71727_G_A         0.2465300\cf1\highlight2 
+\par \cf0\highlight0 5  10:73688_A_G         0.9138700\cf1\highlight2 
+\par \cf0\highlight0 6  10:74569_G_C         0.3547400\cf1\highlight2 
+\par \cf0\highlight0 7  10:75623_G_A         0.7227500\cf1\highlight2 
+\par \cf0\highlight0 8  10:76241_C_T         0.8378900\cf1\highlight2 
+\par \cf0\highlight0 9  10:79327_C_T         0.2204100\cf1\highlight2 
+\par \cf0\highlight0 10 10:79954_G_C         0.8556900\cf1\highlight2 
+\par \cf0\highlight0 > id_join22<-dbGetQuery( connection, "SELECT * FROM Variant INNER JOIN gwas_db ON Variant.rsid = gwas_db.SNP")\cf1\highlight2 
+\par \cf0\highlight0 Error: external pointer is not valid\cf1\highlight2 
+\par \cf0\highlight0 >\cf1\highlight2 
+\par \cf0\highlight0 > dbWriteTable(connection, "gwas_db",gwasdf)\cf1\highlight2 
+\par \cf0\highlight0 Error: external pointer is not valid\cf1\highlight2 
+\par \cf0\highlight0 > dbListTables(con)\cf1\highlight2 
+\par \cf0\highlight0 [1] "gwas_db"\cf1\highlight2 
+\par \cf0\highlight0 > dbListTables(connection)\cf1\highlight2 
+\par \cf0\highlight0 Error: external pointer is not valid\cf1\highlight2 
+\par \cf0\highlight0 > ls()\cf1\highlight2 
+\par \cf0\highlight0 [1] "con"        "connection" "gwas"       "gwas_hair"  "gwasdf"\cf1\highlight2 
+\par \cf0\highlight0 [6] "id1"        "index"      "two_traits"\cf1\highlight2 
+\par \cf0\highlight0 > con = dbConnect( RSQLite::SQLite(), "/exports/igmm/eddie/UK-BioBank-proj19655/genotypes/imputed/ukbb_proj19655_chr22.bgen.bgi")\cf1\highlight2 
+\par \cf0\highlight0 > dbListTables(con)\cf1\highlight2 
+\par \cf0\highlight0 [1] "Metadata" "Variant"\cf1\highlight2 
+\par \cf0\highlight0 > dbWriteTable(con, "gwas_db",gwasdf)\cf1\highlight2 
+\par \cf0\highlight0 Error: attempt to write a readonly database\cf1\highlight2 
+\par \cf0\highlight0 > dbDisconnect(con)\cf1\highlight2 
+\par \cf0\highlight0 > dbListTables(con)\cf1\highlight2 
+\par \cf0\highlight0 Error: Invalid or closed connection\cf1\highlight2 
+\par \cf0\highlight0 > con = dbConnect( RSQLite::SQLite(), "/exports/igmm/eddie/UK-BioBank-proj19655/genotypes/imputed/ukbb_proj19655_chr22.bgen.bgi")\cf1\highlight2 
+\par \cf0\highlight0 > dbWriteTable(con, "gwas_db",gwasdf)\cf1\highlight2 
+\par \cf0\highlight0 Error: attempt to write a readonly database\cf1\highlight2 
+\par \cf0\highlight0 >\cf1\highlight2 
+\par \cf0\highlight0 > con = dbConnect( RSQLite::SQLite(), "./ukbb_proj19655_chr22.bgen.bgi")\cf1\highlight2 
+\par \cf0\highlight0 > dbWriteTable(con, "gwas_db",gwasdf)\cf1\highlight2 
+\par \cf0\highlight0 > dbListTables(con)\cf1\highlight2 
+\par \cf0\highlight0 [1] "Metadata" "Variant"  "gwas_db"\cf1\highlight2 
+\par \cf0\highlight0 > id_join22<-dbGetQuery( con, "SELECT * FROM Variant INNER JOIN gwas_db ON Variant.rsid = gwas_db.SNP")\cf1\highlight2 
+\par \pard\cf0\highlight0\f2 
+\par }
+ 
