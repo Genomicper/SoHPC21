@@ -1,0 +1,19 @@
+> library( RSQLite )
+> connection = dbConnect( RSQLite::SQLite(), "/exports/igmm/eddie/UK-BioBank-proj19655/genotypes/imputed/ukbb_proj19655_chr22.bgen.bgi")
+> index = dbGetQuery( connection, "SELECT * FROM Variant" )
+> head(index)
+  chromosome position            rsid number_of_alleles allele1 allele2
+1         22 16050075     rs587697622                 2       A       G
+2         22 16050115     rs587755077                 2       G       A
+3         22 16050213     rs587654921                 2       C       T
+4         22 16050319     rs587712275                 2       C       T
+5         22 16050435 22:16050435_T_C                 2       T       C
+6         22 16050527     rs587769434                 2       C       A
+  file_start_position size_in_bytes
+1            15609040          9427
+2            15618467        244746
+3            15863213        175736
+4            16038949         55158
+5            16094107         55213
+6            16149320         31110
+>
