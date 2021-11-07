@@ -12,10 +12,11 @@ editor_options:
     wrap: 72
 ---
 
-```{'r'} 
+```{r connectToDb} 
 library( RSQLite )
-connection = dbConnect( RSQLite::SQLite(), "/exports/igmm/eddie/UK-BioBank-proj19655/genotypes/imputed/ukbb_proj19655_chr22.bgen.bgi")
-index = dbGetQuery( connection, "SELECT * FROM Variant" )
+
+connection <- dbConnect( RSQLite::SQLite(), "/exports/igmm/eddie/UK-BioBank-proj19655/genotypes/imputed/ukbb_proj19655_chr22.bgen.bgi")
+index <- dbGetQuery( connection, "SELECT * FROM Variant" )
 head(index)
 ```
 
