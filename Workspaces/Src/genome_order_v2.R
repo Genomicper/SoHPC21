@@ -6,20 +6,20 @@ function(all_data = "", verbose = FALSE) {
            sum(is.na(all_data[, 2])), sep = "")
     }
     # Remove any NA values in the Chromosome column.
-    all_data <- all_data[!is.na(all_data[, 2]), ]
-    rowsf <- length(unique(sort(as.character(all_data[, 4]))))
+    all_data <- all_data[!is.na(all_data[[2]]),]
+    rowsf <- length(unique(sort(as.character(all_data[[4]]))))
     colsf <- length(all_data)
     colnames(all_data)[4] <- "GENE_ID"
     # Convert any columns from 7 that may be factors to numeric values - do
     # this only if the column is a factor.
     for (i in 7:colsf) {
-        if (!is.factor(all_data[, i])) {
+        if (!is.factor(all_data[i])) {
             next
         }
-        all_data[, i] <- as.numeric(as.character(all_data[, i]))
+        all_data[i] <- as.numeric(as.character(all_data[i]))
     }
     or_data <- all_data
-    or_data[, 2] <- as.character(or_data[, 2])
+    or_data[, 2] <- as.character(or_data[[2]])
 
     lk <- as.character(1:50)
     ## Numeric Chromosomes
