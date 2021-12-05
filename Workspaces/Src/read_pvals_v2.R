@@ -3,9 +3,10 @@ function(data_name = "", snps_ann = "", from = "workspace", verbose = FALSE) {
 
      if (verbose) {
        cat("Arguments set (read_pvals):\n")
-       cat("\t", substitute(data_name), ",\n", sep = "")
-       cat("\t", substitute(snps_ann), ",\n", sep = "")
-       cat("\tfrom ", from, ".", sep = "")
+       cat("\tdata_name: ", substitute(data_name), ",\n", sep = "")
+       cat("\tsnpsann: ", substitute(snps_ann), ",\n", sep = "")
+       cat("\tfrom: ", from, ",\n", sep = "")
+       cat("\tverbose: ",verbose, ".", sep = "")
      }
 
     if (from != "workspace" & from != "directory") {
