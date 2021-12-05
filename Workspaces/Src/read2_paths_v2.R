@@ -1,6 +1,7 @@
 read2_paths_v2 <-
 function(ordered_alldata = "", gs_locs = "", sets_from = "workspace",
          sets_prefix = "RHSA", level = "snp", envir= "", verbose = FALSE) {
+
     if (verbose) {
         cat("Arguments set:\n")
         cat("\t", "Ordered dataset: ", substitute(ordered_alldata), "\n", sep = "")
@@ -9,17 +10,21 @@ function(ordered_alldata = "", gs_locs = "", sets_from = "workspace",
         cat("\t", "Gene-sets prefix: ", sets_prefix, "\n", sep = "")
         cat("\t", "Annotation level: ", level, "\n", sep = "")
     }
+
     if (missing(level) == TRUE) {
         stop("Argument \"level\" must be defined. Permutations performed at
              \"gene\" or \"snp\" level")
     }
+
     if (level != "snp" & level != "gene") {
         stop("Argument \"level\" must be \"snp\" or \"gene\"")
     }
+
     if (sets_from != "workspace" & sets_from != "directory") {
 
         stop("Argument \"from\" must be \"workspace\" or \"directory\"")
     }
+
     if (sets_from == "workspace") {
         ps <- ls(pattern = sets_prefix, envir = envir)
         if (length(ps) == 0) {
@@ -28,6 +33,7 @@ function(ordered_alldata = "", gs_locs = "", sets_from = "workspace",
                  \"directory\"")
         }
     }
+
     if (sets_from == "directory") {
         ps <- list.files(pattern = sets_prefix)
         if (length(ps) == 0) {
