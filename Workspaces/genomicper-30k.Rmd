@@ -72,22 +72,25 @@ Profile an example piece of code:
 
 ```{r profile_30k}
 
-profvis({
+
 
     #### SNP-level  ##########################################################
     # SNPs annotation and Pathways provided by user
     # all data stored at the WORKSPACE
 
     ### Load files for analysis
-
+profvis({
+  
     # Read & format GWAS pvalues
     all_data <- read_pvals_v2(data_name = "Data/GWAS_30K.txt", 
                 snps_ann = "Data/SNP_Table_Annotation_30K.txt",
-                from = "directory")
-    
-    # Order data according to the genome
-    genome_results <- genome_order_v2(all_data = all_data)
+                from = "directory", verbose = TRUE)
+})  
 
+profvis({
+    # Order data according to the genome
+    genome_results <- genome_order_v2(all_data = all_data, verbose = TRUE)
+})  
     # Results from genome_order
     ordered_alldata <- genome_results$ordered_alldata
     gs_locs <- genome_results$gs_locs
@@ -129,7 +132,7 @@ profvis({
                            envir = gper.env)
 
   
-    })
+
 
 ```
 
