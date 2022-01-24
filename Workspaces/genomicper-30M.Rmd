@@ -99,15 +99,14 @@ res <- microbenchmark(
 # Print out the stats
 print(res)
 
-# Unit: seconds
-#                                                                expr      min       lq     mean   median        uq
-#  read.table(file = infile, header = TRUE, stringsAsFactors = FALSE) 93.55874 95.22300 99.07242 97.39790 102.82382
-#                         read_table(file = infile, col_types = cols) 56.47857 57.23174 63.71495 65.56512  67.89029
-#                                                fread(file = infile) 30.55904 33.09605 34.83237 35.52654  36.67081
-#        max neval
-#  106.35863     5
-#   71.40905     5
-#   38.30937     5
+ #                                                               expr      min       lq     mean   median        uq
+ # read.table(file = infile, header = TRUE, stringsAsFactors = FALSE) 93.55874 95.22300 99.07242 97.39790 102.82382
+ #                        read_table(file = infile, col_types = cols) 56.47857 57.23174 63.71495 65.56512  67.89029
+ #                                               fread(file = infile) 30.55904 33.09605 34.83237 35.52654  36.67081
+ #       max neval
+ # 106.35863     5
+ #  71.40905     5
+ #  38.30937     5
 
 # Boxplot of the results
 boxplot(res, xlab = "read.table vs read_table vs fread", 
@@ -156,6 +155,10 @@ res3 <- microbenchmark(
 # Print out the stats
 print(res3)
 
+ #                                  expr       min        lq     mean   median       uq      max neval
+ # vroom(file = infile, col_types = cols)  8.660256  9.525121 11.82057 11.97287 14.35921 15.23637    10
+ #                   fread(file = infile) 27.573730 27.976746 31.91760 31.26587 35.73686 38.04025    10
+
 # Boxplot of the results
 boxplot(res3, xlab = "vroom vs fread", 
         names = c("vroom", "fread"),
@@ -169,7 +172,7 @@ res3 %>% select(time, expr)         %>%
         theme(legend.position = "none", 
               plot.title = element_text(hjust = 0.5)) +
         ylab("Time (s)") + xlab("Function version") +
-        ggtitle("Comparsion of vroom vs fread for 8M entries") +
+        ggtitle("Comparsion of vroom vs fread for 30M entries") +
         scale_x_discrete(labels = c("vroom", "fread")) 
 ```
 
