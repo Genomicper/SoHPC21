@@ -6,3 +6,4 @@
 *.html
 *.tsv
 .DS_Store
+*.gz
